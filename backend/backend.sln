@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend-server", "backend-server\backend-server.csproj", "{121CBA5E-5511-43BA-9D03-055E38555BC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend-tests", "backend-tests\backend-tests.csproj", "{7060C0E6-EB64-4D9A-913A-2C345E610685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{121CBA5E-5511-43BA-9D03-055E38555BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121CBA5E-5511-43BA-9D03-055E38555BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121CBA5E-5511-43BA-9D03-055E38555BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121CBA5E-5511-43BA-9D03-055E38555BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7060C0E6-EB64-4D9A-913A-2C345E610685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7060C0E6-EB64-4D9A-913A-2C345E610685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7060C0E6-EB64-4D9A-913A-2C345E610685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7060C0E6-EB64-4D9A-913A-2C345E610685}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
