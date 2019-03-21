@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { remote } from 'electron';
 
 @Component({
   selector: 'app-folder-choose-page',
@@ -9,12 +8,8 @@ import { remote } from 'electron';
 })
 export class FolderChoosePageComponent implements OnInit {
 
-  mainProcess = remote.require('./main');
 
   constructor() {
-    document.getElementById('test').addEventListener('click', _ => {
-      this.mainProcess.selectDirectory();
-    });
   }
 
   ngOnInit() {
