@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen, ipcMain, dialog } from 'electron';
+import {app, BrowserWindow, dialog, ipcMain, Menu, screen} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -8,8 +8,7 @@ serve = args.some(val => val === '--serve');
 
 function createWindow() {
 
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -47,7 +46,37 @@ function createWindow() {
     win = null;
   });
 
+  createMenu();
+
 }
+
+
+function createMenu() {
+  const template = [
+    {
+      label: 'Images',
+      submenu: [
+        {
+          label: 'Choose folder',
+          click(item, focusedWindow) {
+            const folderPaths = selectDirectory();
+            console.log(folderPaths);
+            sendFolderPath(folderPaths[0]);
+          }
+        },
+      ]
+    },
+    {
+      label: 'Photographer',
+      submenu: [
+        {label: 'Manage'}
+      ]
+    }
+  ];
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+}
+
 
 try {
 
@@ -79,19 +108,24 @@ try {
 }
 /////// ipc ///////
 ipcMain.on('getFolderPath', (event, arg) => {
-    const folderPath = selectDirectory();
-    win.webContents.send('returnFolderPath', folderPath);
+  const folderPath = selectDirectory();
+  win.webContents.send('returnFolderPath', folderPath);
 });
 
 function selectDirectory() {
-    const folderPath = dialog.showOpenDialog(win, {
-        title: 'Folder to load images from',
-        // defaultPath: 'D:\\electron-app',
-        buttonLabel: 'Choose folder',
-        properties: ['openDirectory']
-    });
-    console.log(folderPath);
-    return folderPath;
+  const folderPath = dialog.showOpenDialog(win, {
+    title: 'Folder to load images from',
+    // defaultPath: 'D:\\electron-app',
+    buttonLabel: 'Choose folder',
+    properties: ['openDirectory']
+  });
+  return folderPath;
 }
+
+function sendFolderPath(folderPath: string) {
+  win.webContents.send('folderPath', folderPath);
+}
+
+
 
 

@@ -7,8 +7,7 @@ var win, serve;
 var args = process.argv.slice(1);
 serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {
-    var electronScreen = electron_1.screen;
-    var size = electronScreen.getPrimaryDisplay().workAreaSize;
+    var size = electron_1.screen.getPrimaryDisplay().workAreaSize;
     // Create the browser window.
     win = new electron_1.BrowserWindow({
         x: 0,
@@ -42,6 +41,32 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
+    createMenu();
+}
+function createMenu() {
+    var template = [
+        {
+            label: 'Images',
+            submenu: [
+                {
+                    label: 'Choose folder',
+                    click: function (item, focusedWindow) {
+                        var folderPaths = selectDirectory();
+                        console.log(folderPaths);
+                        sendFolderPath(folderPaths[0]);
+                    }
+                },
+            ]
+        },
+        {
+            label: 'Photographer',
+            submenu: [
+                { label: 'Manage' }
+            ]
+        }
+    ];
+    var menu = electron_1.Menu.buildFromTemplate(template);
+    electron_1.Menu.setApplicationMenu(menu);
 }
 try {
     // This method will be called when Electron has finished
@@ -80,7 +105,9 @@ function selectDirectory() {
         buttonLabel: 'Choose folder',
         properties: ['openDirectory']
     });
-    console.log(folderPath);
     return folderPath;
+}
+function sendFolderPath(folderPath) {
+    win.webContents.send('folderPath', folderPath);
 }
 //# sourceMappingURL=main.js.map

@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import {IpcService} from './ipc.service';
+import {ElectronService} from './electron.service';
 
 @Injectable()
 export class FolderService {
 
   photoFolder: string;
 
-  constructor(private ipc: IpcService) { }
-
-  async setFolderPath() {
-    const folders = await this.ipc.send('getFolderPath', 'returnFolderPath');
-    this.photoFolder = folders[0];
+  constructor(private electronService: ElectronService) {
+    electronService.ipcRenderer.on('folderPath', (event, message) => {
+      this.photoFolder = message;
+      console.log(message);
+    });
   }
-
-
-
-
 }
+
+
+
+
+
+

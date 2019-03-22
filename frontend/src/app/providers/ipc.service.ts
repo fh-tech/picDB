@@ -9,6 +9,9 @@ export class IpcService {
     if ((window as any).require) {
       try {
         this.ipc = (window as any).require('electron').ipcRenderer;
+        this.ipc.on('folderPath', (event, message) => {
+          console.log(message);
+        });
       } catch (error) {
         throw error;
       }
@@ -25,5 +28,7 @@ export class IpcService {
       this.ipc.send(channel);
     });
   }
+
+
 }
 

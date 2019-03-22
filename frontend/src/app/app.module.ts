@@ -17,7 +17,6 @@ import {ElectronService} from './providers/electron.service';
 import {WebviewDirective} from './directives/webview.directive';
 
 import {AppComponent} from './app.component';
-import {FolderChoosePageComponent} from './components/folder-choose-page/folder-choose-page.component';
 import {ImagePageComponent} from './components/image-page/image-page.component';
 import {ImageDetailsComponent} from './components/image-page/image-details/image-details.component';
 import {SearchbarComponent} from './components/image-page/searchbar/searchbar.component';
@@ -34,7 +33,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     declarations: [
         AppComponent,
-        FolderChoosePageComponent,
         ImagePageComponent,
         ImageDetailsComponent,
         SearchbarComponent,

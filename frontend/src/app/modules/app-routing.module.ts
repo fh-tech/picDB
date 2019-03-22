@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {FolderChoosePageComponent} from '../components/folder-choose-page/folder-choose-page.component';
 import {ImagePageComponent} from '../components/image-page/image-page.component';
 
 const routes: Routes = [
-    {path: '', pathMatch: 'full', redirectTo: 'folder'},
-    {path: 'folder', component: FolderChoosePageComponent},
+    {path: '', pathMatch: 'full', redirectTo: 'images'},
     {path: 'images', component: ImagePageComponent}
 ];
 
