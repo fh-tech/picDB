@@ -17,12 +17,12 @@ export class IpcService {
     }
   }
 
-  async getFiles() {
+  public async send(channel: string, listener: string) {
     return new Promise<string[]>((resolve, reject) => {
-      this.ipc.once('returnFolderPath', (event, arg) => {
+      this.ipc.once(listener, (event, arg) => {
         resolve(arg);
       });
-      this.ipc.send('getFolderPath');
+      this.ipc.send(channel);
     });
   }
 }
