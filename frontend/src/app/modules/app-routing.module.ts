@@ -2,11 +2,13 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ImagePageComponent} from '../components/image-page/image-page.component';
 import {ChooseFolderPageComponent} from '../components/choose-folder-page/choose-folder-page.component';
+import {ImageFolderGuardService} from '../providers/guards/image-folder-guard.service';
+import {ChooseFolderGuardService} from '../providers/guards/choose-folder-guard.service';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'chooseFolder'},
-  {path: 'chooseFolder', component: ChooseFolderPageComponent},
-  {path: 'images', component: ImagePageComponent}
+  {path: 'chooseFolder', component: ChooseFolderPageComponent, canActivate: [ChooseFolderGuardService]},
+  {path: 'images', component: ImagePageComponent, canActivate: [ImageFolderGuardService]}
 ];
 
 @NgModule({
