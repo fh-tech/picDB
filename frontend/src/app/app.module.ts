@@ -24,6 +24,8 @@ import {ImageSliderComponent} from './components/image-page/image-slider/image-s
 import {MaterialModule} from './modules/material.module';
 import {FolderService} from './providers/folder.service';
 import {IpcService} from './providers/ipc.service';
+import {ChooseFolderPageComponent} from './components/choose-folder-page/choose-folder-page.component';
+import {ImageFolderGuardService} from './providers/image-folder-guard.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ImageDetailsComponent,
         SearchbarComponent,
         ImageSliderComponent,
-        WebviewDirective
+        WebviewDirective,
+        ChooseFolderPageComponent
     ],
     imports: [
         BrowserModule,
@@ -57,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     providers: [
         ElectronService,
         FolderService,
-        IpcService
+        IpcService,
+        ImageFolderGuardService
     ],
     bootstrap: [AppComponent]
 })

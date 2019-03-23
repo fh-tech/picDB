@@ -4,13 +4,17 @@ import {ElectronService} from './electron.service';
 @Injectable()
 export class FolderService {
 
-  photoFolder: string;
+  private photoFolder: string;
 
   constructor(private electronService: ElectronService) {
     electronService.ipcRenderer.on('folderPath', (event, message) => {
-      this.photoFolder = message;
       console.log(message);
+      this.photoFolder = message;
     });
+  }
+
+  get photofolder() {
+    return this.photoFolder;
   }
 }
 
