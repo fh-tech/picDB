@@ -25,7 +25,9 @@ import {MaterialModule} from './modules/material.module';
 import {FolderService} from './providers/folder.service';
 import {IpcService} from './providers/ipc.service';
 import {ChooseFolderPageComponent} from './components/choose-folder-page/choose-folder-page.component';
-import {ImageFolderGuardService} from './providers/image-folder-guard.service';
+import {ImageFolderGuardService} from './providers/guards/image-folder-guard.service';
+import {ChooseFolderGuardService} from './providers/guards/choose-folder-guard.service';
+import {NavigatorService} from './providers/navigator.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -61,7 +63,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         ElectronService,
         FolderService,
         IpcService,
-        ImageFolderGuardService
+        ImageFolderGuardService,
+        ChooseFolderGuardService,
+        NavigatorService
     ],
     bootstrap: [AppComponent]
 })
