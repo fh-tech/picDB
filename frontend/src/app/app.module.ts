@@ -22,12 +22,18 @@ import {ImageDetailsComponent} from './components/image-page/image-details/image
 import {SearchbarComponent} from './components/image-page/searchbar/searchbar.component';
 import {ImageSliderComponent} from './components/image-page/image-slider/image-slider.component';
 import {MaterialModule} from './modules/material.module';
-import {FolderService} from './providers/folder.service';
-import {IpcService} from './providers/ipc.service';
+import {FolderService} from './providers/folder/folder.service';
+import {IpcService} from './providers/ipc/ipc.service';
 import {ChooseFolderPageComponent} from './components/choose-folder-page/choose-folder-page.component';
 import {ImageFolderGuardService} from './providers/guards/image-folder-guard.service';
 import {ChooseFolderGuardService} from './providers/guards/choose-folder-guard.service';
-import {NavigatorService} from './providers/navigator.service';
+import {NavigatorService} from './providers/navigator/navigator.service';
+import {StorageService} from './providers/storage/storage.service';
+import {ConfigService} from './providers/config/config.service';
+import { PhotographerPageComponent } from './components/photographer-page/photographer-page.component';
+import {PhotographersService} from './providers/photographers/photographers.service';
+import { PhotographerListComponent } from './components/photographer-page/photographer-list/photographer-list.component';
+import { AddPhotographerComponent } from './components/photographer-page/add-photographer/add-photographer.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -42,7 +48,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         SearchbarComponent,
         ImageSliderComponent,
         WebviewDirective,
-        ChooseFolderPageComponent
+        ChooseFolderPageComponent,
+        PhotographerPageComponent,
+        PhotographerListComponent,
+        AddPhotographerComponent
     ],
     imports: [
         BrowserModule,
@@ -65,7 +74,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         IpcService,
         ImageFolderGuardService,
         ChooseFolderGuardService,
-        NavigatorService
+        NavigatorService,
+        StorageService,
+        ConfigService,
+        PhotographersService
     ],
     bootstrap: [AppComponent]
 })

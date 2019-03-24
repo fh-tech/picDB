@@ -60,8 +60,9 @@ function createMenu() {
                     label: 'Choose folder',
                     click(item, focusedWindow) {
                         const folderPaths = selectDirectory();
-                        console.log(folderPaths);
-                        sendFolderPath(folderPaths[0]);
+                        if (folderPaths) {
+                            sendFolderPath(folderPaths[0]);
+                        }
                     }
                 },
             ]
@@ -69,7 +70,12 @@ function createMenu() {
         {
             label: 'Photographer',
             submenu: [
-                {label: 'Manage'}
+                {
+                    label: 'Manage',
+                    click(item, focusedWindow) {
+                        sendNavigatePhotographer();
+                    }
+                }
             ]
         }
     ];
@@ -113,17 +119,20 @@ ipcMain.on('getFolderPath', (event, arg) => {
 });
 
 function selectDirectory() {
-    const folderPath = dialog.showOpenDialog(win, {
+    return dialog.showOpenDialog(win, {
         title: 'Folder to load images from',
         // defaultPath: 'D:\\electron-app',
         buttonLabel: 'Choose folder',
         properties: ['openDirectory']
     });
-    return folderPath;
 }
 
 function sendFolderPath(folderPath: string) {
     win.webContents.send('folderPath', folderPath);
+}
+
+function sendNavigatePhotographer() {
+    win.webContents.send('photographer');
 }
 
 
