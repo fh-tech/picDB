@@ -1,5 +1,5 @@
 import {Injectable, NgZone} from '@angular/core';
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {FolderService} from '../folder/folder.service';
 import {Observable} from 'rxjs';
 import {NavigatorService} from '../navigator/navigator.service';

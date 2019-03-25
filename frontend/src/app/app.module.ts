@@ -30,10 +30,10 @@ import {ChooseFolderGuardService} from './providers/guards/choose-folder-guard.s
 import {NavigatorService} from './providers/navigator/navigator.service';
 import {StorageService} from './providers/storage/storage.service';
 import {ConfigService} from './providers/config/config.service';
-import { PhotographerPageComponent } from './components/photographer-page/photographer-page.component';
 import {PhotographersService} from './providers/photographers/photographers.service';
 import { PhotographerListComponent } from './components/photographer-page/photographer-list/photographer-list.component';
 import { AddPhotographerComponent } from './components/photographer-page/add-photographer/add-photographer.component';
+import {PhotographerPageComponent} from './components/photographer-page/photographer-page.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
