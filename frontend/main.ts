@@ -57,6 +57,12 @@ function createMenu() {
             label: 'Images',
             submenu: [
                 {
+                    label: 'Manage',
+                    click(item, focusedWindow) {
+                        sendNavigateImage();
+                    }
+                },
+                {
                     label: 'Choose folder',
                     click(item, focusedWindow) {
                         const folderPaths = selectDirectory();
@@ -115,8 +121,27 @@ try {
 /////// ipc ///////
 ipcMain.on('getFolderPath', (event, arg) => {
     const folderPath = selectDirectory();
-    win.webContents.send('returnFolderPath', folderPath);
+    if (folderPath) {
+        sendFolderPath(folderPath[0]);
+    }
 });
+
+
+function sendFolderPath(folderPath: string) {
+    if (folderPath) {
+        win.webContents.send('folderPath', folderPath);
+    }
+}
+
+
+function sendNavigatePhotographer() {
+    win.webContents.send('photographers');
+}
+
+function sendNavigateImage() {
+    win.webContents.send('images');
+}
+
 
 function selectDirectory() {
     return dialog.showOpenDialog(win, {
@@ -126,15 +151,5 @@ function selectDirectory() {
         properties: ['openDirectory']
     });
 }
-
-function sendFolderPath(folderPath: string) {
-    win.webContents.send('folderPath', folderPath);
-}
-
-function sendNavigatePhotographer() {
-    win.webContents.send('photographer');
-}
-
-
 
 

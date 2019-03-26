@@ -10,7 +10,7 @@ const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'chooseFolder'},
     {path: 'chooseFolder', component: ChooseFolderPageComponent, canActivate: [ChooseFolderGuardService]},
     {path: 'images', component: ImagePageComponent, canActivate: [ImageFolderGuardService]},
-    {path: 'photographer', component: PhotographerPageComponent}
+    {path: 'photographers', component: PhotographerPageComponent}
 ];
 
 @NgModule({

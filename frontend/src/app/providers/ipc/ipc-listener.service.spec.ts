@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IpcService } from './ipc.service';
+import { IpcListenerService } from './ipc-listener.service';
 
-describe('IpcService', () => {
+describe('IpcListenerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: IpcService = TestBed.get(IpcService);
+    const service: IpcListenerService = TestBed.get(IpcListenerService);
     expect(service).toBeTruthy();
   });
 });

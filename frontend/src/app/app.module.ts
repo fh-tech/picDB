@@ -23,7 +23,6 @@ import {SearchbarComponent} from './components/image-page/searchbar/searchbar.co
 import {ImageSliderComponent} from './components/image-page/image-slider/image-slider.component';
 import {MaterialModule} from './modules/material.module';
 import {FolderService} from './providers/folder/folder.service';
-import {IpcService} from './providers/ipc/ipc.service';
 import {ChooseFolderPageComponent} from './components/choose-folder-page/choose-folder-page.component';
 import {ImageFolderGuardService} from './providers/guards/image-folder-guard.service';
 import {ChooseFolderGuardService} from './providers/guards/choose-folder-guard.service';
@@ -31,9 +30,11 @@ import {NavigatorService} from './providers/navigator/navigator.service';
 import {StorageService} from './providers/storage/storage.service';
 import {ConfigService} from './providers/config/config.service';
 import {PhotographersService} from './providers/photographers/photographers.service';
-import { PhotographerListComponent } from './components/photographer-page/photographer-list/photographer-list.component';
-import { AddPhotographerComponent } from './components/photographer-page/add-photographer/add-photographer.component';
+import {PhotographerListComponent} from './components/photographer-page/photographer-list/photographer-list.component';
+import {AddPhotographerComponent} from './components/photographer-page/add-photographer/add-photographer.component';
 import {PhotographerPageComponent} from './components/photographer-page/photographer-page.component';
+import {IpcListenerService} from './providers/ipc/ipc-listener.service';
+import {IpcSenderService} from './providers/ipc/ipc-sender.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -71,13 +72,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     providers: [
         ElectronService,
         FolderService,
-        IpcService,
         ImageFolderGuardService,
         ChooseFolderGuardService,
         NavigatorService,
         StorageService,
         ConfigService,
-        PhotographersService
+        PhotographersService,
+        IpcListenerService,
+        IpcSenderService
     ],
     bootstrap: [AppComponent]
 })

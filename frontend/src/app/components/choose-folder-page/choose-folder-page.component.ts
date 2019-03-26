@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {IpcSenderService} from '../../providers/ipc/ipc-sender.service';
 
 @Component({
   selector: 'app-choose-folder-page',
   templateUrl: './choose-folder-page.component.html',
   styleUrls: ['./choose-folder-page.component.scss']
 })
-export class ChooseFolderPageComponent implements OnInit {
+export class ChooseFolderPageComponent {
 
-  constructor() { }
+  constructor(private ipcSender: IpcSenderService) { }
 
-  ngOnInit() {
-  }
 
+    onChooseFolder() {
+        this.ipcSender.sendMessage('getFolderPath');
+    }
 }

@@ -49,6 +49,12 @@ function createMenu() {
             label: 'Images',
             submenu: [
                 {
+                    label: 'Manage',
+                    click: function (item, focusedWindow) {
+                        sendNavigateImage();
+                    }
+                },
+                {
                     label: 'Choose folder',
                     click: function (item, focusedWindow) {
                         var folderPaths = selectDirectory();
@@ -102,8 +108,21 @@ catch (e) {
 /////// ipc ///////
 electron_1.ipcMain.on('getFolderPath', function (event, arg) {
     var folderPath = selectDirectory();
-    win.webContents.send('returnFolderPath', folderPath);
+    if (folderPath) {
+        sendFolderPath(folderPath[0]);
+    }
 });
+function sendFolderPath(folderPath) {
+    if (folderPath) {
+        win.webContents.send('folderPath', folderPath);
+    }
+}
+function sendNavigatePhotographer() {
+    win.webContents.send('photographers');
+}
+function sendNavigateImage() {
+    win.webContents.send('images');
+}
 function selectDirectory() {
     return electron_1.dialog.showOpenDialog(win, {
         title: 'Folder to load images from',
@@ -111,11 +130,5 @@ function selectDirectory() {
         buttonLabel: 'Choose folder',
         properties: ['openDirectory']
     });
-}
-function sendFolderPath(folderPath) {
-    win.webContents.send('folderPath', folderPath);
-}
-function sendNavigatePhotographer() {
-    win.webContents.send('photographer');
 }
 //# sourceMappingURL=main.js.map
