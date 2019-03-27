@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './image-page.component.html',
   styleUrls: ['./image-page.component.css']
 })
-export class ImagePageComponent implements OnInit {
+export class ImagePageComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

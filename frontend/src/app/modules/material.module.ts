@@ -7,7 +7,7 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatAutocompleteModule,
-    MatTabsModule, MatTableModule
+    MatTabsModule, MatTableModule, MatSelectModule
 } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -23,7 +23,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
         MatOptionModule,
         MatAutocompleteModule,
         MatTabsModule,
-        MatTableModule
+        MatTableModule,
+        MatSelectModule
     ],
     exports: [
         MatButtonModule,
@@ -35,7 +36,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
         MatOptionModule,
         MatAutocompleteModule,
         MatTabsModule,
-        MatTableModule
+        MatTableModule,
+        MatSelectModule
     ]
 })
 export class MaterialModule {

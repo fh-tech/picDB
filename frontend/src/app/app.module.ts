@@ -35,6 +35,8 @@ import {AddPhotographerComponent} from './components/photographer-page/add-photo
 import {PhotographerPageComponent} from './components/photographer-page/photographer-page.component';
 import {IpcListenerService} from './providers/ipc/ipc-listener.service';
 import {IpcSenderService} from './providers/ipc/ipc-sender.service';
+import { NameDisplayPipe } from './pipes/name-display.pipe';
+import {WebsocketService} from "./providers/websocket/websocket.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,7 +54,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ChooseFolderPageComponent,
         PhotographerPageComponent,
         PhotographerListComponent,
-        AddPhotographerComponent
+        AddPhotographerComponent,
+        NameDisplayPipe
     ],
     imports: [
         BrowserModule,
@@ -79,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ConfigService,
         PhotographersService,
         IpcListenerService,
-        IpcSenderService
+        IpcSenderService,
+        WebsocketService
     ],
     bootstrap: [AppComponent]
 })
