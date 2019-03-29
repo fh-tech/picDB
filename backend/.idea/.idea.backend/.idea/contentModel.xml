@@ -11,9 +11,11 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="backend-data-access" t="IncludeRecursive">
         <e p="Model" t="Include">
+          <e p="CreatePhotographer.cs" t="Include" />
           <e p="MetaData.cs" t="Include" />
           <e p="Photographer.cs" t="Include" />
           <e p="Picture.cs" t="Include" />
+          <e p="UpdatePhotographer.cs" t="Include" />
         </e>
         <e p="PicDbContext.cs" t="Include" />
         <e p="PictureDatabase.cs" t="Include" />
@@ -30,7 +32,7 @@
       </e>
       <e p="backend-server" t="IncludeRecursive">
         <e p="Controllers" t="Include">
-          <e p="PictureController.cs" t="Include" />
+          <e p="PhotographerController.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
           <e p="20190323175857_InitialCreate.Designer.cs" t="Include" />
@@ -70,7 +72,6 @@
       <e p="backend.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="$PROJECT_DIR$/../frontend/dist" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$/../frontend/node_modules" t="ExcludeRecursive">
       <e p="@angular/animations" t="IncludeRecursive" />
       <e p="@angular/cli" t="IncludeRecursive" />
@@ -84,7 +85,6 @@
       <e p="@angular/router" t="IncludeRecursive" />
       <e p="@angular-devkit/build-angular" t="IncludeRecursive" />
       <e p="@types" t="IncludeRecursive">
-        <e p="electron" t="IncludeRecursive" />
         <e p="jasmine" t="IncludeRecursive" />
         <e p="jasminewd2" t="IncludeRecursive" />
         <e p="node" t="IncludeRecursive" />
@@ -100,7 +100,6 @@
       <e p="karma-coverage-istanbul-reporter" t="IncludeRecursive" />
       <e p="karma-jasmine" t="IncludeRecursive" />
       <e p="karma-jasmine-html-reporter" t="IncludeRecursive" />
-      <e p="protractor" t="IncludeRecursive" />
       <e p="rxjs" t="IncludeRecursive" />
       <e p="source-map" t="IncludeRecursive" />
       <e p="ts-node" t="IncludeRecursive" />

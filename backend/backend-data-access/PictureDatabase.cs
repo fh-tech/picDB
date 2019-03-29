@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using backend_data_access.Model;
+using backend_server.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend_data_access
 {
@@ -18,36 +20,62 @@ namespace backend_data_access
             _ctx = ctx;
         }
 
-        public IEnumerable<Picture> GetPictureById(int id)
+        public async Task<Picture> GetPictureById(int id)
         {
-            return _ctx.Pictures.Where(p => p.PictureId == id);
+            return await _ctx.Pictures.SingleAsync(picture =>  picture.PictureId == id);
         }
 
-        public void CreatePicture(Picture p)
+        public async Task CreatePicture(Picture p)
         {
-            _ctx.Pictures.Add(p);
+            await _ctx.Pictures.AddAsync(p);
+            await _ctx.SaveChangesAsync();
         }
 
-        public void CreatePhotographer(Photographer p)
+        public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
-            _ctx.Photographer.Add(p);
-        }
-
-        public IEnumerable<Photographer> GetPhotographers()
-        {
-            return _ctx.Photographer;
-        }
-
-
-        public IEnumerable<Picture> Query(PictureQuery query)
-        {
-            return _ctx.Pictures
+            return await _ctx.Pictures
                 .Where(p => p.MetaData.data.Any(m => m.Value == query.QueryString
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
-                .Take(query.End - query.Start);
+                .Take(query.End - query.Start).ToListAsync();
+        }
+
+
+        public async Task<Photographer> GetPhotographerById(int id)
+        {
+            return await _ctx.Photographer.SingleAsync(p => p.Id == id);
+        }
+
+        public async Task CreatePhotographer(CreatePhotographer p)
+        {
+            await _ctx.Photographer.AddAsync(new Photographer()
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName
+            });
+
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Photographer>> GetPhotographers()
+        {
+            return await _ctx.Photographer.ToListAsync();
+        }
+
+        public async Task RemovePhotographer(int id)
+        {
+            _ctx.Photographer.Remove(await GetPhotographerById(id));
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task UpdatePhotographer(Photographer photographer)
+        {
+            var currentPhotographer = await GetPhotographerById(photographer.Id);
+            currentPhotographer.FirstName = photographer.FirstName ?? currentPhotographer.FirstName;
+            currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
+            await _ctx.SaveChangesAsync();
         }
     }
 }
