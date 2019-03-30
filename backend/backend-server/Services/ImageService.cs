@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
@@ -14,7 +15,7 @@ namespace backend_server.Services
 {
     public class ImageService
     {
-        private static readonly string[] SupportedExtensions = {"jpeg", "jpg"};
+        private static readonly string[] SupportedExtensions = {".jpeg", ".jpg"};
 
         private readonly PictureDatabase _picDb;
         public ILogger<ImageService> Logger { private get; set; }
@@ -57,6 +58,7 @@ namespace backend_server.Services
         private static MetaData LoadMetaData(string file)
         {
             //TODO: implement metadata reading
+            Thread.Sleep(10);
             return new MetaData
             {
                 Data =

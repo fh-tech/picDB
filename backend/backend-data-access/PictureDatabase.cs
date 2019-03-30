@@ -54,6 +54,7 @@ namespace backend_data_access
             _ctx.Pictures.RemoveRange(_ctx.Pictures);
             Logger.Log(LogLevel.Information, "Adding new entries");
             await _ctx.Pictures.AddRangeAsync(pictures);
+            await _ctx.SaveChangesAsync();
         }
 
         public async Task<Photographer> GetPhotographerById(int id)
@@ -63,7 +64,7 @@ namespace backend_data_access
 
         public async Task CreatePhotographer(CreatePhotographer p)
         {
-            await _ctx.Photographer.AddAsync(new Photographer()
+            await _ctx.Photographer.AddAsync(new Photographer
             {
                 FirstName = p.FirstName,
                 LastName = p.LastName
