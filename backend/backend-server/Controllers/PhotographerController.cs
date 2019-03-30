@@ -6,6 +6,8 @@ using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace backend_server.Controllers
 {
@@ -13,42 +15,51 @@ namespace backend_server.Controllers
     [ApiController]
     public class PhotographerController : ControllerBase
     {
-        private readonly PictureDatabase picDb;
+        private readonly PictureDatabase _picDb;
+
+        public ILogger<PhotographerController> Logger { private get; set; }
+
 
         public PhotographerController(PictureDatabase db)
         {
-            picDb = db;
+            _picDb = db;
+            Logger = new NullLogger<PhotographerController>();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
         {
-            await picDb.CreatePhotographer(photographer);
+            Logger.Log(LogLevel.Information, "POST: on CreatePhotographer");
+            await _picDb.CreatePhotographer(photographer);
             return Ok();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPhotographers()
         {
-            return Ok(await picDb.GetPhotographers());
+            Logger.Log(LogLevel.Information, "GET: All photographers");
+            return Ok(await _picDb.GetPhotographers());
         }
 
         [HttpGet("/{id}")]
         public async Task<IActionResult> GetPhotographer(int id)
         {
-            return Ok(await picDb.GetPhotographerById(id));
+            Logger.Log(LogLevel.Information, "GET: Photographer with id %i", new {id});
+            return Ok(await _picDb.GetPhotographerById(id));
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeletePhotographer(int id)
         {
-            await picDb.RemovePhotographer(id);
+            Logger.Log(LogLevel.Information, "DELETE: Photographer with id %i", new {id});
+            await _picDb.RemovePhotographer(id);
             return Ok();
         }
         [HttpPut]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
-            await picDb.UpdatePhotographer(new Photographer{
+            Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data is %s", new {id, photographer});
+            await _picDb.UpdatePhotographer(new Photographer{
                 Id = id,
                 FirstName = photographer.FirstName,
                 LastName = photographer.LastName,

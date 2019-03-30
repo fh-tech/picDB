@@ -7,6 +7,7 @@ namespace backend_data_access
     {
         public PicDbContext(DbContextOptions contextOptions) : base(contextOptions)
         {
+
         }
 
         internal DbSet<Picture> Pictures { get; set; }

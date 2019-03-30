@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Xml;
 using backend_data_access.Model;
 using backend_server.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace backend_data_access
 {
@@ -14,10 +17,13 @@ namespace backend_data_access
     {
         private PicDbContext _ctx;
 
+        public ILogger<PictureDatabase> Logger { private get; set; }
+
 
         public PictureDatabase(PicDbContext ctx)
         {
             _ctx = ctx;
+            Logger = new NullLogger<PictureDatabase>();
         }
 
         public async Task<Picture> GetPictureById(int id)
@@ -34,7 +40,7 @@ namespace backend_data_access
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
             return await _ctx.Pictures
-                .Where(p => p.MetaData.data.Any(m => m.Value == query.QueryString
+                .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
@@ -42,6 +48,13 @@ namespace backend_data_access
                 .Take(query.End - query.Start).ToListAsync();
         }
 
+        public async Task RebuildPictureTable(IEnumerable<Picture> pictures)
+        {
+            Logger.Log(LogLevel.Information, "Removing ALL picture entries form database");
+            _ctx.Pictures.RemoveRange(_ctx.Pictures);
+            Logger.Log(LogLevel.Information, "Adding new entries");
+            await _ctx.Pictures.AddRangeAsync(pictures);
+        }
 
         public async Task<Photographer> GetPhotographerById(int id)
         {
