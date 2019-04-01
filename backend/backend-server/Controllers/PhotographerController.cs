@@ -30,8 +30,14 @@ namespace backend_server.Controllers
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "POST: on CreatePhotographer");
-            await _picDb.CreatePhotographer(photographer);
-            return Ok();
+
+            var inserted = await _picDb.CreatePhotographer(new Photographer
+            {
+                FirstName = photographer.FirstName,
+                LastName = photographer.LastName
+            });
+
+            return Ok(inserted);
         }
 
         [HttpGet]

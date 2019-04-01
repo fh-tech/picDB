@@ -77,7 +77,7 @@ namespace backend_server
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseSignalR(builder => {
-                builder.MapHub<PictureHub>("/ws/pictures/{id}");
+                builder.MapHub<PictureHub>("/ws/pictures");
             });
             app.UseMvc();
 

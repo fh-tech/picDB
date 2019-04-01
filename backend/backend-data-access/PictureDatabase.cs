@@ -1,12 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Xml;
 using backend_data_access.Model;
-using backend_server.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -62,15 +57,18 @@ namespace backend_data_access
             return await _ctx.Photographer.SingleAsync(p => p.Id == id);
         }
 
-        public async Task CreatePhotographer(CreatePhotographer p)
+        public async Task<Photographer> CreatePhotographer(Photographer p)
         {
-            await _ctx.Photographer.AddAsync(new Photographer
+            var newPhotographer = new Photographer
             {
                 FirstName = p.FirstName,
                 LastName = p.LastName
-            });
+            };
 
+            await _ctx.Photographer.AddAsync(newPhotographer);
             await _ctx.SaveChangesAsync();
+
+            return newPhotographer;
         }
 
         public async Task<IEnumerable<Photographer>> GetPhotographers()
