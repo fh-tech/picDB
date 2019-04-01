@@ -32,9 +32,23 @@ namespace backend_server
 
         public IConfiguration Configuration { get; }
 
+        readonly string MyAllowSpecificOrigins = "electron-client";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<PictureDatabase>();
 
@@ -70,6 +84,7 @@ namespace backend_server
                 app.UseHsts();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -77,7 +92,7 @@ namespace backend_server
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseSignalR(builder => {
-                builder.MapHub<PictureHub>("/ws/pictures/{id}");
+                builder.MapHub<PictureHub>("/ws/pictures");
             });
             app.UseMvc();
 

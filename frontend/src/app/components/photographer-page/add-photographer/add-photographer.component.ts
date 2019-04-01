@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {PhotographersService} from '../../../providers/photographers/photographers.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NewPhotographer} from "../../../interfaces/photographer";

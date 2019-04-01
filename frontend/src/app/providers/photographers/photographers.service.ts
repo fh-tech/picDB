@@ -1,59 +1,55 @@
 import {Injectable} from '@angular/core';
 import {NewPhotographer, Photographer} from '../../interfaces/photographer';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+import {repeatWhen, tap} from "rxjs/operators";
 
 @Injectable()
 export class PhotographersService {
 
-    private photographers: Photographer[] = [];
-    private photographersSubject = new BehaviorSubject(this.photographers);
-    photographers$: Observable<Photographer[]> = this.photographersSubject.asObservable();
+    private refreshSubject = new Subject<any>();
 
-    constructor() {
-        this.photographers = this.load();
-        this.publish();
-    }
+    //TODO: aspnet/signalR HttpClient or angular commons?
+    constructor(private http: HttpClient) {}
 
-    load(): Photographer[] {
-        return [
-            {id: 1, firstName: 'John', lastName: 'Smith'},
-            {id: 2, firstName: 'Barbara', lastName: 'Wood'}
-        ];
-    }
-
-    reload() {
-        this.photographers = this.load();
-        this.publish();
+    public get photographers$(): Observable<Photographer[]> {
+        return this.http.get<Photographer[]>('https://localhost:5001/api/photographer')
+            .pipe(
+                repeatWhen(_ => this.refreshSubject.asObservable())
+            )
     }
 
     add(newPhotographer: NewPhotographer) {
-        // TODO: make call to backend and reload photographer collection
-        this.photographers = [{
-            id: 3,
+        return this.http.post('http://127.0.0.1:5001/api/photographer', {
             firstName: newPhotographer.firstName,
             lastName: newPhotographer.lastName
-        }, ...this.photographers];
+        }).pipe(
+            tap(ph => this.refreshSubject.next(ph))
+        )
 
-        this.publish();
     }
 
     delete(photographer: Photographer) {
-        // TODO: make call to backend and just reload
-        this.photographers = this.photographers.filter(pho => pho.id !== photographer.id);
-        this.publish();
+        return this.http.delete(`http://127.0.0.1:5001/api/photographer${photographer.id}`)
+            .pipe(
+                tap(ph => this.refreshSubject.next(ph))
+            )
     }
 
     update(photographer: Photographer) {
-        // TODO: update backend and reload
-        let ph = this.photographers.find(pho => pho.id === photographer.id);
-        ph.lastName = photographer.lastName;
-        ph.firstName = photographer.firstName;
-        this.publish();
+        return this.http.put('http://127.0.0.1:5001/api/photographer', {
+            id: photographer.id,
+            firstName: photographer.firstName,
+            lastName: photographer.lastName
+        }).pipe(
+            tap(ph => this.refreshSubject.next(ph))
+        )
     }
-
-    private publish() {
-        this.photographersSubject.next(this.photographers);
+    
+    getPhotographer(id: number): Observable<Photographer> {
+        return this.http.get<Photographer>(`http://127.0.0.1:5001/api/photographer${id}`);
     }
-
-
 }
+
+
+

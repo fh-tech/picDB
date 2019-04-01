@@ -35,7 +35,9 @@ namespace backend_server.Controllers
                 return BadRequest();
             }
             Logger.Log(LogLevel.Trace, "Added new ImageLoadTask to WorkQueue");
+
             _workQueue.Enqueue(new ImageLoadTask(folderPath));
+
             return Ok();
         }
 

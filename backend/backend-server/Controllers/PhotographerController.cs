@@ -30,8 +30,14 @@ namespace backend_server.Controllers
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "POST: on CreatePhotographer");
-            await _picDb.CreatePhotographer(photographer);
-            return Ok();
+
+            var inserted = await _picDb.CreatePhotographer(new Photographer
+            {
+                FirstName = photographer.FirstName,
+                LastName = photographer.LastName
+            });
+
+            return Ok(inserted);
         }
 
         [HttpGet]
@@ -48,7 +54,7 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPhotographerById(id));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePhotographer(int id)
         {
             Logger.Log(LogLevel.Information, "DELETE: Photographer with id %i", new {id});

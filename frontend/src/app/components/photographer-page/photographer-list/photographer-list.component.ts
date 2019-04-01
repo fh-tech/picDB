@@ -19,6 +19,10 @@ export class PhotographerListComponent {
     onDelete(photographer: Photographer) {
         this.photographersService.delete(photographer);
     }
+    
+    onUpdate(photographer: Photographer) {
+        this.photographersService.update(photographer);
+    }
 
 
 }

@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HubConnection, HubConnectionBuilder} from '@aspnet/signalr';
 
-@Injectable()
+@Injectable(
+    {providedIn: 'root'}
+)
 export class SignalRService {
 
     private hubConnection: HubConnection;
