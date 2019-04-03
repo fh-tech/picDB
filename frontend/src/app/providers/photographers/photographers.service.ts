@@ -13,14 +13,14 @@ export class PhotographersService {
     constructor(private http: HttpClient) {}
 
     public get photographers$(): Observable<Photographer[]> {
-        return this.http.get<Photographer[]>('https://localhost:5001/api/photographer')
+        return this.http.get<Photographer[]>('http://localhost:5000/api/photographer')
             .pipe(
                 repeatWhen(_ => this.refreshSubject.asObservable())
             )
     }
 
     add(newPhotographer: NewPhotographer) {
-        return this.http.post('http://127.0.0.1:5001/api/photographer', {
+        return this.http.post('http://localhost:5000/api/photographer', {
             firstName: newPhotographer.firstName,
             lastName: newPhotographer.lastName
         }).pipe(
@@ -30,14 +30,14 @@ export class PhotographersService {
     }
 
     delete(photographer: Photographer) {
-        return this.http.delete(`http://127.0.0.1:5001/api/photographer${photographer.id}`)
+        return this.http.delete(`http://localhost:5000/api/photographer/${photographer.id}`)
             .pipe(
                 tap(ph => this.refreshSubject.next(ph))
             )
     }
 
     update(photographer: Photographer) {
-        return this.http.put('http://127.0.0.1:5001/api/photographer', {
+        return this.http.put('http://localhost:5000/api/photographer', {
             id: photographer.id,
             firstName: photographer.firstName,
             lastName: photographer.lastName
@@ -47,7 +47,7 @@ export class PhotographersService {
     }
     
     getPhotographer(id: number): Observable<Photographer> {
-        return this.http.get<Photographer>(`http://127.0.0.1:5001/api/photographer${id}`);
+        return this.http.get<Photographer>(`http://localhost:5000/api/photographer${id}`);
     }
 }
 

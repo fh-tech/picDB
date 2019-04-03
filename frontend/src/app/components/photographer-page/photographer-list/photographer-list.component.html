@@ -1,45 +1,5 @@
-<!--<div class="container-fluid h-100">-->
-<!--<table mat-table-->
-<!--[dataSource]="dataSource"-->
-<!--class="mat-elevation-z8 w-100">-->
-<!--<ng-container matColumnDef="id">-->
-<!--<th mat-header-cell-->
-<!--*matHeaderCellDef>-->
-<!--No.-->
-<!--</th>-->
-<!--<td mat-cell-->
-<!--*matCellDef="let photographer">-->
-<!--{{photographer.id}}-->
-<!--</td>-->
-<!--</ng-container>-->
-
-<!--<ng-container matColumnDef="firstName">-->
-<!--<th mat-header-cell-->
-<!--*matHeaderCellDef>-->
-<!--First Name-->
-<!--</th>-->
-<!--<td mat-cell-->
-<!--*matCellDef="let photographer">-->
-<!--{{photographer.firstName}}-->
-<!--</td>-->
-<!--</ng-container>-->
-
-<!--<ng-container matColumnDef="lastName">-->
-<!--<th mat-header-cell-->
-<!--*matHeaderCellDef>-->
-<!--Last Name-->
-<!--</th>-->
-<!--<td mat-cell-->
-<!--*matCellDef="let photographer">-->
-<!--{{photographer.lastName}}-->
-<!--</td>-->
-<!--</ng-container>-->
-<!--<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>-->
-<!--<tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>-->
-<!--</table>-->
-<!--</div>-->
-
 <div class="container-fluid h-100">
+    <h2 class="text-center">Photographers</h2>
     <table class="table table-striped w-100">
         <thead>
         <tr>
@@ -54,7 +14,11 @@
             <td>{{photographer.firstName}}</td>
             <td>{{photographer.lastName}}</td>
             <td>
-                <button class="btn btn-danger"
+                <button class="btn btn-primary"
+                        (click)="onUpdate(photographer)">
+                    Update
+                </button>
+                <button class="btn btn-danger ml-1"
                         (click)="onDelete(photographer)">
                     Delete
                 </button>

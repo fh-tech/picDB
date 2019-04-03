@@ -28,7 +28,7 @@ export class AddPhotographerComponent {
             lastName: value.lastName
         };
 
-        this.photographersService.add(newPhotographer);
+        this.photographersService.add(newPhotographer).subscribe();
 
         this.photographerForm.reset({
             firstName: '',

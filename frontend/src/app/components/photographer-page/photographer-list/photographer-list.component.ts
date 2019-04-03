@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {Photographer} from '../../../interfaces/photographer';
 import {Observable} from 'rxjs';
 import {PhotographersService} from '../../../providers/photographers/photographers.service';
+import {MatDialog} from '@angular/material';
+import {PhotographerUpdateDialogComponent} from '../photographer-update-dialog/photographer-update-dialog.component';
+
 
 @Component({
   selector: 'app-photographer-list',
@@ -12,17 +15,20 @@ export class PhotographerListComponent {
 
     private photographers$: Observable<Photographer[]>;
 
-    constructor(private photographersService: PhotographersService) {
+    constructor(private photographersService: PhotographersService,
+                public dialog: MatDialog) {
         this.photographers$ = photographersService.photographers$;
     }
 
     onDelete(photographer: Photographer) {
-        this.photographersService.delete(photographer);
+        this.photographersService.delete(photographer).subscribe();
     }
     
     onUpdate(photographer: Photographer) {
-        this.photographersService.update(photographer);
+        const dialogRef = this.dialog.open(PhotographerUpdateDialogComponent, {
+            width: '400px',
+            data: photographer
+        });
     }
-
 
 }

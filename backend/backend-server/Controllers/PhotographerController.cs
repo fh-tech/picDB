@@ -61,6 +61,7 @@ namespace backend_server.Controllers
             await _picDb.RemovePhotographer(id);
             return Ok();
         }
+        //TODO: should update
         [HttpPut]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {

@@ -2,27 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc6a1f0f-04b0-4ccb-af10-2fb115b0a550" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend-server/Util/LinqExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.backend/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.backend/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-data-access/Model/CreatePhotographer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Model/CreatePhotographer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-data-access/Model/UpdatePhotographer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Model/UpdatePhotographer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-data-access/PictureDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-data-access/PictureDatabase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/Controllers/IPicDbClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Controllers/IPicDbClient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/Controllers/PictureController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Controllers/PictureController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/Controllers/PictureHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Controllers/PictureHub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/Services/ImageLoadBackgroundService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Services/ImageLoadBackgroundService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/Services/ImageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Services/ImageService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-server/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-server/backend-server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/backend-server/backend-server.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,130 +55,150 @@
         <item name="dev.pic.db" type="feb32156:DbDataSourceImpl" />
         <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="pic.db" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="pic.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="pic.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="pic.db" type="feb32156:DbDataSourceImpl" />
-        <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../frontend/src/app/app.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-683">
-              <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#361#430#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend-server/appsettings.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend-server/Startup.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-858">
-              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-              <folding>
-                <marker date="1554132204466" expanded="false" signature="6:755" ph="..." />
-                <marker date="1554132204466" expanded="true" signature="782:3365" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="809:3363" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="868:931" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="1223:2413" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="1274:1579" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="1377:1563" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="1801:2026" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="2069:2176" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="2601:3357" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="2648:2725" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="2742:2945" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="3098:3202" ph="{...}" />
-                <marker date="1554132204466" expanded="true" signature="3243:3318" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend-server/Controllers/PictureHub.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-              <folding>
-                <marker date="1554126663345" expanded="false" signature="6:216" ph="..." />
-                <marker date="1554126663345" expanded="true" signature="254:1007" ph="{...}" />
-                <marker date="1554126663345" expanded="true" signature="303:1005" ph="{...}" />
-                <marker date="1554126663345" expanded="true" signature="472:562" ph="{...}" />
-                <marker date="1554126663345" expanded="true" signature="616:709" ph="{...}" />
-                <marker date="1554126663345" expanded="true" signature="799:996" ph="{...}" />
-                <marker date="1554126663345" expanded="true" signature="877:984" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.8113565">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/app.module.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1056">
+                  <caret line="87" column="55" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                    <element signature="e#361#430#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="825">
+                  <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#0#40#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="920">
+                  <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="627">
+                  <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="396">
+                  <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+                  <folding>
+                    <marker date="1554313298022" expanded="false" signature="6:315" ph="..." />
+                    <marker date="1554313298022" expanded="true" signature="353:2516" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="464:2514" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="656:764" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="877:1216" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="1054:1170" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="1295:1443" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="1536:1705" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="1803:1988" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="2137:2508" ph="{...}" />
+                    <marker date="1554313298022" expanded="true" signature="2329:2471" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/backend-server/Model/UpdatePhotographer.cs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="132">
+                  <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+                  <folding>
+                    <marker date="1554126663352" expanded="false" signature="6:43" ph="..." />
+                    <marker date="1554126663352" expanded="true" signature="75:234" ph="{...}" />
+                    <marker date="1554126663352" expanded="true" signature="113:232" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="693">
+                  <caret line="21" column="67" lean-forward="true" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-363">
+                  <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="887">
+                  <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="462">
+                  <caret line="14" selection-start-line="13" selection-end-line="14" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../frontend/node_modules/@angular/material/dialog/typings/dialog-ref.d.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="363">
+                  <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -193,6 +206,14 @@
         <option value="tsconfig.json" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>5001</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>5000</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -256,11 +277,17 @@
         <option value="$PROJECT_DIR$/backend-server/Util/LinqExtensions.cs" />
         <option value="$PROJECT_DIR$/backend-server/Services/ImageService.cs" />
         <option value="$PROJECT_DIR$/backend-server/Controllers/IPicDbClient.cs" />
-        <option value="$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs" />
-        <option value="$PROJECT_DIR$/../frontend/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts" />
-        <option value="$PROJECT_DIR$/backend-server/Startup.cs" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.ts" />
         <option value="$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts" />
+        <option value="$PROJECT_DIR$/backend-server/Startup.cs" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.html" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.ts" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.html" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.html" />
+        <option value="$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts" />
+        <option value="$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs" />
       </list>
     </option>
   </component>
@@ -271,9 +298,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3828" />
-    <option name="width" value="3864" />
-    <option name="height" value="2111" />
+    <option name="x" value="3834" />
+    <option name="width" value="3878" />
+    <option name="height" value="2151" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -281,6 +308,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="backend" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="backend" type="34e6ba20:FileSystemExplorerNode" />
+              <item name="backend-data-access" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="frontend" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -319,53 +367,52 @@
               <item name="frontend" type="9a108dff:SolutionExplorerFileNode" />
               <item name="src" type="9a108dff:SolutionExplorerFileNode" />
               <item name="app" type="9a108dff:SolutionExplorerFileNode" />
-              <item name="providers" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="components" type="9a108dff:SolutionExplorerFileNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="frontend" type="9a108dff:SolutionExplorerFileNode" />
               <item name="src" type="9a108dff:SolutionExplorerFileNode" />
               <item name="app" type="9a108dff:SolutionExplorerFileNode" />
-              <item name="providers" type="9a108dff:SolutionExplorerFileNode" />
-              <item name="photographers" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="components" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-page" type="9a108dff:SolutionExplorerFileNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="frontend" type="9a108dff:SolutionExplorerFileNode" />
               <item name="src" type="9a108dff:SolutionExplorerFileNode" />
               <item name="app" type="9a108dff:SolutionExplorerFileNode" />
-              <item name="providers" type="9a108dff:SolutionExplorerFileNode" />
-              <item name="signal-r" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="components" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-page" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="add-photographer" type="9a108dff:SolutionExplorerFileNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="frontend" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="src" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="app" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="components" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-page" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-list" type="9a108dff:SolutionExplorerFileNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="frontend" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="src" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="app" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="components" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-page" type="9a108dff:SolutionExplorerFileNode" />
+              <item name="photographer-update-dialog" type="9a108dff:SolutionExplorerFileNode" />
             </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="FileSystemExplorer">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
-              <item name="backend" type="34e6ba20:FileSystemExplorerNode" />
-            </path>
-            <path>
-              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
-              <item name="backend" type="34e6ba20:FileSystemExplorerNode" />
-              <item name="backend-data-access" type="34e6ba20:FileSystemExplorerNode" />
-            </path>
-            <path>
-              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
-              <item name="frontend" type="34e6ba20:FileSystemExplorerNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -469,6 +516,8 @@
       <workItem from="1553953076105" duration="4953000" />
       <workItem from="1554101263256" duration="9538000" />
       <workItem from="1554128963564" duration="4505000" />
+      <workItem from="1554295012513" duration="1465000" />
+      <workItem from="1554309924791" duration="3373000" />
     </task>
     <task id="LOCAL-00001" summary="fixed image extension checking&#10;added savechanges to update db with context data">
       <created>1553968391846</created>
@@ -481,7 +530,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56503000" />
+    <option name="totallyTimeSpent" value="61341000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,8 +543,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3828" y="0" width="3864" height="2111" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49973917" visible="true" weight="0.23331554" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49973917" visible="true" weight="0.15376401" />
       <window_info id="Structure" order="1" sideWeight="0.50026083" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -503,21 +553,21 @@
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7774813" weight="0.333682" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.786286" weight="0.43671548" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7757608" weight="0.33333334" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.78537107" visible="true" weight="0.3136934" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49973318" weight="0.3294979" />
       <window_info anchor="bottom" id="NuGet" order="7" sideWeight="0.49866524" weight="0.33333334" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.39108384" visible="true" weight="0.34260774" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.39081687" weight="0.34260774" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32951444" />
       <window_info anchor="bottom" id="Unit Tests" order="12" sideWeight="0.49919957" weight="0.32845187" />
       <window_info anchor="bottom" id="REST Client" order="13" weight="0.3294979" />
-      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6193273" weight="0.48336062" />
-      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.60891616" side_tool="true" visible="true" weight="0.34260774" />
-      <window_info anchor="bottom" id="Build" order="16" sideWeight="0.48451683" weight="0.32842335" />
+      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6179925" weight="0.26022914" />
+      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.21462893" side_tool="true" visible="true" weight="0.3136934" />
+      <window_info anchor="bottom" id="Build" order="16" sideWeight="0.48211426" weight="0.32842335" />
       <window_info anchor="bottom" id="Database Console" order="17" sideWeight="0.4994664" weight="0.3294979" />
       <window_info anchor="bottom" id="Performance Profiler" order="18" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -525,7 +575,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="right" id="Errors In Solution" order="4" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.34356648" />
+      <window_info anchor="right" id="Database" order="5" weight="0.17298451" />
       <window_info anchor="right" id="Unit Tests Coverage" order="6" />
     </layout>
     <layout-to-restore>
@@ -602,6 +652,19 @@
           </properties>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs</url>
+          <line>67</line>
+          <properties documentPath="$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs" initialLine="66">
+            <startOffsets>
+              <option value="2160" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2268" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -622,28 +685,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend-tests/backend-tests.csproj">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/08991CAA-F2E3-4F1B-8B9F-D965F211FFE1/E9/Optional.cs" />
-    <entry file="file://$PROJECT_DIR$/../frontend/.editorconfig" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9fe18886-5349-4924-aa1c-72ad6b52a54f/console.sql" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CA55E692-DA2C-4C8A-912D-364A352AAD35/df/acd0682e/Thread.cs" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CA55E692-DA2C-4C8A-912D-364A352AAD35/21/f8501969/ExceptionDispatchInfo.cs" />
-    <entry file="file://$PROJECT_DIR$/backend-data-access/Model/MetaData.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-          <folding>
-            <marker date="1553877514731" expanded="true" signature="70:522" ph="{...}" />
-            <marker date="1553877514731" expanded="true" signature="98:229" ph="{...}" />
-            <marker date="1553877514731" expanded="true" signature="261:451" ph="{...}" />
-            <marker date="1553877514731" expanded="true" signature="481:520" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend-server/Util/DataSeeder.cs" />
     <entry file="file://$PROJECT_DIR$/backend-server/Program.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -681,7 +722,6 @@
     <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/sqlite_sequence" />
     <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/MetaDataEntry" />
     <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Metadata" />
-    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46A812FE-4F69-4045-9C5D-FB024FD3F118/fe/7ef57651/Enumerable.cs" />
     <entry file="file://$PROJECT_DIR$/backend-data-access/Model/Picture.cs">
       <provider selected="true" editor-type-id="text-editor">
@@ -843,18 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend-server/Model/UpdatePhotographer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding>
-            <marker date="1554126663352" expanded="false" signature="6:43" ph="..." />
-            <marker date="1554126663352" expanded="true" signature="75:234" ph="{...}" />
-            <marker date="1554126663352" expanded="true" signature="113:232" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend-server/Model/CreatePhotographer.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -870,26 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-          <folding>
-            <marker date="1554129120361" expanded="false" signature="6:315" ph="..." />
-            <marker date="1554129120361" expanded="true" signature="353:2486" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="464:2484" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="656:764" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="877:1216" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="1054:1170" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="1295:1443" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="1536:1705" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="1803:1988" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="2107:2478" ph="{...}" />
-            <marker date="1554129120361" expanded="true" signature="2299:2441" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,17 +922,6 @@
     <entry file="file://$PROJECT_DIR$/../frontend/tsconfig-serve.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../frontend/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-683">
-          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#361#430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend-server/appsettings.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -932,73 +929,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend-server/Startup.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-858">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-          <folding>
-            <marker date="1554132204466" expanded="false" signature="6:755" ph="..." />
-            <marker date="1554132204466" expanded="true" signature="782:3365" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="809:3363" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="868:931" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="1223:2413" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="1274:1579" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="1377:1563" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="1801:2026" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="2069:2176" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="2601:3357" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="2648:2725" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="2742:2945" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="3098:3202" ph="{...}" />
-            <marker date="1554132204466" expanded="true" signature="3243:3318" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend-server/Controllers/PictureHub.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="99">
           <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
           <folding>
             <marker date="1554126663345" expanded="false" signature="6:216" ph="..." />
@@ -1008,6 +941,170 @@
             <marker date="1554126663345" expanded="true" signature="616:709" ph="{...}" />
             <marker date="1554126663345" expanded="true" signature="799:996" ph="{...}" />
             <marker date="1554126663345" expanded="true" signature="877:984" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/schema/main/table/Photographer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9fbc16a3-b5c8-41d2-a180-fe541a03ad01/collation/NOCASE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/50a6cc0c-6af1-43f9-a351-e8aa16123520/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/signal-r/signal-r.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/12c2f876-ff9f-4826-b156-acb6ee902307/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/providers/photographers/photographers.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="32" column="72" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend-server/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+          <folding>
+            <marker date="1554311275107" expanded="false" signature="6:755" ph="..." />
+            <marker date="1554311275107" expanded="true" signature="782:3387" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="809:3385" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="868:931" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="1223:2433" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="1274:1599" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="1377:1583" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="1821:2046" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="2089:2196" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="2621:3379" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="2668:2745" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="2762:2965" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="3120:3224" ph="{...}" />
+            <marker date="1554311275107" expanded="true" signature="3265:3340" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://12c2f876-ff9f-4826-b156-acb6ee902307/schema/main/table/Photographer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/node_modules/@angular/material/dialog/typings/dialog-ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="87" column="55" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#361#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-update-dialog/photographer-update-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-363">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/add-photographer/add-photographer.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="21" column="67" lean-forward="true" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../frontend/src/app/components/photographer-page/photographer-list/photographer-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="887">
+          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend-server/Model/UpdatePhotographer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <marker date="1554126663352" expanded="false" signature="6:43" ph="..." />
+            <marker date="1554126663352" expanded="true" signature="75:234" ph="{...}" />
+            <marker date="1554126663352" expanded="true" signature="113:232" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend-server/Controllers/PhotographerController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+          <folding>
+            <marker date="1554313298022" expanded="false" signature="6:315" ph="..." />
+            <marker date="1554313298022" expanded="true" signature="353:2516" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="464:2514" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="656:764" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="877:1216" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="1054:1170" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="1295:1443" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="1536:1705" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="1803:1988" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="2137:2508" ph="{...}" />
+            <marker date="1554313298022" expanded="true" signature="2329:2471" ph="{...}" />
           </folding>
         </state>
       </provider>

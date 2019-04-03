@@ -43,7 +43,7 @@ namespace backend_server
                 options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("*")
+                        builder.WithOrigins("http://localhost:4200")
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
@@ -85,7 +85,7 @@ namespace backend_server
             }
 
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseHttpsRedirection();
+//            app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
