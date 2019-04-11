@@ -22,11 +22,13 @@ export class IpcListenerService {
 
         electronService.ipcRenderer.on('folderPath', (event, message) => {
             if (message) {
+                console.log("got folder path");
                 folderService.photofolder = message;
-                console.log(message);
                 this.configService.storeConfig({
                     folderPath: message
                 });
+                console.log(folderService.photofolder);
+                this.folderService.loadNewFolder().subscribe();
                 this.navigator.navigate(['images']);
             }
         });

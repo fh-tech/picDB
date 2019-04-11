@@ -26,17 +26,17 @@ namespace backend_server.Controllers
         }
 
         [HttpPost]
-        public IActionResult LoadPictureFolder(string folderPath)
+        public IActionResult LoadPictureFolder(FolderPath folderPath)
         {
-            Logger.Log(LogLevel.Information, "POST: [%s] on LoadPictureFolder", new {folderPath});
-            if (!Directory.Exists(folderPath))
+            Logger.Log(LogLevel.Information, "POST: [%s] on LoadPictureFolder", new {folderPath.Path});
+            if (!Directory.Exists(folderPath.Path))
             {
-                Logger.Log(LogLevel.Error, "Path [%s] is not a valid directory path on this server", new {folderPath});
+                Logger.Log(LogLevel.Error, "Path [%s] is not a valid directory path on this server", new {folderPath.Path});
                 return BadRequest();
             }
             Logger.Log(LogLevel.Trace, "Added new ImageLoadTask to WorkQueue");
 
-            _workQueue.Enqueue(new ImageLoadTask(folderPath));
+            _workQueue.Enqueue(new ImageLoadTask(folderPath.Path));
 
             return Ok();
         }

@@ -43,11 +43,13 @@ namespace backend_server
                 options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
+                        builder.AllowAnyMethod()
                             .AllowAnyHeader()
-                            .AllowAnyMethod();
+                            .WithOrigins("http://localhost:4200")
+                            .AllowCredentials();
                     });
             });
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<PictureDatabase>();
@@ -85,6 +87,7 @@ namespace backend_server
             }
 
             app.UseCors(MyAllowSpecificOrigins);
+
 //            app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -92,7 +95,7 @@ namespace backend_server
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseSignalR(builder => {
-                builder.MapHub<PictureHub>("/ws/pictures");
+                builder.MapHub<PictureHub>("/images");
             });
             app.UseMvc();
 

@@ -19,7 +19,7 @@ namespace backend_server.Services
 {
     public class ImageService
     {
-        private static readonly string[] SupportedExtensions = {".jpeg", ".jpg"};
+        private static readonly string[] SupportedExtensions = {".jpeg", ".jpg", ".png"};
 
         private readonly PictureDatabase _picDb;
         public ILogger<ImageService> Logger { private get; set; }
@@ -31,21 +31,21 @@ namespace backend_server.Services
             Logger = new NullLogger<ImageService>();
         }
 
-        public async Task UpdatePictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
+        public async Task UpdatePictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
         {
             Logger.Log(LogLevel.Information, "Requested rebuilding of Image Database with directory [%s]", new {dir});
-            var images = LoadImages(dir, notifyProgress ?? (f => {}) ).ToList();
+            var images = (await LoadImages(dir, notifyProgress)).ToList();
             Logger.Log(LogLevel.Information, "Found %s valid image entries in directory [%s]", new {images.Count, dir});
             await _picDb.RebuildPictureTable(images);
         }
 
-        private static IEnumerable<Picture> LoadImages(string folderPath, Action<float> notifyProgress)
+        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
         {
             var files = Directory.GetFiles(folderPath)
                 .Where(f => SupportedExtensions.Any(ext =>
                     Path.GetExtension(f).ToLower() == ext)).ToList();
 
-            notifyProgress(0.05f);
+            await notifyProgress(0.05f);
 
             var i = 0;
             var size = files.Count;
@@ -53,7 +53,7 @@ namespace backend_server.Services
             return files
                 .Select(LoadFromFile)
                 .Partition(100)
-                .Tap( _ => { notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
+                .Tap( async _ => { await notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
                 .SelectMany(fs => fs);
         }
 

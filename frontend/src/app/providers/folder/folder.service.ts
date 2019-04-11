@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {ConfigService} from '../config/config.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class FolderService {
 
     private photoFolder: string;
 
-    constructor(private config: ConfigService) {
-
-        console.log(config.readConfig().folderPath);
+    constructor(private config: ConfigService,
+                private http: HttpClient) {
         this.photoFolder = config.readConfig().folderPath;
     }
 
@@ -19,10 +19,12 @@ export class FolderService {
     set photofolder(photofolder: string) {
         this.photoFolder = photofolder;
     }
-
-    // TODO: progressbar rendern beim aufbau von daniel
-    // TODO: websocket service schreiben
-    // TODO: 3tes tab für photographer auswählen und abschicken/ aktualisieren
+    
+    loadNewFolder() {
+        return this.http.post('http://127.0.0.1:5000/api/pictures', {
+            path: this.photoFolder
+        })
+    }
 
 }
 

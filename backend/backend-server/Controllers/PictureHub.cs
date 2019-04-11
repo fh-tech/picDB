@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
@@ -28,17 +29,11 @@ namespace backend_server.Controllers
             return "updated";
         }
 
-        public async Task<IEnumerable<Picture>> GetQuery(int from, int to, string query)
+        public async Task GetQuery(PictureQuery query)
         {
-            return await _picDb.Query(new PictureQuery
-            {
-                Start = from,
-                End = to,
-                QueryString = query
-            });
+            var result = await _picDb.Query(query);
+            await Clients.All.SendQueryResponse(result.ToList());
         }
-
-
 
     }
 }

@@ -52,7 +52,7 @@ namespace backend_server.Services
                 using (var scope = _scopeProvider.CreateScope())
                 {
                     var imageService = scope.ServiceProvider.GetService<ImageService>();
-                    await imageService.UpdatePictureDataFromDirectory(workItem.DirectoryPath);
+                    await imageService.UpdatePictureDataFromDirectory(workItem.DirectoryPath, _hubContext.Clients.All.NotifyLoadPercentage);
                     _hubContext.Clients.All.NotifyReady();
                 }
             }

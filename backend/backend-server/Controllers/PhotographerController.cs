@@ -61,8 +61,7 @@ namespace backend_server.Controllers
             await _picDb.RemovePhotographer(id);
             return Ok();
         }
-        //TODO: should update
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data is %s", new {id, photographer});

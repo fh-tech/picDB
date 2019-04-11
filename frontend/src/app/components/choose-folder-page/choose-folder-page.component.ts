@@ -9,8 +9,7 @@ import {IpcSenderService} from '../../providers/ipc/ipc-sender.service';
 export class ChooseFolderPageComponent {
 
   constructor(private ipcSender: IpcSenderService) { }
-
-
+  
     onChooseFolder() {
         this.ipcSender.sendMessage('getFolderPath');
     }

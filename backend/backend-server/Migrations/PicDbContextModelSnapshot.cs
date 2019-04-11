@@ -35,9 +35,9 @@ namespace backend_server.Migrations
 
                     b.Property<int?>("MetaDataId");
 
-                    b.Property<string>("Value");
+                    b.Property<int>("Type");
 
-                    b.Property<int>("type");
+                    b.Property<string>("Value");
 
                     b.HasKey("MetaDataEntryId");
 
@@ -69,8 +69,6 @@ namespace backend_server.Migrations
 
                     b.Property<int?>("MetaDataId");
 
-                    b.Property<string>("Name");
-
                     b.Property<int?>("PhotographerId");
 
                     b.HasKey("PictureId");
@@ -85,7 +83,7 @@ namespace backend_server.Migrations
             modelBuilder.Entity("backend_data_access.Model.MetaDataEntry", b =>
                 {
                     b.HasOne("backend_data_access.Model.MetaData")
-                        .WithMany("data")
+                        .WithMany("Data")
                         .HasForeignKey("MetaDataId");
                 });
 

@@ -37,8 +37,7 @@ export class PhotographersService {
     }
 
     update(photographer: Photographer) {
-        return this.http.put('http://localhost:5000/api/photographer', {
-            id: photographer.id,
+        return this.http.put(`http://localhost:5000/api/photographer/${photographer.id}`, {
             firstName: photographer.firstName,
             lastName: photographer.lastName
         }).pipe(
