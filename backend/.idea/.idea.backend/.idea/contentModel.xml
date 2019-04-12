@@ -4,7 +4,7 @@
     <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_backend.1512369782.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_backend.-1973685304.00" t="ExcludeRecursive" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
@@ -88,36 +88,52 @@
     </e>
     <e p="$PROJECT_DIR$/../frontend/node_modules" t="ExcludeRecursive">
       <e p="@angular/animations" t="IncludeRecursive" />
+      <e p="@angular/cdk" t="IncludeRecursive" />
       <e p="@angular/cli" t="IncludeRecursive" />
       <e p="@angular/common" t="IncludeRecursive" />
       <e p="@angular/compiler" t="IncludeRecursive" />
       <e p="@angular/compiler-cli" t="IncludeRecursive" />
       <e p="@angular/core" t="IncludeRecursive" />
       <e p="@angular/forms" t="IncludeRecursive" />
+      <e p="@angular/http" t="IncludeRecursive" />
+      <e p="@angular/material" t="IncludeRecursive" />
       <e p="@angular/platform-browser" t="IncludeRecursive" />
       <e p="@angular/platform-browser-dynamic" t="IncludeRecursive" />
       <e p="@angular/router" t="IncludeRecursive" />
       <e p="@angular-devkit/build-angular" t="IncludeRecursive" />
+      <e p="@ngx-translate/core" t="IncludeRecursive" />
+      <e p="@ngx-translate/http-loader" t="IncludeRecursive" />
       <e p="@types" t="IncludeRecursive">
         <e p="jasmine" t="IncludeRecursive" />
         <e p="jasminewd2" t="IncludeRecursive" />
         <e p="node" t="IncludeRecursive" />
         <e p="source-list-map" t="IncludeRecursive" />
       </e>
+      <e p="bootstrap" t="IncludeRecursive" />
+      <e p="bootstrap-scss" t="IncludeRecursive" />
+      <e p="chai" t="IncludeRecursive" />
       <e p="codelyzer" t="IncludeRecursive" />
+      <e p="conventional-changelog-cli" t="IncludeRecursive" />
       <e p="core-js" t="IncludeRecursive" />
       <e p="electron" t="IncludeRecursive" />
+      <e p="electron-builder" t="IncludeRecursive" />
+      <e p="electron-reload" t="IncludeRecursive" />
+      <e p="hammerjs" t="IncludeRecursive" />
       <e p="jasmine-core" t="IncludeRecursive" />
       <e p="jasmine-spec-reporter" t="IncludeRecursive" />
+      <e p="jquery" t="IncludeRecursive" />
       <e p="karma" t="IncludeRecursive" />
       <e p="karma-chrome-launcher" t="IncludeRecursive" />
       <e p="karma-coverage-istanbul-reporter" t="IncludeRecursive" />
       <e p="karma-jasmine" t="IncludeRecursive" />
       <e p="karma-jasmine-html-reporter" t="IncludeRecursive" />
+      <e p="mocha" t="IncludeRecursive" />
+      <e p="npm-run-all" t="IncludeRecursive" />
+      <e p="popper.js" t="IncludeRecursive" />
       <e p="rxjs" t="IncludeRecursive" />
       <e p="source-map" t="IncludeRecursive" />
+      <e p="spectron" t="IncludeRecursive" />
       <e p="ts-node" t="IncludeRecursive" />
-      <e p="tslib" t="IncludeRecursive" />
       <e p="tslint" t="IncludeRecursive" />
       <e p="typescript/lib/lib.d.ts" t="IncludeRecursive" />
       <e p="typescript/lib/lib.dom.d.ts" t="IncludeRecursive" />
@@ -159,6 +175,8 @@
       <e p="typescript/lib/lib.scripthost.d.ts" t="IncludeRecursive" />
       <e p="typescript/lib/lib.webworker.d.ts" t="IncludeRecursive" />
       <e p="typescript/lib/lib.webworker.importscripts.d.ts" t="IncludeRecursive" />
+      <e p="wait-on" t="IncludeRecursive" />
+      <e p="webdriver-manager" t="IncludeRecursive" />
       <e p="zone.js" t="IncludeRecursive" />
     </e>
   </component>

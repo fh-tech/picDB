@@ -6,9 +6,9 @@ namespace backend_server.Util
 {
     public class ImageLoadWorkQueue
     {
-        private readonly BlockingCollection<ImageLoadTask> _queue = new BlockingCollection<ImageLoadTask>();
+        private readonly BlockingCollection<IImageLoadTask> _queue = new BlockingCollection<IImageLoadTask>();
 
-        public void Enqueue(ImageLoadTask task) => _queue.Add(task);
+        public void Enqueue(IImageLoadTask task) => _queue.Add(task);
 
         public IImageLoadTask Dequeue() => _queue.Take();
 

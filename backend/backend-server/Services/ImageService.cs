@@ -34,16 +34,33 @@ namespace backend_server.Services
         public async Task UpdatePictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
         {
             Logger.Log(LogLevel.Information, "Requested rebuilding of Image Database with directory [%s]", new {dir});
-            var images = LoadImages(dir, notifyProgress ?? (f => {}) ).ToList();
+            var images = LoadImages(dir, notifyProgress ?? (f => { })).ToList();
             Logger.Log(LogLevel.Information, "Found %s valid image entries in directory [%s]", new {images.Count, dir});
             await _picDb.RebuildPictureTable(images);
         }
 
-        private static IEnumerable<Picture> LoadImages(string folderPath, Action<float> notifyProgress = null )
+        public async Task SyncPictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
         {
-            var files = Directory.GetFiles(folderPath)
-                .Where(f => SupportedExtensions.Any(ext =>
-                    Path.GetExtension(f).ToLower() == ext)).ToList();
+            Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
+
+            var paths = LoadPaths(dir);
+
+            var newPaths = await _picDb.FilterNewPaths(paths);
+
+            await _picDb.InsertAll(newPaths.Select(LoadFromFile));
+        }
+
+        private static List<string> LoadPaths(string directory) =>
+            Directory.GetFiles(directory)
+                .Where(f =>
+                    SupportedExtensions
+                        .Any(ext => Path.GetExtension(f).ToLower() == ext))
+                .ToList();
+
+
+        private static IEnumerable<Picture> LoadImages(string folderPath, Action<float> notifyProgress = null)
+        {
+            var files = LoadPaths(folderPath);
 
             notifyProgress?.Invoke(0.05f);
 
@@ -53,7 +70,7 @@ namespace backend_server.Services
             return files
                 .Select(LoadFromFile)
                 .Partition(100)
-                .Tap( _ => { notifyProgress?.Invoke(100f * i++ / size * 0.8f + 0.05f); })
+                .Tap(_ => { notifyProgress?.Invoke(100f * i++ / size * 0.8f + 0.05f); })
                 .SelectMany(fs => fs);
         }
 

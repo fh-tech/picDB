@@ -90,5 +90,30 @@ namespace backend_data_access
             currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task RemoveOldFromDb(IEnumerable<string> paths)
+        {
+            var pics = _ctx.Pictures;
+            IQueryable<Picture> query = _ctx.Pictures;
+            foreach (var path in paths)
+            {
+                query = query.Where(p => p.FilePath != path);
+            }
+            _ctx.RemoveRange(query);
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
+        {
+            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
+            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
+        }
+
+        public async Task InsertAll(IEnumerable<Picture> pictures)
+        {
+            _ctx.Pictures.AddRange(pictures);
+            await _ctx.SaveChangesAsync();
+        }
+
     }
 }
