@@ -22,20 +22,14 @@ namespace backend_server.Controllers
         }
 
 
-        public async Task<string> Update(Picture p)
+        public async Task Update(Picture p)
         {
             await _picDb.CreatePicture(p);
-            return "updated";
         }
 
-        public async Task<IEnumerable<Picture>> GetQuery(int from, int to, string query)
+        public async Task GetQuery(PictureQuery query)
         {
-            return await _picDb.Query(new PictureQuery
-            {
-                Start = from,
-                End = to,
-                QueryString = query
-            });
+            var result = await _picDb.Query(query);
         }
 
 

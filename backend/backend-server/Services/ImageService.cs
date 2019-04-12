@@ -39,13 +39,13 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
-        private static IEnumerable<Picture> LoadImages(string folderPath, Action<float> notifyProgress)
+        private static IEnumerable<Picture> LoadImages(string folderPath, Action<float> notifyProgress = null )
         {
             var files = Directory.GetFiles(folderPath)
                 .Where(f => SupportedExtensions.Any(ext =>
                     Path.GetExtension(f).ToLower() == ext)).ToList();
 
-            notifyProgress(0.05f);
+            notifyProgress?.Invoke(0.05f);
 
             var i = 0;
             var size = files.Count;
@@ -53,7 +53,7 @@ namespace backend_server.Services
             return files
                 .Select(LoadFromFile)
                 .Partition(100)
-                .Tap( _ => { notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
+                .Tap( _ => { notifyProgress?.Invoke(100f * i++ / size * 0.8f + 0.05f); })
                 .SelectMany(fs => fs);
         }
 
