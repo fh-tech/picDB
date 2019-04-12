@@ -40,7 +40,8 @@ namespace backend_data_access
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
-                .Take(query.End - query.Start).ToListAsync();
+                .Take(query.End - query.Start)
+                .ToListAsync();
         }
 
         public async Task RebuildPictureTable(IEnumerable<Picture> pictures)

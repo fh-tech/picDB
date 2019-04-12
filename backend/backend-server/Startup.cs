@@ -58,7 +58,7 @@ namespace backend_server
                 dbOptions =>
                 {
                     dbOptions.UseSqlite(Configuration.GetSection("Database")["ConnectionString"],
-                        b => b.MigrationsAssembly("backend-server")
+                        b => b.MigrationsAssembly("backend-data-access")
                     );
                 });
 
@@ -83,9 +83,10 @@ namespace backend_server
             else
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
 
+            //app.UseHttpsRedirection();
             app.UseCors(MyAllowSpecificOrigins);
 
 //            app.UseHttpsRedirection();
