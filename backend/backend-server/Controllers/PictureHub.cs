@@ -22,7 +22,6 @@ namespace backend_server.Controllers
             _picDb = picDb;
         }
 
-
         public async Task<string> Update(Picture p)
         {
             await _picDb.CreatePicture(p);

@@ -25,11 +25,10 @@ export class SignalRService {
             .withUrl('http://127.0.0.1:5000/images')
             .build();
         
-        this.hubConnection.on('notifyLoadPercent', 
-            (loadPercent) => this.loadMsg.next(loadPercent));
-        this.hubConnection.on('notifyReady',
-            (_) => this.loadMsg.complete());
-        
+        this.hubConnection.on('notifyLoadPercent', (loadPercent) => this.loadMsg.next(loadPercent));
+        this.hubConnection.on('notifyReady', (_) => this.loadMsg.complete());
+        this.hubConnection.on('imageQueryResponse', (result) => this.imageQuery.next(result));
+        this.hubConnection.on('shortImageQueryResponse', (result) => this.imageShort.next(result));
     }
 
     connect(): Promise<void> {
@@ -48,15 +47,19 @@ export class SignalRService {
     update(updateImage): Promise<void> {
         return this.send('update', updateImage);
     }
-
-    query(query: PictureQuery): Promise<any> {
-        return this.send('getQuery', query).then(_ => {
-            return new Promise(async (resolve, reject) => {
-                await this.hubConnection.on('sendQueryResponse', result => {
-                    resolve(result);
-                });
-                setTimeout(_ => reject(), 5000);
-            });
-        });
+    
+    query(query: PictureQuery): Promise<void> {
+        return this.send('getQuery', query)
     }
+
+    // query(query: PictureQuery): Promise<any> {
+    //     return this.send('getQuery', query).then(_ => {
+    //         return new Promise(async (resolve, reject) => {
+    //             await this.hubConnection.on('sendQueryResponse', result => {
+    //                 resolve(result);
+    //             });
+    //             setTimeout(_ => reject(), 5000);
+    //         });
+    //     });
+    // }
 }

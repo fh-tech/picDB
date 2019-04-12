@@ -1,7 +1,5 @@
-import {MetaDataType} from './meta-data-type.enum';
-
 export interface MetaDataEntry {
-    type: MetaDataType;
+    type: "Exif" | "Iptc";
     metaDataEntryId: number;
     key: string;
     value: string;

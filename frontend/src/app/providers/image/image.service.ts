@@ -6,14 +6,16 @@ import {Picture} from '../../interfaces/picture';
 @Injectable()
 export class ImageService {
     
-    pictures: Picture[] = [];
-    private picturesSubject = new BehaviorSubject<Picture[]>(this.pictures);
-    pictures$: Observable<Picture[]> = this.picturesSubject.asObservable();
+    pictures$: Observable<Picture[]>;
 
-    constructor(private signalR: SignalRService) {}
+    constructor(private signalR: SignalRService) {
+        this.pictures$ = this.signalR.imageQuery$;
+        
+        this.pictures$.subscribe(pics => console.log(pics));
+    }
     
     public loadRange(start: number, end: number) {
-        this.signalR.query({start: start, end: end, queryString: ""}).then(res => console.log(res));
+        this.signalR.query({start: start, end: end, queryString: "", type: 'Full'});
     }
 
 
