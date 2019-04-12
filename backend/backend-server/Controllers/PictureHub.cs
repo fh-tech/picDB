@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
@@ -30,6 +31,15 @@ namespace backend_server.Controllers
         public async Task GetQuery(PictureQuery query)
         {
             var result = await _picDb.Query(query);
+
+            if (query.type == FetchType.Full)
+            {
+                await Clients.Caller.ImageQueryResponse(result);
+            }
+            else
+            {
+                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
+            }
         }
 
 

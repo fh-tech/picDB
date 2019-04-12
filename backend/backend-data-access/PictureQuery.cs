@@ -14,7 +14,13 @@ namespace backend_data_access
 
         public string QueryString { get; set; } = "";
 
+        public FetchType type { get; set; } = FetchType.Full;
 
+    }
 
+    public enum FetchType
+    {
+        Full,
+        PathsOnly
     }
 }
