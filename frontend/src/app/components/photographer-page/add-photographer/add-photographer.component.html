@@ -1,0 +1,53 @@
+<div class="container-fluid h-100">
+    <form class="h-100" (ngSubmit)="submit()" [formGroup]="photographerForm">
+        <mat-form-field class="w-100">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName"
+                   required
+                   matInput
+                   type="text"
+                   id="firstName"
+                   name="firstName"
+                   aria-describedby="First Name of photographer">
+            <mat-hint>2-20 characters</mat-hint>
+            <mat-error *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                <mat-error *ngIf="firstName?.errors['required']">
+                    First Name is required
+                </mat-error>
+                <mat-error *ngIf="firstName?.errors['minlength']">
+                    First Name must be at least 2 characters long.
+                </mat-error>
+                <mat-error *ngIf="firstName?.errors['maxlength']">
+                    First Name is too long (50 characters maximum).
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName"
+                   required
+                   matInput
+                   type="text"
+                   id="lastName"
+                   name="lastName"
+                   aria-describedby="Last Name of photographer">
+            <mat-hint>2-20 characters</mat-hint>
+            <mat-error *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+                <mat-error *ngIf="lastName?.errors['required']">
+                    Last Name is required
+                </mat-error>
+                <mat-error *ngIf="lastName?.errors['minlength']">
+                    Last Name must be at least 2 characters long.
+                </mat-error>
+                <mat-error *ngIf="lastName?.errors['maxlength']">
+                    Last Name ist too long (50 characters maximum).
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <button type="submit"
+                mat-button
+                [disabled]="!photographerForm.valid">
+            Add photographer
+        </button>
+    </form>
+</div>
