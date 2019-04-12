@@ -37,6 +37,8 @@ import {IpcListenerService} from './providers/ipc/ipc-listener.service';
 import {IpcSenderService} from './providers/ipc/ipc-sender.service';
 import { NameDisplayPipe } from './pipes/name-display.pipe';
 import { PhotographerUpdateDialogComponent } from './components/photographer-page/photographer-update-dialog/photographer-update-dialog.component';
+import {ImageService} from './providers/image/image.service';
+import {SignalRService} from './providers/signal-r/signal-r.service';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -82,7 +84,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         ConfigService,
         PhotographersService,
         IpcListenerService,
-        IpcSenderService
+        IpcSenderService,
+        ImageService,
+        SignalRService
     ],
     bootstrap: [AppComponent],
     entryComponents: [PhotographerUpdateDialogComponent]

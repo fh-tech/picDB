@@ -42,6 +42,7 @@
         </e>
         <e p="Model" t="Include">
           <e p="CreatePhotographer.cs" t="Include" />
+          <e p="FolderPath.cs" t="Include" />
           <e p="ImageLoadTask.cs" t="Include" />
           <e p="UpdatePhotographer.cs" t="Include" />
         </e>

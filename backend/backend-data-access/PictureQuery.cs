@@ -11,7 +11,6 @@ namespace backend_data_access
     {
         public int Start { get; set; } = 0;
         public int End { get; set; } = -1;
-
         public string QueryString { get; set; } = "";
 
 

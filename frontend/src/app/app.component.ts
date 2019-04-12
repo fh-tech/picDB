@@ -20,7 +20,7 @@ export class AppComponent {
         // console.log('AppConfig', AppConfig);
 
         if (electronService.isElectron()) {
-            this.signalR.connect();
+            this.signalR.connect().then(res => console.log(res));
             // console.log('Mode electron');
             // console.log('Electron ipcRenderer', electronService.ipcRenderer);
             // console.log('NodeJS childProcess', electronService.childProcess);
