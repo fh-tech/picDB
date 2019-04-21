@@ -23,4 +23,7 @@
       <ProjectReference Include="..\backend-data-access\backend-data-access.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations" />
+    </ItemGroup>
 </Project>

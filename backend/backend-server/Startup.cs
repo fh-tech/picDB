@@ -58,7 +58,7 @@ namespace backend_server
                 dbOptions =>
                 {
                     dbOptions.UseSqlite(Configuration.GetSection("Database")["ConnectionString"],
-                        b => b.MigrationsAssembly("backend-data-access")
+                        b => b.MigrationsAssembly("backend-server")
                     );
                 });
 
