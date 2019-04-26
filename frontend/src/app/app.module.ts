@@ -39,6 +39,7 @@ import { NameDisplayPipe } from './pipes/name-display.pipe';
 import { PhotographerUpdateDialogComponent } from './components/photographer-page/photographer-update-dialog/photographer-update-dialog.component';
 import {ImageService} from './providers/image/image.service';
 import {SignalRService} from './providers/signal-r/signal-r.service';
+import { LoadingScreenComponent } from './components/image-page/loading-screen/loading-screen.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -57,7 +58,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PhotographerListComponent,
         AddPhotographerComponent,
         NameDisplayPipe,
-        PhotographerUpdateDialogComponent
+        PhotographerUpdateDialogComponent,
+        LoadingScreenComponent
     ],
     imports: [
         BrowserModule,

@@ -6,6 +6,8 @@ import {Picture} from '../../interfaces/picture';
 import {filter, takeUntil, takeWhile, tap} from 'rxjs/operators';
 import {isString} from 'util';
 
+export type LoadState = 'loading' | 'waiting';
+
 @Injectable()
 export class SignalRService {
 
@@ -28,8 +30,10 @@ export class SignalRService {
     //this subject publishes a new observable each time a loading cycle is started
     private loads: Subject<Observable<number|string>> = new Subject();
     public loaderEventStream$: Observable<Observable<number|string>> = this.loads.asObservable();
-    private loadState: 'loading'|'waiting' = 'waiting';
     
+    private loadState: LoadState = 'waiting';
+    private loadStateSub$: Subject<LoadState> = new BehaviorSubject<LoadState>('waiting');
+    public loadState$ = this.loadStateSub$.asObservable();
     
     private imageQuery: Subject<Picture[]> = new BehaviorSubject([]);
     imageQuery$: Observable<Picture[]> = this.imageQuery.asObservable();
@@ -49,16 +53,20 @@ export class SignalRService {
         this.hubConnection.on('notifyLoadPercentage', (percent) => this.notifyLoadObservable.next(percent));
         this.hubConnection.on('notifyReady', () => this.notifyReadyObservable.next("complete")); 
         
+        //if any notify msg is received we want to check if we want to change state to loading
         this.notifyObservable().subscribe((e) => {
             if(this.loadState == 'waiting'){
                 this.loadState = 'loading';
+                this.loadStateSub$.next('loading');
                 this.loads.next(this.notifyObservable());
             }
         });
-        this.loads.subscribe({complete: () => {
+        // if the inner observable completes all images are loaded and we are waiting for another loading cycle
+        this.loads.subscribe(o => o.subscribe({complete: () => {
             this.loadState = 'waiting';
+            this.loadStateSub$.next('waiting');
             this.loads.next(this.notifyObservable()); 
-        }});
+        }}));
     }
 
     connect(): Promise<void> {

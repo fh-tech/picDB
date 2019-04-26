@@ -1,0 +1,4 @@
+<div id="loading-screen" *ngIf="(loadState$ | async) == 'loading'" >
+  <!-- TODO: styling -->
+  <mat-progress-bar id="load-bar" mode="determinate" value="{{loadPercentage*100}}"></mat-progress-bar>
+</div>
