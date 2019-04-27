@@ -38,7 +38,6 @@ export class SignalRService {
     private imageQuery: Subject<Picture[]> = new BehaviorSubject([]);
     imageQuery$: Observable<Picture[]> = this.imageQuery.asObservable();
     
-    
     private imageShort: Subject<string[]> = new Subject();
     imageShort$: Observable<string[]> = this.imageShort.asObservable();
     
@@ -61,6 +60,7 @@ export class SignalRService {
                 this.loads.next(this.notifyObservable());
             }
         });
+        
         // if the inner observable completes all images are loaded and we are waiting for another loading cycle
         this.loads.subscribe(o => o.subscribe({complete: () => {
             this.loadState = 'waiting';
@@ -70,7 +70,6 @@ export class SignalRService {
     }
 
     connect(): Promise<void> {
-        console.log('connecting to hub');
         this.connected = this.hubConnection.start();
         return this.connected;
     }

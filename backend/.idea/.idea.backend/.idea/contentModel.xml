@@ -10,11 +10,6 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="backend-data-access" t="IncludeRecursive">
-        <e p="Migrations" t="Include">
-          <e p="20190403125655_InitialCreate.Designer.cs" t="Include" />
-          <e p="20190403125655_InitialCreate.cs" t="Include" />
-          <e p="PicDbContextModelSnapshot.cs" t="Include" />
-        </e>
         <e p="Model" t="Include">
           <e p="MetaData.cs" t="Include" />
           <e p="Photographer.cs" t="Include" />
@@ -39,6 +34,11 @@
           <e p="PhotographerController.cs" t="Include" />
           <e p="PictureController.cs" t="Include" />
           <e p="PictureHub.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20190426155616_initialCreate.Designer.cs" t="Include" />
+          <e p="20190426155616_initialCreate.cs" t="Include" />
+          <e p="PicDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Model" t="Include">
           <e p="CreatePhotographer.cs" t="Include" />
@@ -70,7 +70,6 @@
             </e>
           </e>
         </e>
-        <e p="package-lock.json" t="Include" />
       </e>
       <e p="backend-tests" t="IncludeRecursive">
         <e p="UnitTest1.cs" t="Include" />

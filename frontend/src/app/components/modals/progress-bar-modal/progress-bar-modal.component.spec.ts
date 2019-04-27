@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingScreenComponent } from './loading-screen.component';
+import { ProgressBarModalComponent } from './progress-bar-modal.component';
 
-describe('LoadingScreenComponent', () => {
-  let component: LoadingScreenComponent;
-  let fixture: ComponentFixture<LoadingScreenComponent>;
+describe('ProgressBarModalComponent', () => {
+  let component: ProgressBarModalComponent;
+  let fixture: ComponentFixture<ProgressBarModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingScreenComponent ]
+      declarations: [ ProgressBarModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadingScreenComponent);
+    fixture = TestBed.createComponent(ProgressBarModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
