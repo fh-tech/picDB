@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,6 +40,9 @@ namespace backend_data_access
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .ThenInclude(metadata => metadata.Data)
                 .Skip(query.Start)
                 .Take(query.End - query.Start)
                 .ToListAsync();
@@ -90,5 +94,25 @@ namespace backend_data_access
             currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task RemoveOldFromDb(IEnumerable<string> paths)
+        {
+            var range = _ctx.Pictures.Where(w => !paths.Contains(w.FilePath));
+            _ctx.Pictures.RemoveRange(range);
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
+        {
+            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
+            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
+        }
+
+        public async Task InsertAll(IEnumerable<Picture> pictures)
+        {
+            _ctx.Pictures.AddRange(pictures);
+            await _ctx.SaveChangesAsync();
+        }
+
     }
 }

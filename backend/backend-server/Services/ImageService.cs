@@ -39,11 +39,32 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
+        public async Task SyncPictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
+        {
+            Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
+            await notifyProgress(0.05f);
+            var paths = LoadPaths(dir);
+
+            await notifyProgress(0.2f);
+            var newPaths = await _picDb.FilterNewPaths(paths);
+            await notifyProgress(0.4f);
+            await _picDb.RemoveOldFromDb(paths);
+            await notifyProgress(0.6f);
+            await _picDb.InsertAll(newPaths.Select(LoadFromFile));
+            await notifyProgress(0.8f);
+        }
+
+        private static List<string> LoadPaths(string directory) =>
+            Directory.GetFiles(directory)
+                .Where(f =>
+                    SupportedExtensions
+                        .Any(ext => Path.GetExtension(f).ToLower() == ext))
+                .ToList();
+
+
         private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
         {
-            var files = Directory.GetFiles(folderPath)
-                .Where(f => SupportedExtensions.Any(ext =>
-                    Path.GetExtension(f).ToLower() == ext)).ToList();
+            var files = LoadPaths(folderPath);
 
             await notifyProgress(0.05f);
 
@@ -53,7 +74,7 @@ namespace backend_server.Services
             return files
                 .Select(LoadFromFile)
                 .Partition(100)
-                .Tap( async _ => { await notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
+                .Tap(async _ => { await notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
                 .SelectMany(fs => fs);
         }
 
@@ -72,6 +93,7 @@ namespace backend_server.Services
         private static MetaData LoadMetaData(string file)
         {
             //TODO: implement metadata reading
+            //TODO: implement sleep again
             Thread.Sleep(50);
             return new MetaData
             {
@@ -82,6 +104,12 @@ namespace backend_server.Services
                         Key = "Aperture",
                         Value = "2.0f",
                         Type = MetaDataType.Exif
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "Creator",
+                        Value = "Viktor Leher",
+                        Type = MetaDataType.Itpc
                     }
                 }
             };

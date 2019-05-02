@@ -41,5 +41,20 @@ namespace backend_server.Controllers
             return Ok();
         }
 
+
+        [HttpPut]
+        public IActionResult SyncPictureFolder(FolderPath folderPath)
+        {
+            Logger.Log(LogLevel.Information, "PUT: [%s] on SyncPictureFolder", new {folderPath});
+            if (!Directory.Exists(folderPath.Path))
+            {
+                Logger.Log(LogLevel.Error, "Path [%s] is not a valid path on this server", new {folderPath});
+                return BadRequest();
+            }
+            Logger.Log(LogLevel.Trace, "Added new ImageSyncTask to WorkQueue");
+            _workQueue.Enqueue(new ImageSyncTask(folderPath.Path));
+            return Ok();
+        }
+
     }
 }

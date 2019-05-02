@@ -20,7 +20,7 @@ export class FolderService {
     syncFolder() {
         if (this.photoFolder) {
             return this.http.put('http://127.0.0.1:5000/api/pictures', {
-                directoryPath: this.photoFolder
+                path: this.photoFolder
             });
         }
     }

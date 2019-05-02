@@ -12,7 +12,7 @@ export class SearchbarComponent {
   searchForm: FormGroup;
   options: string[] = ['One', 'Two', 'Three'];
 
-  private submit() {}
+  submit() {}
 
   constructor(private fb: FormBuilder) {
     this.searchForm = fb.group({

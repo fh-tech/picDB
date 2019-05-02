@@ -36,8 +36,8 @@
           <e p="PictureHub.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20190426155616_initialCreate.Designer.cs" t="Include" />
-          <e p="20190426155616_initialCreate.cs" t="Include" />
+          <e p="20190430092321_initial.Designer.cs" t="Include" />
+          <e p="20190430092321_initial.cs" t="Include" />
           <e p="PicDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Model" t="Include">
@@ -87,6 +87,7 @@
       <e p="backend.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
+    <e p="$PROJECT_DIR$/../frontend/dist" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$/../frontend/node_modules" t="ExcludeRecursive">
       <e p="@angular/animations" t="IncludeRecursive" />
       <e p="@angular/cdk" t="IncludeRecursive" />
@@ -103,6 +104,7 @@
       <e p="@angular/router" t="IncludeRecursive" />
       <e p="@angular-devkit/build-angular" t="IncludeRecursive" />
       <e p="@aspnet/signalr" t="IncludeRecursive" />
+      <e p="@ng-bootstrap/ng-bootstrap" t="IncludeRecursive" />
       <e p="@ngx-translate/core" t="IncludeRecursive" />
       <e p="@ngx-translate/http-loader" t="IncludeRecursive" />
       <e p="@types" t="IncludeRecursive">
@@ -130,9 +132,11 @@
       <e p="karma-jasmine" t="IncludeRecursive" />
       <e p="karma-jasmine-html-reporter" t="IncludeRecursive" />
       <e p="mocha" t="IncludeRecursive" />
+      <e p="ngx-slick-carousel" t="IncludeRecursive" />
       <e p="npm-run-all" t="IncludeRecursive" />
       <e p="popper.js" t="IncludeRecursive" />
       <e p="rxjs" t="IncludeRecursive" />
+      <e p="slick-carousel" t="IncludeRecursive" />
       <e p="source-map" t="IncludeRecursive" />
       <e p="spectron" t="IncludeRecursive" />
       <e p="ts-node" t="IncludeRecursive" />

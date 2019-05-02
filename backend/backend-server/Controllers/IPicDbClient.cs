@@ -9,7 +9,8 @@ namespace backend_server.Controllers
         Task NotifyReady();
         Task NotifyLoadPercentage(float donePercent);
 
-        Task SendQueryResponse(List<Picture> result);
+        Task ImageQueryResponse(IEnumerable<Picture> pictures);
 
+        Task ShortImageQueryResponse(IEnumerable<string> paths);
     }
 }

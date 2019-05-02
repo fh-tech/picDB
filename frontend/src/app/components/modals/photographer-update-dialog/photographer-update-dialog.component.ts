@@ -26,7 +26,6 @@ export class PhotographerUpdateDialogComponent {
     this.dialogRef.close();
   }
   
-
   submit() {
     const value = this.photographerUpdateForm.value;
     const photographer: Photographer = {

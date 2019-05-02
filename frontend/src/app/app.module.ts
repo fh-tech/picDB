@@ -40,6 +40,8 @@ import {ImageService} from './providers/image/image.service';
 import {SignalRService} from './providers/signal-r/signal-r.service';
 import { ProgressBarModalComponent } from './components/modals/progress-bar-modal/progress-bar-modal.component';
 import {PhotographerUpdateDialogComponent} from './components/modals/photographer-update-dialog/photographer-update-dialog.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SlickCarouselModule} from 'ngx-slick-carousel';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,6 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HttpClientModule,
         AppRoutingModule,
         MaterialModule,
+        NgbModule,
+        SlickCarouselModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

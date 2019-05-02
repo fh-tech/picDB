@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -44,16 +45,35 @@ namespace backend_server.Services
             while (true)
             {
                 var workItem = _workQueue.Dequeue();
-                if (workItem is StopLoadTask)
+                switch (workItem)
                 {
-                    break;
-                }
+                    case StopLoadTask _ :
+                       return;
 
-                using (var scope = _scopeProvider.CreateScope())
-                {
-                    var imageService = scope.ServiceProvider.GetService<ImageService>();
-                    await imageService.UpdatePictureDataFromDirectory(workItem.DirectoryPath, _hubContext.Clients.All.NotifyLoadPercentage);
-                    await _hubContext.Clients.All.NotifyReady();
+                    case ImageLoadTask _ :
+                    {
+                        using (var scope = _scopeProvider.CreateScope())
+                        {
+                            var imageService = scope.ServiceProvider.GetService<ImageService>();
+                            await imageService.UpdatePictureDataFromDirectory(workItem.DirectoryPath, _hubContext.Clients.All.NotifyLoadPercentage);
+                            await _hubContext.Clients.All.NotifyReady();
+                        }
+
+                        break;
+                    }
+
+                    case ImageSyncTask _:
+                    {
+                        using (var scope = _scopeProvider.CreateScope())
+                        {
+                            var imageService = scope.ServiceProvider.GetService<ImageService>();
+                            await imageService.SyncPictureDataFromDirectory(workItem.DirectoryPath, _hubContext.Clients.All.NotifyLoadPercentage);
+                            await _hubContext.Clients.All.NotifyReady();
+                        }
+
+                        break;
+                    }
+
                 }
             }
         }
