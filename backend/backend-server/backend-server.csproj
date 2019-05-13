@@ -4,9 +4,13 @@
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
         <RootNamespace>backend_server</RootNamespace>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="IronPdf">
+          <Version>5.2.0.1</Version>
+        </PackageReference>
         <PackageReference Include="MetadataExtractor">
           <Version>2.0.0</Version>
         </PackageReference>

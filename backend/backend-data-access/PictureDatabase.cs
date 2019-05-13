@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,14 +35,21 @@ namespace backend_data_access
 
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
-            return await _ctx.Pictures
+            var dbQuery =  _ctx.Pictures
                 .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
-                .Take(query.End - query.Start)
-                .ToListAsync();
+                .Take(query.End - query.Start);
+
+            return await (query.type switch
+                {
+                    FetchType.Full => dbQuery
+                        .Include(p => p.MetaData)
+                        .Include(p => p.MetaData.Data),
+                    FetchType.PathsOnly => dbQuery
+                }).ToListAsync();
         }
 
         public async Task RebuildPictureTable(IEnumerable<Picture> pictures)
