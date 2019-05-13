@@ -22,17 +22,27 @@ namespace backend_server.Controllers
             _picDb = picDb;
         }
 
-        public async Task<string> Update(Picture p)
+
+        public async Task Update(Picture p)
         {
             await _picDb.CreatePicture(p);
-            return "updated";
         }
 
         public async Task GetQuery(PictureQuery query)
         {
             var result = await _picDb.Query(query);
-            await Clients.All.SendQueryResponse(result.ToList());
+
+            if (query.type == FetchType.Full)
+            {
+                await Clients.Caller.ImageQueryResponse(result);
+            }
+            else
+            {
+                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
+            }
         }
+
+
 
     }
 }

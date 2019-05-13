@@ -39,11 +39,28 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
-        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
+
+        public async Task SyncPictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
         {
-            var files = Directory.GetFiles(folderPath)
-                .Where(f => SupportedExtensions.Any(ext =>
-                    Path.GetExtension(f).ToLower() == ext)).ToList();
+            Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
+
+            var paths = LoadPaths(dir);
+
+            var newPaths = await _picDb.FilterNewPaths(paths);
+
+            await _picDb.InsertAll(newPaths.Select(LoadFromFile));
+        }
+
+        private static List<string> LoadPaths(string directory) =>
+            Directory.GetFiles(directory)
+                .Where(f =>
+                    SupportedExtensions
+                        .Any(ext => Path.GetExtension(f).ToLower() == ext))
+                .ToList();
+
+
+        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress){
+            var files = LoadPaths(folderPath);
 
             await notifyProgress(0.05f);
 
@@ -53,7 +70,7 @@ namespace backend_server.Services
             return files
                 .Select(LoadFromFile)
                 .Partition(100)
-                .Tap( async _ => { await notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
+                .Tap(async _ => { await notifyProgress(100f * i++ / size * 0.8f + 0.05f); })
                 .SelectMany(fs => fs);
         }
 
