@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,14 +35,23 @@ namespace backend_data_access
 
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
-            return await _ctx.Pictures
+            IQueryable<Picture> picQuery = _ctx.Pictures
                 .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
-                .Take(query.End - query.Start)
-                .ToListAsync();
+                .Take(query.End - query.Start);
+            if (query.type == FetchType.Full)
+            {
+                return await picQuery.Include(p => p.MetaData.Data).ToListAsync();
+            }
+            else if(query.type == FetchType.PathsOnly)
+            {
+                return await picQuery.ToListAsync();
+            }
+
+            throw new ArgumentException($"Unhandled fetch type {query.type}");
         }
 
         public async Task RebuildPictureTable(IEnumerable<Picture> pictures)
