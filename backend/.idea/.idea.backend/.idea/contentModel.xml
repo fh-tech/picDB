@@ -4,7 +4,7 @@
     <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_backend.1512369782.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_backend.-1973685304.00" t="ExcludeRecursive" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
@@ -42,7 +42,6 @@
         </e>
         <e p="Model" t="Include">
           <e p="CreatePhotographer.cs" t="Include" />
-          <e p="FolderPath.cs" t="Include" />
           <e p="ImageLoadTask.cs" t="Include" />
           <e p="UpdatePhotographer.cs" t="Include" />
         </e>
@@ -70,7 +69,6 @@
             </e>
           </e>
         </e>
-        <e p="package-lock.json" t="Include" />
       </e>
       <e p="backend-tests" t="IncludeRecursive">
         <e p="UnitTest1.cs" t="Include" />
@@ -103,7 +101,6 @@
       <e p="@angular/platform-browser-dynamic" t="IncludeRecursive" />
       <e p="@angular/router" t="IncludeRecursive" />
       <e p="@angular-devkit/build-angular" t="IncludeRecursive" />
-      <e p="@aspnet/signalr" t="IncludeRecursive" />
       <e p="@ngx-translate/core" t="IncludeRecursive" />
       <e p="@ngx-translate/http-loader" t="IncludeRecursive" />
       <e p="@types" t="IncludeRecursive">

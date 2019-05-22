@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,14 +35,23 @@ namespace backend_data_access
 
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
-            return await _ctx.Pictures
+            IQueryable<Picture> picQuery = _ctx.Pictures
                 .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
                          || p.Photographer.LastName == query.QueryString
                          || p.Photographer.FirstName == query.QueryString
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
-                .Take(query.End - query.Start)
-                .ToListAsync();
+                .Take(query.End - query.Start);
+            if (query.type == FetchType.Full)
+            {
+                return await picQuery.Include(p => p.MetaData.Data).ToListAsync();
+            }
+            else if(query.type == FetchType.PathsOnly)
+            {
+                return await picQuery.ToListAsync();
+            }
+
+            throw new ArgumentException($"Unhandled fetch type {query.type}");
         }
 
         public async Task RebuildPictureTable(IEnumerable<Picture> pictures)
@@ -90,5 +100,30 @@ namespace backend_data_access
             currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task RemoveOldFromDb(IEnumerable<string> paths)
+        {
+            var pics = _ctx.Pictures;
+            IQueryable<Picture> query = _ctx.Pictures;
+            foreach (var path in paths)
+            {
+                query = query.Where(p => p.FilePath != path);
+            }
+            _ctx.RemoveRange(query);
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
+        {
+            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
+            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
+        }
+
+        public async Task InsertAll(IEnumerable<Picture> pictures)
+        {
+            _ctx.Pictures.AddRange(pictures);
+            await _ctx.SaveChangesAsync();
+        }
+
     }
 }

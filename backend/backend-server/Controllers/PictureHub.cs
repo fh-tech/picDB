@@ -31,7 +31,15 @@ namespace backend_server.Controllers
         public async Task GetQuery(PictureQuery query)
         {
             var result = await _picDb.Query(query);
-            await Clients.All.SendQueryResponse(result.ToList());
+
+            if (query.type == FetchType.Full)
+            {
+                await Clients.Caller.ImageQueryResponse(result);
+            }
+            else
+            {
+                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
+            }
         }
 
     }

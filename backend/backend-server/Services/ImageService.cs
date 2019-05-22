@@ -39,6 +39,25 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
+        public async Task SyncPictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
+        {
+            Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
+
+            var paths = LoadPaths(dir);
+
+            var newPaths = await _picDb.FilterNewPaths(paths);
+
+            await _picDb.InsertAll(newPaths.Select(LoadFromFile));
+        }
+
+        private static List<string> LoadPaths(string directory) =>
+            Directory.GetFiles(directory)
+                .Where(f =>
+                    SupportedExtensions
+                        .Any(ext => Path.GetExtension(f).ToLower() == ext))
+                .ToList();
+
+
         private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
         {
             var files = Directory.GetFiles(folderPath)

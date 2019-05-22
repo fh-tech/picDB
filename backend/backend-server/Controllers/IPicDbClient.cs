@@ -7,9 +7,11 @@ namespace backend_server.Controllers
     public interface IPicDbClient
     {
         Task NotifyReady();
+
         Task NotifyLoadPercentage(float donePercent);
 
-        Task SendQueryResponse(List<Picture> result);
+        Task ImageQueryResponse(IEnumerable<Picture> pictures);
 
+        Task ShortImageQueryResponse(IEnumerable<string> paths);
     }
 }
