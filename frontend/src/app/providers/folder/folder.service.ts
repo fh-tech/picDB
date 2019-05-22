@@ -11,19 +11,32 @@ export class FolderService {
                 private http: HttpClient) {
         this.photoFolder = config.readConfig().folderPath;
     }
-
+    
     get photofolder() {
         return this.photoFolder;
     }
 
-    set photofolder(photofolder: string) {
-        this.photoFolder = photofolder;
+    // can only syncFolder if it has already been set sometime in the past
+    syncFolder() {
+        if (this.photoFolder) {
+            return this.http.put('http://127.0.0.1:5000/api/pictures', {
+                directoryPath: this.photoFolder
+            });
+        }
     }
-    
-    loadNewFolder() {
-        return this.http.post('http://127.0.0.1:5000/api/pictures', {
-            path: this.photoFolder
-        })
+
+    loadFolder(folder: string) {
+        if (folder && folder !== this.photoFolder) {
+            this.http.post('http://127.0.0.1:5000/api/pictures', {
+                path: folder
+            }).subscribe(
+                res => {
+                    this.config.storeConfig({folderPath: folder});
+                    this.photoFolder = folder;
+                },
+                err => console.log(err)
+            );
+        }
     }
 
 }

@@ -36,9 +36,10 @@ import {PhotographerPageComponent} from './components/photographer-page/photogra
 import {IpcListenerService} from './providers/ipc/ipc-listener.service';
 import {IpcSenderService} from './providers/ipc/ipc-sender.service';
 import { NameDisplayPipe } from './pipes/name-display.pipe';
-import { PhotographerUpdateDialogComponent } from './components/photographer-page/photographer-update-dialog/photographer-update-dialog.component';
 import {ImageService} from './providers/image/image.service';
 import {SignalRService} from './providers/signal-r/signal-r.service';
+import { ProgressBarModalComponent } from './components/modals/progress-bar-modal/progress-bar-modal.component';
+import {PhotographerUpdateDialogComponent} from './components/modals/photographer-update-dialog/photographer-update-dialog.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -57,7 +58,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PhotographerListComponent,
         AddPhotographerComponent,
         NameDisplayPipe,
-        PhotographerUpdateDialogComponent
+        PhotographerUpdateDialogComponent,
+        ProgressBarModalComponent
     ],
     imports: [
         BrowserModule,
@@ -89,7 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         SignalRService
     ],
     bootstrap: [AppComponent],
-    entryComponents: [PhotographerUpdateDialogComponent]
+    entryComponents: [PhotographerUpdateDialogComponent, ProgressBarModalComponent]
 })
 export class AppModule {
 }

@@ -1,8 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HubConnection, HubConnectionBuilder} from '@aspnet/signalr';
 import {PictureQuery} from '../../interfaces/picture-query';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, merge, Observable, Subject} from 'rxjs';
 import {Picture} from '../../interfaces/picture';
+import {filter, takeUntil, takeWhile, tap} from 'rxjs/operators';
+import {isString} from 'util';
+
+export type LoadState = 'loading' | 'waiting';
 
 @Injectable()
 export class SignalRService {
@@ -10,8 +14,26 @@ export class SignalRService {
     private hubConnection: HubConnection;
     private connected: Promise<void> = null;
     
-    private loadMsg: Subject<number> = new BehaviorSubject(0.0);
-    loadMsg$: Observable<number> = this.loadMsg.asObservable();
+    //raw notify messages
+    private notifyLoadObservable: Subject<number> = new Subject<number>();
+    private notifyReadyObservable: Subject<string> = new Subject<string>();
+    
+    //combined notify msg
+    private notifyObservable: () => Observable<number|string> = () =>
+        merge(
+            this.notifyLoadObservable.asObservable(),
+            this.notifyReadyObservable.asObservable(),
+        ).pipe(
+            takeWhile((value => !isString(value)))
+        );
+
+    //this subject publishes a new observable each time a loading cycle is started
+    private loads: Subject<Observable<number|string>> = new Subject();
+    public loaderEventStream$: Observable<Observable<number|string>> = this.loads.asObservable();
+    
+    private loadState: LoadState = 'waiting';
+    private loadStateSub$: Subject<LoadState> = new BehaviorSubject<LoadState>('waiting');
+    public loadState$ = this.loadStateSub$.asObservable();
     
     private imageQuery: Subject<Picture[]> = new BehaviorSubject([]);
     imageQuery$: Observable<Picture[]> = this.imageQuery.asObservable();
@@ -19,20 +41,35 @@ export class SignalRService {
     private imageShort: Subject<string[]> = new Subject();
     imageShort$: Observable<string[]> = this.imageShort.asObservable();
     
-    
     constructor() {
         this.hubConnection = new HubConnectionBuilder()
             .withUrl('http://127.0.0.1:5000/images')
             .build();
         
-        this.hubConnection.on('notifyLoadPercent', (loadPercent) => this.loadMsg.next(loadPercent));
-        this.hubConnection.on('notifyReady', (_) => this.loadMsg.complete());
         this.hubConnection.on('imageQueryResponse', (result) => this.imageQuery.next(result));
         this.hubConnection.on('shortImageQueryResponse', (result) => this.imageShort.next(result));
+        
+        this.hubConnection.on('notifyLoadPercentage', (percent) => this.notifyLoadObservable.next(percent));
+        this.hubConnection.on('notifyReady', () => this.notifyReadyObservable.next("complete")); 
+        
+        //if any notify msg is received we want to check if we want to change state to loading
+        this.notifyObservable().subscribe((e) => {
+            if(this.loadState == 'waiting'){
+                this.loadState = 'loading';
+                this.loadStateSub$.next('loading');
+                this.loads.next(this.notifyObservable());
+            }
+        });
+        
+        // if the inner observable completes all images are loaded and we are waiting for another loading cycle
+        this.loads.subscribe(o => o.subscribe({complete: () => {
+            this.loadState = 'waiting';
+            this.loadStateSub$.next('waiting');
+            this.loads.next(this.notifyObservable()); 
+        }}));
     }
 
     connect(): Promise<void> {
-        console.log('connecting to hub');
         this.connected = this.hubConnection.start();
         return this.connected;
     }
@@ -51,15 +88,4 @@ export class SignalRService {
     query(query: PictureQuery): Promise<void> {
         return this.send('getQuery', query)
     }
-
-    // query(query: PictureQuery): Promise<any> {
-    //     return this.send('getQuery', query).then(_ => {
-    //         return new Promise(async (resolve, reject) => {
-    //             await this.hubConnection.on('sendQueryResponse', result => {
-    //                 resolve(result);
-    //             });
-    //             setTimeout(_ => reject(), 5000);
-    //         });
-    //     });
-    // }
 }

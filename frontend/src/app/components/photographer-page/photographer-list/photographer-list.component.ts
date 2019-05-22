@@ -3,7 +3,7 @@ import {Photographer} from '../../../interfaces/photographer';
 import {Observable} from 'rxjs';
 import {PhotographersService} from '../../../providers/photographers/photographers.service';
 import {MatDialog} from '@angular/material';
-import {PhotographerUpdateDialogComponent} from '../photographer-update-dialog/photographer-update-dialog.component';
+import {PhotographerUpdateDialogComponent} from '../../modals/photographer-update-dialog/photographer-update-dialog.component';
 
 
 @Component({

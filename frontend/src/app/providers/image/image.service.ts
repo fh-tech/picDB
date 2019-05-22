@@ -10,8 +10,6 @@ export class ImageService {
 
     constructor(private signalR: SignalRService) {
         this.pictures$ = this.signalR.imageQuery$;
-        
-        this.pictures$.subscribe(pics => console.log(pics));
     }
     
     public loadRange(start: number, end: number) {
