@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_backend.1512369782.00" t="ExcludeRecursive" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="C:\Users\Daniel\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Daniel\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Daniel\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="C:\Users\Daniel\.Rider2019.1\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\.Rider2019.1\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\.Rider2019.1\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_backend.1405680256.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\backend" t="IncludeFlat">
       <e p="backend-data-access" t="IncludeRecursive">
+        <e p="backend-data-access.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
         <e p="Model" t="Include">
           <e p="MetaData.cs" t="Include" />
           <e p="Photographer.cs" t="Include" />
           <e p="Picture.cs" t="Include" />
         </e>
-        <e p="PicDbContext.cs" t="Include" />
-        <e p="PictureDatabase.cs" t="Include" />
-        <e p="PictureQuery.cs" t="Include" />
-        <e p="backend-data-access.csproj" t="IncludeRecursive" />
-        <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.2" t="Include">
               <e p="backend-data-access.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
+        <e p="PicDbContext.cs" t="Include" />
+        <e p="PictureDatabase.cs" t="Include" />
+        <e p="PictureQuery.cs" t="Include" />
       </e>
       <e p="backend-server" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="backend-server.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="IPicDbClient.cs" t="Include" />
           <e p="PhotographerController.cs" t="Include" />
           <e p="PictureController.cs" t="Include" />
           <e p="PictureHub.cs" t="Include" />
+          <e p="ReportController.cs" t="Include" />
         </e>
+        <e p="dev.pic.db" t="Include" />
         <e p="Migrations" t="Include">
-          <e p="20190426155616_initialCreate.Designer.cs" t="Include" />
-          <e p="20190426155616_initialCreate.cs" t="Include" />
+          <e p="20190427111804_InitialCreate.cs" t="Include" />
+          <e p="20190427111804_InitialCreate.Designer.cs" t="Include" />
           <e p="PicDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Model" t="Include">
           <e p="CreatePhotographer.cs" t="Include" />
           <e p="FolderPath.cs" t="Include" />
           <e p="ImageLoadTask.cs" t="Include" />
+          <e p="ImageReportViewModel.cs" t="Include" />
           <e p="UpdatePhotographer.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Release" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="backend-server.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Pages" t="Include">
+          <e p="Report" t="Include">
+            <e p="ImageReport.cshtml" t="Include" />
+          </e>
         </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
@@ -59,127 +79,114 @@
           <e p="BlockingEventQueue.cs" t="Include" />
           <e p="LinqExtensions.cs" t="Include" />
         </e>
-        <e p="appsettings.Development.json" t="Include" />
-        <e p="appsettings.json" t="Include" />
-        <e p="backend-server.csproj" t="IncludeRecursive" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp2.2" t="Include">
-              <e p="backend-server.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
       </e>
       <e p="backend-tests" t="IncludeRecursive">
-        <e p="UnitTest1.cs" t="Include" />
         <e p="backend-tests.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.2" t="Include">
               <e p="backend-tests.AssemblyInfo.cs" t="Include" />
               <e p="backend-tests.Program.cs" t="Include" />
             </e>
           </e>
         </e>
+        <e p="UnitTest1.cs" t="Include" />
       </e>
       <e p="backend.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="$PROJECT_DIR$/../frontend/node_modules" t="ExcludeRecursive">
-      <e p="@angular/animations" t="IncludeRecursive" />
-      <e p="@angular/cdk" t="IncludeRecursive" />
-      <e p="@angular/cli" t="IncludeRecursive" />
-      <e p="@angular/common" t="IncludeRecursive" />
-      <e p="@angular/compiler" t="IncludeRecursive" />
-      <e p="@angular/compiler-cli" t="IncludeRecursive" />
-      <e p="@angular/core" t="IncludeRecursive" />
-      <e p="@angular/forms" t="IncludeRecursive" />
-      <e p="@angular/http" t="IncludeRecursive" />
-      <e p="@angular/material" t="IncludeRecursive" />
-      <e p="@angular/platform-browser" t="IncludeRecursive" />
-      <e p="@angular/platform-browser-dynamic" t="IncludeRecursive" />
-      <e p="@angular/router" t="IncludeRecursive" />
-      <e p="@angular-devkit/build-angular" t="IncludeRecursive" />
-      <e p="@aspnet/signalr" t="IncludeRecursive" />
-      <e p="@ngx-translate/core" t="IncludeRecursive" />
-      <e p="@ngx-translate/http-loader" t="IncludeRecursive" />
-      <e p="@types" t="IncludeRecursive">
-        <e p="jasmine" t="IncludeRecursive" />
-        <e p="jasminewd2" t="IncludeRecursive" />
-        <e p="node" t="IncludeRecursive" />
-        <e p="source-list-map" t="IncludeRecursive" />
-      </e>
-      <e p="bootstrap" t="IncludeRecursive" />
-      <e p="bootstrap-scss" t="IncludeRecursive" />
-      <e p="chai" t="IncludeRecursive" />
-      <e p="codelyzer" t="IncludeRecursive" />
-      <e p="conventional-changelog-cli" t="IncludeRecursive" />
-      <e p="core-js" t="IncludeRecursive" />
-      <e p="electron" t="IncludeRecursive" />
-      <e p="electron-builder" t="IncludeRecursive" />
-      <e p="electron-reload" t="IncludeRecursive" />
-      <e p="hammerjs" t="IncludeRecursive" />
-      <e p="jasmine-core" t="IncludeRecursive" />
-      <e p="jasmine-spec-reporter" t="IncludeRecursive" />
-      <e p="jquery" t="IncludeRecursive" />
-      <e p="karma" t="IncludeRecursive" />
-      <e p="karma-chrome-launcher" t="IncludeRecursive" />
-      <e p="karma-coverage-istanbul-reporter" t="IncludeRecursive" />
-      <e p="karma-jasmine" t="IncludeRecursive" />
-      <e p="karma-jasmine-html-reporter" t="IncludeRecursive" />
-      <e p="mocha" t="IncludeRecursive" />
-      <e p="npm-run-all" t="IncludeRecursive" />
-      <e p="popper.js" t="IncludeRecursive" />
-      <e p="rxjs" t="IncludeRecursive" />
-      <e p="source-map" t="IncludeRecursive" />
-      <e p="spectron" t="IncludeRecursive" />
-      <e p="ts-node" t="IncludeRecursive" />
-      <e p="tslint" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.dom.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.dom.iterable.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.collection.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.core.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.generator.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.iterable.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.promise.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.proxy.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.reflect.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.symbol.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2015.symbol.wellknown.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2016.array.include.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2016.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2016.full.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.full.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.intl.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.object.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.sharedmemory.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.string.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2017.typedarrays.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2018.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2018.full.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2018.intl.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2018.promise.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es2018.regexp.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es5.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.es6.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.array.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.asynciterable.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.bigint.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.full.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.intl.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.esnext.symbol.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.scripthost.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.webworker.d.ts" t="IncludeRecursive" />
-      <e p="typescript/lib/lib.webworker.importscripts.d.ts" t="IncludeRecursive" />
-      <e p="wait-on" t="IncludeRecursive" />
-      <e p="webdriver-manager" t="IncludeRecursive" />
-      <e p="zone.js" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\animations" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\cdk" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\cli" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\common" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\compiler" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\compiler-cli" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\core" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\forms" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\http" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\material" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\platform-browser" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\platform-browser-dynamic" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular\router" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@angular-devkit\build-angular" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@aspnet\signalr" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@ngx-translate\core" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@ngx-translate\http-loader" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\@types" t="IncludeRecursive">
+      <e p="jasmine" t="IncludeRecursive" />
+      <e p="jasminewd2" t="IncludeRecursive" />
+      <e p="node" t="IncludeRecursive" />
+      <e p="source-list-map" t="IncludeRecursive" />
     </e>
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\bootstrap" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\bootstrap-scss" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\chai" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\codelyzer" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\conventional-changelog-cli" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\core-js" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\electron" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\electron-builder" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\electron-reload" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\hammerjs" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\jasmine-core" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\jasmine-spec-reporter" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\jquery" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\karma" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\karma-chrome-launcher" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\karma-coverage-istanbul-reporter" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\karma-jasmine" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\karma-jasmine-html-reporter" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\mocha" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\npm-run-all" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\popper.js" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\rxjs" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\source-map" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\spectron" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\ts-node" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\tslint" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.dom.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.dom.iterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.collection.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.core.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.generator.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.iterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.promise.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.proxy.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.reflect.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.symbol.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2015.symbol.wellknown.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2016.array.include.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2016.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2016.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.object.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.sharedmemory.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.string.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2017.typedarrays.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2018.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2018.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2018.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2018.promise.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es2018.regexp.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es5.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.es6.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.array.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.asynciterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.bigint.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.esnext.symbol.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.scripthost.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.webworker.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\typescript\lib\lib.webworker.importscripts.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\wait-on" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\webdriver-manager" t="IncludeRecursive" />
+    <e p="C:\Users\Daniel\RiderProjects\picDB\frontend\node_modules\zone.js" t="IncludeRecursive" />
   </component>
 </project>

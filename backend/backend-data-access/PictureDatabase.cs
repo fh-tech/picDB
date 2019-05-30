@@ -24,7 +24,11 @@ namespace backend_data_access
 
         public async Task<Picture> GetPictureById(int id)
         {
-            return await _ctx.Pictures.SingleAsync(picture =>  picture.PictureId == id);
+            return await _ctx.Pictures
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .Include(p => p.MetaData.Data)
+                .SingleAsync(picture =>  picture.PictureId == id);
         }
 
         public async Task CreatePicture(Picture p)

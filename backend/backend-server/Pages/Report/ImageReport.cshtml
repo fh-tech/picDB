@@ -1,0 +1,52 @@
+@model backend_server.Model.ImageReportViewModel
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css">
+    <title>Image Report</title>
+</head>
+<body>
+<h1>Image Report</h1>
+<h2>Image: @Model.ImageName</h2>
+<div>
+    <img src="@Model.ImagePath" alt="image">
+</div>
+
+@if (Model.ImaageExifData.Any())
+{
+    <h3>
+        Exif data
+    </h3>
+    <ul>
+        @foreach (var data in Model.ImaageExifData)
+        {
+            <li>@data.Key : @data.Value</li>
+
+        }
+    </ul>
+}
+@if (Model.ImaageExifData.Any())
+{
+    <h3>
+        Itpc data
+    </h3>
+    <ul>
+        @foreach (var data in Model.ImaageItpcData)
+        {
+            <li>@data.Key : @data.Value</li>
+        }
+    </ul>
+}
+@if (Model.Photographer != null)
+{
+    <h3>
+        Photographer
+    </h3>
+    <div>
+        Name: @Model.Photographer.FirstName @Model.Photographer.LastName
+        date of birth: tmp
+    </div>
+}
+</body>
+</html>
+
