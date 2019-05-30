@@ -64,16 +64,10 @@ namespace backend_data_access
 
         public async Task<Photographer> CreatePhotographer(Photographer p)
         {
-            var newPhotographer = new Photographer
-            {
-                FirstName = p.FirstName,
-                LastName = p.LastName
-            };
-
-            await _ctx.Photographer.AddAsync(newPhotographer);
+            await _ctx.Photographer.AddAsync(p);
             await _ctx.SaveChangesAsync();
 
-            return newPhotographer;
+            return p;
         }
 
         public async Task<IEnumerable<Photographer>> GetPhotographers()
@@ -90,8 +84,10 @@ namespace backend_data_access
         public async Task UpdatePhotographer(Photographer photographer)
         {
             var currentPhotographer = await GetPhotographerById(photographer.Id);
-            currentPhotographer.FirstName = photographer.FirstName ?? currentPhotographer.FirstName;
-            currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
+            currentPhotographer.FirstName = photographer.FirstName;
+            currentPhotographer.LastName = photographer.LastName;
+            currentPhotographer.Birthday = photographer.Birthday;
+            currentPhotographer.Notes = photographer.Notes;
             await _ctx.SaveChangesAsync();
         }
 

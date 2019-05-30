@@ -31,11 +31,21 @@ namespace backend_server.Controllers
         {
             Logger.Log(LogLevel.Information, "POST: on CreatePhotographer");
 
+            // automatically returns 400 when validation or binding fails but for logging we do it explicitly
+            if (!ModelState.IsValid)
+            {
+                Logger.Log(LogLevel.Information, "CREATE: Photographer with %s, failed!", new {photographer});
+                return BadRequest();
+            }
+
             var inserted = await _picDb.CreatePhotographer(new Photographer
             {
                 FirstName = photographer.FirstName,
-                LastName = photographer.LastName
+                LastName = photographer.LastName,
+                Birthday = photographer.Birthday.Date,
+                Notes = photographer.Notes
             });
+
 
             return Ok(inserted);
         }
@@ -65,10 +75,20 @@ namespace backend_server.Controllers
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data is %s", new {id, photographer});
+
+            if (!ModelState.IsValid)
+            {
+                Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data %s, failed!",
+                    new {id, photographer});
+                return BadRequest();
+            }
+
             await _picDb.UpdatePhotographer(new Photographer{
                 Id = id,
                 FirstName = photographer.FirstName,
                 LastName = photographer.LastName,
+                Birthday = photographer.Birthday.Date,
+                Notes = photographer.Notes
             });
             return Ok();
         }

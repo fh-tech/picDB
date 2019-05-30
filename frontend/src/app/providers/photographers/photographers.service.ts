@@ -22,7 +22,9 @@ export class PhotographersService {
     add(newPhotographer: NewPhotographer) {
         return this.http.post('http://localhost:5000/api/photographer', {
             firstName: newPhotographer.firstName,
-            lastName: newPhotographer.lastName
+            lastName: newPhotographer.lastName,
+            birthday: newPhotographer.birthday,
+            notes: newPhotographer.notes
         }).pipe(
             tap(ph => this.refreshSubject.next(ph))
         )
@@ -39,7 +41,9 @@ export class PhotographersService {
     update(photographer: Photographer) {
         return this.http.put(`http://localhost:5000/api/photographer/${photographer.id}`, {
             firstName: photographer.firstName,
-            lastName: photographer.lastName
+            lastName: photographer.lastName,
+            birthday: photographer.birthday,
+            notes: photographer.notes
         }).pipe(
             tap(ph => this.refreshSubject.next(ph))
         )
