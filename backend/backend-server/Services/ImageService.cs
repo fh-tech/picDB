@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -9,8 +7,6 @@ using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Util;
-using MetadataExtractor;
-using MetadataExtractor.Formats.Exif;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Directory = System.IO.Directory;
@@ -59,7 +55,8 @@ namespace backend_server.Services
                 .ToList();
 
 
-        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress){
+        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
+        {
             var files = LoadPaths(folderPath);
 
             await notifyProgress(0.05f);

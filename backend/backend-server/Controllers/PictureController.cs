@@ -40,6 +40,7 @@ namespace backend_server.Controllers
 
             return Ok();
         }
+
         [HttpPut]
         public IActionResult SyncPictureFolder(ImageSyncTask folderPath)
         {
