@@ -40,7 +40,7 @@ namespace backend_server.Services
         }
 
 
-        public async Task SyncPictureDataFromDirectory(string dir, Action<float> notifyProgress = null)
+        public async Task SyncPictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
         {
             Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
 
@@ -60,9 +60,10 @@ namespace backend_server.Services
 
 
         private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress){
+            notifyProgress ??= f => Task.CompletedTask;
             var files = LoadPaths(folderPath);
 
-            await notifyProgress(0.05f);
+            await notifyProgress.Invoke(0.05f);
 
             var i = 0;
             var size = files.Count;

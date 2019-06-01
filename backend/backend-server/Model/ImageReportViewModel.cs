@@ -17,8 +17,8 @@ namespace backend_server.Model
         public string ImagePath => _picture.FilePath;
         public string ImageName => _picture.Name;
 
-        public IEnumerable<MetaDataEntry> ImaageExifData => _picture.MetaData.Data.Where(m => m.Type == MetaDataType.Exif);
-        public IEnumerable<MetaDataEntry> ImaageItpcData => _picture.MetaData.Data.Where(m => m.Type == MetaDataType.Itpc);
+        public IEnumerable<MetaDataEntry> ImageExifData => _picture.MetaData.Data.Where(m => m.Type == MetaDataType.Exif);
+        public IEnumerable<MetaDataEntry> ImageItpcData => _picture.MetaData.Data.Where(m => m.Type == MetaDataType.Itpc);
 
         public Photographer Photographer => _picture.Photographer;
     }

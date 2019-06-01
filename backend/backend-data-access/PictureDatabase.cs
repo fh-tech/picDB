@@ -46,14 +46,16 @@ namespace backend_data_access
                          || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
                 .Take(query.End - query.Start);
+            if (query.type == FetchType.Full)
+            {
+                return await dbQuery.Include(p => p.MetaData.Data).ToListAsync();
+            }
+            else if(query.type == FetchType.PathsOnly)
+            {
+                return await dbQuery.ToListAsync();
+            }
 
-            return await (query.type switch
-                {
-                    FetchType.Full => dbQuery
-                        .Include(p => p.MetaData)
-                        .Include(p => p.MetaData.Data),
-                    FetchType.PathsOnly => dbQuery
-                }).ToListAsync();
+            throw new ArgumentException($"Unhandled fetch type {query.type}");
         }
 
         public async Task RebuildPictureTable(IEnumerable<Picture> pictures)
