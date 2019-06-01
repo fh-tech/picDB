@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -31,9 +32,14 @@ namespace backend_data_access
                 .SingleAsync(picture =>  picture.PictureId == id);
         }
 
-        public async Task CreatePicture(Picture p)
+        public async Task UpdatePicture(Picture p)
         {
-            await _ctx.Pictures.AddAsync(p);
+            _ctx.ChangeTracker.TrackGraph(p, e =>
+            {
+                e.Entry.State = e.Entry.IsKeySet
+                    ? EntityState.Modified
+                    : EntityState.Added;
+            });
             await _ctx.SaveChangesAsync();
         }
 

@@ -6,6 +6,7 @@ using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Services;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace backend_server.Controllers
 {
@@ -25,7 +26,7 @@ namespace backend_server.Controllers
 
         public async Task Update(Picture p)
         {
-            await _picDb.CreatePicture(p);
+            await _picDb.UpdatePicture(p);
         }
 
         public async Task GetQuery(PictureQuery query)
