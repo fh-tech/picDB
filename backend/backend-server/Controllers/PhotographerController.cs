@@ -57,7 +57,7 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPhotographers());
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPhotographer(int id)
         {
             Logger.Log(LogLevel.Information, "GET: Photographer with id %i", new {id});

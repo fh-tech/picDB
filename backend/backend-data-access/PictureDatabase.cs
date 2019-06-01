@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -24,13 +26,58 @@ namespace backend_data_access
 
         public async Task<Picture> GetPictureById(int id)
         {
-            return await _ctx.Pictures.SingleAsync(picture =>  picture.PictureId == id);
+            return await _ctx.Pictures
+                .Where(p => p.PictureId.Equals(id))
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .ThenInclude(m => m.Data)
+                .Take(1)
+                .SingleAsync();
+        }
+
+        public async Task<Picture> GetPictureByName(string name)
+        {
+            return await _ctx.Pictures
+                .Where(p => p.Name.Equals(name))
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .ThenInclude(m => m.Data)
+                .Take(1)
+                .SingleAsync();
+        }
+
+        public async Task<int> GetPictureIndexById(int id)
+        {
+            return _ctx.Pictures.IndexOf(await GetPictureById(id));
         }
 
         public async Task CreatePicture(Picture p)
         {
             await _ctx.Pictures.AddAsync(p);
             await _ctx.SaveChangesAsync();
+        }
+
+
+        // TODO: why can i not update
+        public async Task UpdatePicture(Picture pic)
+        {
+//            var currentPicture = await GetPictureById(pic.PictureId);
+//            currentPicture.Photographer = pic.Photographer;
+//            currentPicture.MetaData = pic.MetaData;
+//            _ctx.Pictures.Update(currentPicture);
+//            await _ctx.SaveChangesAsync();
+
+            var currentPic = await _ctx.Pictures
+                .Where(p => p.PictureId.Equals(pic.PictureId))
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .ThenInclude(m => m.Data)
+                .Take(1)
+                .SingleAsync();
+            currentPic.Photographer = pic.Photographer;
+            currentPic.MetaData = pic.MetaData;
+            await _ctx.SaveChangesAsync();
+
         }
 
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
@@ -56,6 +103,26 @@ namespace backend_data_access
             await _ctx.Pictures.AddRangeAsync(pictures);
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task RemoveOldFromDb(IEnumerable<string> paths)
+        {
+            var range = _ctx.Pictures.Where(w => !paths.Contains(w.FilePath));
+            _ctx.Pictures.RemoveRange(range);
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
+        {
+            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
+            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
+        }
+
+        public async Task InsertAll(IEnumerable<Picture> pictures)
+        {
+            _ctx.Pictures.AddRange(pictures);
+            await _ctx.SaveChangesAsync();
+        }
+
 
         public async Task<Photographer> GetPhotographerById(int id)
         {
@@ -90,25 +157,5 @@ namespace backend_data_access
             currentPhotographer.Notes = photographer.Notes;
             await _ctx.SaveChangesAsync();
         }
-
-        public async Task RemoveOldFromDb(IEnumerable<string> paths)
-        {
-            var range = _ctx.Pictures.Where(w => !paths.Contains(w.FilePath));
-            _ctx.Pictures.RemoveRange(range);
-            await _ctx.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
-        {
-            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
-            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
-        }
-
-        public async Task InsertAll(IEnumerable<Picture> pictures)
-        {
-            _ctx.Pictures.AddRange(pictures);
-            await _ctx.SaveChangesAsync();
-        }
-
     }
 }

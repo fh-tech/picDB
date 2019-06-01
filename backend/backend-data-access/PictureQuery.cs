@@ -13,7 +13,7 @@ namespace backend_data_access
         public int End { get; set; } = -1;
         public string QueryString { get; set; } = "";
 
-        public FetchType type { get; set; } = FetchType.Full;
+        public FetchType Type { get; set; } = FetchType.Full;
 
     }
 

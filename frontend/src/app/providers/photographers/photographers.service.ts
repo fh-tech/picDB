@@ -50,7 +50,7 @@ export class PhotographersService {
     }
     
     getPhotographer(id: number): Observable<Photographer> {
-        return this.http.get<Photographer>(`http://localhost:5000/api/photographer${id}`);
+        return this.http.get<Photographer>(`http://localhost:5000/api/photographer/${id}`);
     }
 }
 

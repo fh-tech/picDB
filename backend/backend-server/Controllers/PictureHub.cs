@@ -25,20 +25,20 @@ namespace backend_server.Controllers
 
         public async Task Update(Picture p)
         {
-            await _picDb.CreatePicture(p);
+            await _picDb.UpdatePicture(p);
         }
 
         public async Task GetQuery(PictureQuery query)
         {
             var result = await _picDb.Query(query);
 
-            if (query.type == FetchType.Full)
+            if (query.Type == FetchType.Full)
             {
                 await Clients.Caller.ImageQueryResponse(result);
             }
             else
             {
-                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
+                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.Name));
             }
         }
 

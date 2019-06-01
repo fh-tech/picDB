@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using backend_data_access;
 using backend_server.Model;
 using backend_server.Services;
 using backend_server.Util;
@@ -15,12 +17,15 @@ namespace backend_server.Controllers
     public class PictureController: ControllerBase
     {
 
+        private readonly PictureDatabase _picDb;
+
         private ImageLoadWorkQueue _workQueue;
         public ILogger<ImageLoadBackgroundService> Logger { private get; set; }
 
 
-        public PictureController(ImageLoadWorkQueue workQueue)
+        public PictureController(ImageLoadWorkQueue workQueue, PictureDatabase db)
         {
+            _picDb = db;
             _workQueue = workQueue;
             Logger = new NullLogger<ImageLoadBackgroundService>();
         }
@@ -55,6 +60,22 @@ namespace backend_server.Controllers
             _workQueue.Enqueue(new ImageSyncTask(folderPath.Path));
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPicture(string fileName)
+        {
+            Logger.Log(LogLevel.Information, "GET: Picture with name %s", new {fileName});
+            return Ok(await _picDb.GetPictureByName(fileName));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPictureIndex(int id)
+        {
+            Logger.Log(LogLevel.Information, "GET: Index of picture with id %i", new {id});
+            return Ok(await _picDb.GetPictureIndexById(id));
+        }
+
+
 
     }
 }

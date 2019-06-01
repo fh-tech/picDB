@@ -92,8 +92,6 @@ namespace backend_server.Services
 
         private static MetaData LoadMetaData(string file)
         {
-            //TODO: implement metadata reading
-            //TODO: implement sleep again
             Thread.Sleep(50);
             return new MetaData
             {
@@ -102,12 +100,36 @@ namespace backend_server.Services
                     new MetaDataEntry
                     {
                         Key = "Aperture",
-                        Value = "2.0f",
+                        Value = "2.0",
+                        Type = MetaDataType.Exif
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "FocalLength",
+                        Value = "20.1 mm",
+                        Type = MetaDataType.Exif
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "ExifVersion",
+                        Value = "Exif version 2.1",
                         Type = MetaDataType.Exif
                     },
                     new MetaDataEntry
                     {
                         Key = "Creator",
+                        Value = "Viktor Leher",
+                        Type = MetaDataType.Itpc
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "Country",
+                        Value = "Austria",
+                        Type = MetaDataType.Itpc
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "Source",
                         Value = "Viktor Leher",
                         Type = MetaDataType.Itpc
                     }

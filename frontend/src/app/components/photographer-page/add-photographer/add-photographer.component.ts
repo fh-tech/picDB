@@ -11,7 +11,7 @@ import {validateBirthDay} from '../../../validators/birthday.validator';
 })
 export class AddPhotographerComponent {
 
-    photographerForm: FormGroup;
+    private photographerForm: FormGroup;
 
     constructor(private photographersService: PhotographersService,
                 private fb: FormBuilder) {
