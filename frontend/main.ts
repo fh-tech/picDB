@@ -17,8 +17,8 @@ function createWindow() {
         width: size.width,
         height: size.height,
         webPreferences: {
-            nodeIntegration: true,
-        },
+            nodeIntegration: true
+        }
     });
 
     if (serve) {
@@ -33,10 +33,10 @@ function createWindow() {
             slashes: true
         }));
     }
-
-    if (serve) {
-        win.webContents.openDevTools();
-    }
+    // TODO: uncomment again -- to avoid opening devTools when running npm run electron:local:dev
+    // if (serve) {
+    win.webContents.openDevTools();
+    // }
 
     // Emitted when the window is closed.
     win.on('closed', () => {

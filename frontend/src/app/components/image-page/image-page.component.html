@@ -1,9 +1,17 @@
-<div class="container-fluid h-10">
+<div class="container-fluid h-10 mh-10 my-1">
   <app-searchbar></app-searchbar>
 </div>
-<div class="container-fluid h-50">
-  <app-image-details></app-image-details>
+<div class="container-fluid h-50 mh-50 my-1">
+  <app-image-details [activeImage]="activePicture"></app-image-details>
 </div>
-<div class="container-fluid h-40">
-  <app-image-slider></app-image-slider>
+<div class="container-fluid h-40 mh-40 my-1">
+  <app-image-slider [images]="pictures"
+                    [slidesToScroll]="slidesToScroll"
+                    [slidesToShow]="slidesToShow"
+                    [infinite]="infinite"
+                    [arrows]="arrows"
+                    [initialSlide]="initialSlide"
+                    (afterScroll)="handleSlideEvent($event)"
+                    (chooseImage)="handleChooseImageEvent($event)"
+  ></app-image-slider>
 </div>

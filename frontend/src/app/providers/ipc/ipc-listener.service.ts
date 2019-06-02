@@ -10,9 +10,7 @@ export class IpcListenerService {
 
     constructor(private electronService: ElectronService,
                 private navigator: NavigatorService,
-                private folderService: FolderService,
-                private configService: ConfigService,
-                private signalR: SignalRService) {
+                private folderService: FolderService) {
 
         electronService.ipcRenderer.on('photographers', (event, message) => {
             this.navigator.navigate(['photographers']);

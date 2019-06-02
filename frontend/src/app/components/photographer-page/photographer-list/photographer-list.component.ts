@@ -13,7 +13,7 @@ import {PhotographerUpdateDialogComponent} from '../../modals/photographer-updat
 })
 export class PhotographerListComponent {
 
-    private photographers$: Observable<Photographer[]>;
+    photographers$: Observable<Photographer[]>;
 
     constructor(private photographersService: PhotographersService,
                 public dialog: MatDialog) {

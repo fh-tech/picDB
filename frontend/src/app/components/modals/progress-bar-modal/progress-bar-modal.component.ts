@@ -11,7 +11,7 @@ export class ProgressBarModalComponent implements OnDestroy {
 
   private sub;
   private innerSub;
-  loadPercentage: number|string = 0.0;
+  private loadPercentage: number|string = 0.0;
   private loadEvents$ = this.signalr.loaderEventStream$;
 
   constructor(private signalr: SignalRService) {
@@ -21,13 +21,20 @@ export class ProgressBarModalComponent implements OnDestroy {
               this.innerSub = e.subscribe(
                   (p)=>
                       this.loadPercentage = p),
-          complete: () => this.sub.unsubscribe()
+          complete: () => this.innerSub.unsubscribe()
         });
   }
-  
+
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
     if(this.innerSub) this.innerSub.unsubscribe();
+  }
+
+  get loadPerc(): number {
+    if(typeof this.loadPercentage == 'number') {
+      return this.loadPercentage
+    } else {
+      return 1;
+    }
   }
 
 }

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PhotographersService} from '../../../providers/photographers/photographers.service';
 import {Observable} from 'rxjs';
 import {Photographer} from '../../../interfaces/photographer';
-import {ImageService} from '../../../providers/image/image.service';
 import {Picture} from '../../../interfaces/picture';
 
 @Component({
@@ -13,12 +12,12 @@ import {Picture} from '../../../interfaces/picture';
 export class ImageDetailsComponent {
 
     private photographers$: Observable<Photographer[]>;
-    
-    private activePicture: Picture;
+    @Input() activeImage: Picture;
 
-    constructor(private photographers: PhotographersService,
-                private imageService: ImageService ) {
+    constructor(private photographers: PhotographersService) {
         this.photographers$ = photographers.photographers$;
     }
+    
+    
 
 }

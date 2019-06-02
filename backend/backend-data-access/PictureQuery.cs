@@ -1,10 +1,3 @@
-using System;
-using System.Collections;
-using System.Linq;
-using System.Linq.Expressions;
-using backend_data_access.Model;
-using Microsoft.EntityFrameworkCore;
-
 namespace backend_data_access
 {
     public class PictureQuery
@@ -14,7 +7,6 @@ namespace backend_data_access
         public string QueryString { get; set; } = "";
 
         public FetchType type { get; set; } = FetchType.Full;
-
     }
 
     public enum FetchType

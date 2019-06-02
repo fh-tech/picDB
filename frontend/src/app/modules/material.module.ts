@@ -7,9 +7,9 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatAutocompleteModule,
-    MatTabsModule, 
-    MatTableModule, 
-    MatSelectModule, 
+    MatTabsModule,
+    MatTableModule,
+    MatSelectModule,
     MatProgressBarModule,
 } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';

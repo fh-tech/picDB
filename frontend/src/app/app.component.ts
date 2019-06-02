@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {ProgressBarModalComponent} from './components/modals/progress-bar-modal/progress-bar-modal.component';
 import {NavigatorService} from './providers/navigator/navigator.service';
+import {FolderService} from './providers/folder/folder.service';
 
 @Component({
     selector: 'app-root',
@@ -14,35 +15,37 @@ import {NavigatorService} from './providers/navigator/navigator.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    
+
     private loadState$: Observable<LoadState>;
-    
+
     // IPCListener has to be instantiated here
     constructor(public electronService: ElectronService,
                 private translate: TranslateService,
                 private ipcListener: IpcListenerService,
                 private signalR: SignalRService,
                 public dialog: MatDialog,
-                private nav: NavigatorService) {
+                private nav: NavigatorService,
+                private folderService: FolderService) {
 
         translate.setDefaultLang('en');
-        
+
         this.signalR.connect().then(_ => {
             this.loadState$ = this.signalR.loadState$;
 
             this.loadState$.subscribe(state => {
-                if(state == 'loading') {
+                if (state == 'loading') {
                     this.showProgressBar();
                 } else {
                     this.dialog.closeAll();
-                    console.log("should navigate");
                     this.nav.navigate(['images']);
-                    console.log("navigating done");
                 }
             });
+
+            //TODO: uncomment again for syncing
+            this.folderService.syncFolder().subscribe();
         });
     }
-    
+
     showProgressBar(): void {
         const dialogRef = this.dialog.open(ProgressBarModalComponent, {
             width: '800px',

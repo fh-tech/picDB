@@ -1,6 +1,3 @@
-using System;
-using Microsoft.CodeAnalysis;
-
 namespace backend_server.Model
 {
     public class UpdatePhotographer

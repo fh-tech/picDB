@@ -1,4 +1,15 @@
-<div class="container-fluid h-100">
-
-
+<div class="container-fluid h-100 mh-100" id="slider-container">
+    <ngx-slick-carousel class="carousel h-100 mh-100"
+                        [config]="slideConfig"
+                        (afterChange)="afterChange($event)">
+        <div ngxSlickItem *ngFor="let image of images; trackBy:identify"
+             class="slide mh-100 h-100 mx-auto my-auto">
+            <img [src] = "image.filePath | safeHtml"
+                 alt="{{image.name}}"
+                 (click)="onClickImage(image)"
+                 class="mx-auto my-auto img-fluid mh-100"/>
+        </div>
+    </ngx-slick-carousel>
 </div>
+
+

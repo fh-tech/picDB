@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -9,11 +7,8 @@ using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Util;
-using MetadataExtractor;
-using MetadataExtractor.Formats.Exif;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Directory = System.IO.Directory;
 
 namespace backend_server.Services
 {
@@ -22,7 +17,6 @@ namespace backend_server.Services
         private static readonly string[] SupportedExtensions = {".jpeg", ".jpg", ".png"};
 
         private readonly PictureDatabase _picDb;
-        public ILogger<ImageService> Logger { private get; set; }
 
 
         public ImageService(PictureDatabase picDb)
@@ -30,6 +24,8 @@ namespace backend_server.Services
             _picDb = picDb;
             Logger = new NullLogger<ImageService>();
         }
+
+        public ILogger<ImageService> Logger { private get; set; }
 
         public async Task UpdatePictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
         {
@@ -39,27 +35,33 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
-
-        public async Task SyncPictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
+        public async Task SyncPictureDataFromDirectory(string dir, Func<float, Task> notifyProgress)
         {
             Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});
-
+            await notifyProgress(0.05f);
             var paths = LoadPaths(dir);
 
+            await notifyProgress(0.2f);
             var newPaths = await _picDb.FilterNewPaths(paths);
-
+            await notifyProgress(0.4f);
+            await _picDb.RemoveOldFromDb(paths);
+            await notifyProgress(0.6f);
             await _picDb.InsertAll(newPaths.Select(LoadFromFile));
+            await notifyProgress(0.8f);
         }
 
-        private static List<string> LoadPaths(string directory) =>
-            Directory.GetFiles(directory)
+
+        private static List<string> LoadPaths(string directory)
+        {
+            return Directory.GetFiles(directory)
                 .Where(f =>
                     SupportedExtensions
                         .Any(ext => Path.GetExtension(f).ToLower() == ext))
                 .ToList();
+        }
 
-
-        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress){
+        private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
+        {
             notifyProgress ??= f => Task.CompletedTask;
             var files = LoadPaths(folderPath);
 
@@ -100,6 +102,12 @@ namespace backend_server.Services
                         Key = "Aperture",
                         Value = "2.0f",
                         Type = MetaDataType.Exif
+                    },
+                    new MetaDataEntry
+                    {
+                        Key = "Creator",
+                        Value = "Viktor Leher",
+                        Type = MetaDataType.Itpc
                     }
                 }
             };

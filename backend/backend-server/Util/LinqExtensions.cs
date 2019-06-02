@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -7,16 +6,13 @@ namespace backend_server.Util
 {
     public static class LinqExtensions
     {
-        public static IEnumerable<IEnumerable<T>> Partition<T> (this IEnumerable<T> source, int size)
+        public static IEnumerable<IEnumerable<T>> Partition<T>(this IEnumerable<T> source, int size)
         {
             T[] array = null;
             var count = 0;
             foreach (var item in source)
             {
-                if (array == null)
-                {
-                    array = new T[size];
-                }
+                if (array == null) array = new T[size];
                 array[count] = item;
                 count++;
 
@@ -41,6 +37,5 @@ namespace backend_server.Util
                 yield return item;
             }
         }
-
     }
 }

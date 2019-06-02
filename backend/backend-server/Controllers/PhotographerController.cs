@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Model;
@@ -17,14 +14,14 @@ namespace backend_server.Controllers
     {
         private readonly PictureDatabase _picDb;
 
-        public ILogger<PhotographerController> Logger { private get; set; }
-
 
         public PhotographerController(PictureDatabase db)
         {
             _picDb = db;
             Logger = new NullLogger<PhotographerController>();
         }
+
+        public ILogger<PhotographerController> Logger { private get; set; }
 
         [HttpPost]
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
@@ -61,14 +58,16 @@ namespace backend_server.Controllers
             await _picDb.RemovePhotographer(id);
             return Ok();
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data is %s", new {id, photographer});
-            await _picDb.UpdatePhotographer(new Photographer{
+            await _picDb.UpdatePhotographer(new Photographer
+            {
                 Id = id,
                 FirstName = photographer.FirstName,
-                LastName = photographer.LastName,
+                LastName = photographer.LastName
             });
             return Ok();
         }

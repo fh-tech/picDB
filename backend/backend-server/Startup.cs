@@ -16,19 +16,18 @@ using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
-
 namespace backend_server
 {
     public class Startup
     {
+        private readonly string MyAllowSpecificOrigins = "electron-client";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
-
-        readonly string MyAllowSpecificOrigins = "electron-client";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -86,11 +85,6 @@ namespace backend_server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                //app.UseHsts();
             }
 
             //app.UseHttpsRedirection();

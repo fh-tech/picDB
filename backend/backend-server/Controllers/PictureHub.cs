@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access;
 using backend_data_access.Model;
 using backend_server.Services;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace backend_server.Controllers
 {
-    public class PictureHub: Hub<IPicDbClient>
+    public class PictureHub : Hub<IPicDbClient>
     {
-
         private ImageService _imageService;
-        private PictureDatabase _picDb;
+        private readonly PictureDatabase _picDb;
 
 
         public PictureHub(ImageService imageService, PictureDatabase picDb)
@@ -34,16 +30,9 @@ namespace backend_server.Controllers
             var result = await _picDb.Query(query);
 
             if (query.type == FetchType.Full)
-            {
                 await Clients.Caller.ImageQueryResponse(result);
-            }
             else
-            {
                 await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
-            }
         }
-
-
-
     }
 }
