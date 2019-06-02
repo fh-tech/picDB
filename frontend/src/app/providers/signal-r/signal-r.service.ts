@@ -49,8 +49,6 @@ export class SignalRService {
             .build();
 
         this.hubConnection.on('imageQueryResponse', (result) => {
-            console.log('imageQuery response');
-            console.log(result);
             this.imageQuery.next(result);
         });
         this.hubConnection.on('shortImageQueryResponse', (result) => this.imageShort.next(result));

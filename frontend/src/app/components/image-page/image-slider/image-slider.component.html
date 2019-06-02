@@ -8,6 +8,7 @@
             <img [src] = "image.filePath | safeHtml"
                  alt="{{image.name}}"
                  (click)="onClickImage(image)"
+                 [ngClass]="image.pictureId && image.pictureId === activePicture.pictureId ? 'active-slide': ''"
                  class="mx-auto my-auto img-fluid mh-100"/>
         </div>
     </ngx-slick-carousel>

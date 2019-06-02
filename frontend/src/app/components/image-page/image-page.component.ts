@@ -49,11 +49,13 @@ export class ImagePageComponent {
                 }
             }
             if(this.scrollToImageID > -1) {
-                console.log(this.scrollToImageID);
                 let index = this.pictures.findIndex(p => p.pictureId === this.scrollToImageID);
-                console.log(index);
-                this.slider.slideToSlide(index + 1);
-                console.log(this.pictures);
+                // console.log("id of pic " + this.scrollToImageID);
+                // console.log("index where we found that id: " + index);
+                // console.log(this.pictures);
+                // this.slider.slideToSlide(index);
+                // TODO: seems to not be done building slider when we get here and does not scroll all the way
+                setTimeout(_ => this.slider.slideToSlide(index), 300);
                 this.scrollToImageID = -1;
             }
         });
@@ -81,7 +83,6 @@ export class ImagePageComponent {
             this.activePicture = this.pictures[index];
         } else {
             this.imageService.getPictureByName(name).subscribe(p => {
-                console.log(p);
                 this.imageService.getPictureIndex(p.pictureId).subscribe(index => {
                     this.activePicture = p;
                     // TODO: think about that ( setting scrollToImageID and (line 51 when the observable emits the new images and scrollTo was set it will scroll to the index... 

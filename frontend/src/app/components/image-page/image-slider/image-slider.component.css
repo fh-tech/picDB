@@ -19,3 +19,7 @@ img {
     vertical-align: middle;
     float:none;
 }
+
+.active-slide {
+    border: 2px solid red;
+}

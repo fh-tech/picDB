@@ -74,7 +74,10 @@ namespace backend_data_access
             switch (query.Type)
             {
                 case FetchType.Full:
-                    return await dbQuery.Include(p => p.MetaData.Data).ToListAsync();
+                    return await dbQuery
+                        .Include(p => p.MetaData.Data)
+                        .Include(p => p.Photographer)
+                        .ToListAsync();
                 case FetchType.PathsOnly:
                     return await dbQuery.ToListAsync();
                 default:

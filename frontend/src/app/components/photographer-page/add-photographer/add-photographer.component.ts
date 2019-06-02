@@ -48,6 +48,8 @@ export class AddPhotographerComponent {
             birthday: AddPhotographerComponent.yesterDay(),
             notes: ''
         });
+        this.photographerForm.markAsUntouched();
+        this.photographerForm.markAsPristine();
     }
 
     get firstName() {

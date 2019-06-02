@@ -3,7 +3,7 @@ using backend_server.Controllers;
 using backend_server.Services;
 using backend_server.Util;
 using jsreport.AspNetCore;
-using jsreport.Binary;
+using jsreport.Binary.Linux;
 using jsreport.Local;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

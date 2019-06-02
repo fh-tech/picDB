@@ -20,6 +20,7 @@ export class ImageSliderComponent implements OnInit {
     @Input() initialSlide: number;
     @Input() infinite: boolean;
     @Input() arrows: boolean;
+    @Input() activePicture: Picture;
 
     slideConfig: any;
 

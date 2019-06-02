@@ -9,6 +9,7 @@
 </div>
 <div class="container-fluid h-40 mh-40 my-1">
     <app-image-slider #sliderComponent
+                      [activePicture]="activePicture"
                       [images]="pictures"
                       [slidesToScroll]="slidesToScroll"
                       [slidesToShow]="slidesToShow"

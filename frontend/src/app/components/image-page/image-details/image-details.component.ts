@@ -108,12 +108,12 @@ export class ImageDetailsComponent {
 
     updatePhotographer() {
         const value = this.photographerForm.value;
-        console.log(value);
-        
         this.photographerService.getPhotographer(value.photographerID).subscribe(
             p => {
                 this.activeImage.photographer = p;
                 this.signalR.update(this.activeImage);
+                this.iptcForm.markAsPristine();
+                this.iptcForm.markAsUntouched();
             } 
         );
     }
@@ -124,6 +124,8 @@ export class ImageDetailsComponent {
         this.activeImage.metaData.data.find(md => md.key === "Country").value = value.country;
         this.activeImage.metaData.data.find(md => md.key === "Source").value = value.source;
         this.signalR.update(this.activeImage);
+        this.iptcForm.markAsPristine();
+        this.iptcForm.markAsUntouched();
     }
     
     updateEXIF() {
@@ -132,6 +134,8 @@ export class ImageDetailsComponent {
         this.activeImage.metaData.data.find(md => md.key === "FocalLength").value = value.aperture;
         this.activeImage.metaData.data.find(md => md.key === "ExifVersion").value = value.aperture;
         this.signalR.update(this.activeImage);
+        this.iptcForm.markAsPristine();
+        this.iptcForm.markAsUntouched();
     }
     
     
