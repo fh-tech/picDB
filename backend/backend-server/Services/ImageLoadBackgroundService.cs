@@ -51,7 +51,7 @@ namespace backend_server.Services
                         using (var scope = _scopeProvider.CreateScope())
                         {
                             var imageService = scope.ServiceProvider.GetService<ImageService>();
-                            await imageService.UpdatePictureDataFromDirectory(workItem.DirectoryPath,
+                            await imageService.UpdatePictureDataFromDirectory(workItem.Path,
                                 _hubContext.Clients.All.NotifyLoadPercentage);
                             await _hubContext.Clients.All.NotifyReady();
                         }
@@ -64,7 +64,7 @@ namespace backend_server.Services
                         using (var scope = _scopeProvider.CreateScope())
                         {
                             var imageService = scope.ServiceProvider.GetService<ImageService>();
-                            await imageService.SyncPictureDataFromDirectory(workItem.DirectoryPath,
+                            await imageService.SyncPictureDataFromDirectory(workItem.Path,
                                 _hubContext.Clients.All.NotifyLoadPercentage);
                             await _hubContext.Clients.All.NotifyReady();
                         }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Picture} from '../../../interfaces/picture';
 import {SlideEvent} from '../../../interfaces/slideEvent';
 
@@ -8,6 +8,8 @@ import {SlideEvent} from '../../../interfaces/slideEvent';
     styleUrls: ['./image-slider.component.css']
 })
 export class ImageSliderComponent implements OnInit {
+
+    @ViewChild('slickCarouselComponent') slick;
 
     @Output() afterScroll = new EventEmitter<SlideEvent>();
     @Output() chooseImage = new EventEmitter<Picture>();
@@ -45,6 +47,10 @@ export class ImageSliderComponent implements OnInit {
 
     onClickImage(pic: Picture) {
         this.chooseImage.emit(pic);
+    }
+
+    slideToSlide(index: number) {
+        this.slick.slickGoTo(index);
     }
 
 }

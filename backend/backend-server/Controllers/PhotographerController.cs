@@ -14,6 +14,8 @@ namespace backend_server.Controllers
     {
         private readonly PictureDatabase _picDb;
 
+        public ILogger<PhotographerController> Logger { private get; set; }
+
 
         public PhotographerController(PictureDatabase db)
         {
@@ -21,19 +23,25 @@ namespace backend_server.Controllers
             Logger = new NullLogger<PhotographerController>();
         }
 
-        public ILogger<PhotographerController> Logger { private get; set; }
-
         [HttpPost]
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "POST: on CreatePhotographer");
 
+            // automatically returns 400 when validation or binding fails but for logging we do it explicitly
+            if (!ModelState.IsValid)
+            {
+                Logger.Log(LogLevel.Information, "CREATE: Photographer with %s, failed!", new {photographer});
+                return BadRequest();
+            }
+
             var inserted = await _picDb.CreatePhotographer(new Photographer
             {
                 FirstName = photographer.FirstName,
-                LastName = photographer.LastName
+                LastName = photographer.LastName,
+                Birthday = photographer.Birthday.Date,
+                Notes = photographer.Notes
             });
-
             return Ok(inserted);
         }
 
@@ -44,7 +52,7 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPhotographers());
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPhotographer(int id)
         {
             Logger.Log(LogLevel.Information, "GET: Photographer with id %i", new {id});
@@ -59,15 +67,25 @@ namespace backend_server.Controllers
             return Ok();
         }
 
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
             Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data is %s", new {id, photographer});
-            await _picDb.UpdatePhotographer(new Photographer
+
+            if (!ModelState.IsValid)
             {
+                Logger.Log(LogLevel.Information, "UPDATE: Photographer with id %i, new data %s, failed!",
+                    new {id, photographer});
+                return BadRequest();
+            }
+
+            await _picDb.UpdatePhotographer(new Photographer{
                 Id = id,
                 FirstName = photographer.FirstName,
-                LastName = photographer.LastName
+                LastName = photographer.LastName,
+                Birthday = photographer.Birthday.Date,
+                Notes = photographer.Notes
             });
             return Ok();
         }

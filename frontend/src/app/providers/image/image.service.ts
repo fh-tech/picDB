@@ -2,30 +2,42 @@ import {Injectable} from '@angular/core';
 import {SignalRService} from '../signal-r/signal-r.service';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Picture} from '../../interfaces/picture';
+import {Photographer} from '../../interfaces/photographer';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class ImageService {
     
-    pictures$: Observable<Picture[]>;
-    
-    private activeImageSubject: BehaviorSubject<Picture>;
-    public activeImage$: Observable<Picture>;
+    public pictures$: Observable<Picture[]>;
 
-    constructor(private signalR: SignalRService) {
+    public imageShort$: Observable<string[]>;
+    
+
+    constructor(private signalR: SignalRService,
+                private http: HttpClient) {
         this.pictures$ = this.signalR.imageQuery$;
-        this.pictures$.subscribe(pics => {
-            this.activeImageSubject = new BehaviorSubject<Picture>(pics[0]);
-            this.activeImage$ = this.activeImageSubject.asObservable();
-        })
+        this.imageShort$ = this.signalR.imageShort$;
     }
     
     public loadRange(start: number, end: number) {
         this.signalR.query({start: start, end: end, queryString: "", type: 'Full'});
     }
     
-    public changeActiveImage(pic: Picture) {
-        this.activeImageSubject.next(pic);
+    public loadSingle(name: string) {
+        this.signalR.query({start: 0, end: -1, queryString: name, type: 'Full'});
+    }
+    
+    public loadAutoComplete(queryString: string) {
+        this.signalR.query({start: 0, end: -1, queryString: queryString, type: 'PathsOnly'});
     }
 
+    public getPictureIndex(id: number): Observable<number> {
+        return this.http.get<number>(`http://localhost:5000/api/pictures/${id}`);
+    }
+    
+    public getPictureByName(name: string): Observable<Picture> {
+        return this.http.get<Picture>(`http://localhost:5000/api/pictures?fileName=${name}`)
+    }
+    
 
 }

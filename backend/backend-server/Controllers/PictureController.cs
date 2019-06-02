@@ -1,4 +1,6 @@
 using System.IO;
+using System.Threading.Tasks;
+using backend_data_access;
 using backend_server.Model;
 using backend_server.Services;
 using backend_server.Util;
@@ -10,18 +12,21 @@ namespace backend_server.Controllers
 {
     [Route("api/pictures")]
     [ApiController]
-    public class PictureController : ControllerBase
+    public class PictureController: ControllerBase
     {
+
+        private readonly PictureDatabase _picDb;
         private readonly ImageLoadWorkQueue _workQueue;
 
+        public ILogger<ImageLoadBackgroundService> Logger { private get; set; }
 
-        public PictureController(ImageLoadWorkQueue workQueue)
+
+        public PictureController(ImageLoadWorkQueue workQueue, PictureDatabase db)
         {
+            _picDb = db;
             _workQueue = workQueue;
             Logger = new NullLogger<ImageLoadBackgroundService>();
         }
-
-        public ILogger<ImageLoadBackgroundService> Logger { private get; set; }
 
         [HttpPost]
         public IActionResult LoadPictureFolder(FolderPath folderPath)
@@ -29,8 +34,7 @@ namespace backend_server.Controllers
             Logger.Log(LogLevel.Information, "POST: [%s] on LoadPictureFolder", new {folderPath.Path});
             if (!Directory.Exists(folderPath.Path))
             {
-                Logger.Log(LogLevel.Error, "Path [%s] is not a valid directory path on this server",
-                    new {folderPath.Path});
+                Logger.Log(LogLevel.Error, "Path [%s] is not a valid directory path on this server", new {folderPath.Path});
                 return BadRequest();
             }
 
@@ -42,18 +46,35 @@ namespace backend_server.Controllers
         }
 
         [HttpPut]
-        public IActionResult SyncPictureFolder(ImageSyncTask folderPath)
+        public IActionResult SyncPictureFolder(FolderPath folderPath)
         {
             Logger.Log(LogLevel.Information, "PUT: [%s] on SyncPictureFolder", new {folderPath});
-            if (!Directory.Exists(folderPath.DirectoryPath))
+            if (!Directory.Exists(folderPath.Path))
             {
                 Logger.Log(LogLevel.Error, "Path [%s] is not a valid path on this server", new {folderPath});
                 return BadRequest();
             }
 
             Logger.Log(LogLevel.Trace, "Added new ImageSyncTask to WorkQueue");
-            _workQueue.Enqueue(folderPath);
+            _workQueue.Enqueue(new ImageSyncTask(folderPath.Path));
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPicture(string fileName)
+        {
+            Logger.Log(LogLevel.Information, "GET: Picture with name %s", new {fileName});
+            return Ok(await _picDb.GetPictureByName(fileName));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPictureIndex(int id)
+        {
+            Logger.Log(LogLevel.Information, "GET: Index of picture with id %i", new {id});
+            return Ok(await _picDb.GetPictureIndexById(id));
+        }
+
+
+
     }
 }

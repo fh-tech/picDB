@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace backend_server.Controllers
 {
-    public class PictureHub : Hub<IPicDbClient>
+    public class PictureHub: Hub<IPicDbClient>
     {
-        private ImageService _imageService;
+
+        private readonly ImageService _imageService;
         private readonly PictureDatabase _picDb;
 
 
@@ -29,10 +30,15 @@ namespace backend_server.Controllers
         {
             var result = await _picDb.Query(query);
 
-            if (query.type == FetchType.Full)
+            if (query.Type == FetchType.Full)
+            {
                 await Clients.Caller.ImageQueryResponse(result);
+            }
             else
-                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.FilePath));
+            {
+                await Clients.Caller.ShortImageQueryResponse(result.Select(p => p.Name));
+            }
         }
+
     }
 }

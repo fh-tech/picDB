@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend_data_access.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -25,10 +26,28 @@ namespace backend_data_access
         public async Task<Picture> GetPictureById(int id)
         {
             return await _ctx.Pictures
+                .Where(p => p.PictureId.Equals(id))
                 .Include(p => p.Photographer)
                 .Include(p => p.MetaData)
-                .Include(p => p.MetaData.Data)
-                .SingleAsync(picture => picture.PictureId == id);
+                .ThenInclude(m => m.Data)
+                .Take(1)
+                .SingleAsync();
+        }
+
+        public async Task<Picture> GetPictureByName(string name)
+        {
+            return await _ctx.Pictures
+                .Where(p => p.Name.Equals(name))
+                .Include(p => p.Photographer)
+                .Include(p => p.MetaData)
+                .ThenInclude(m => m.Data)
+                .Take(1)
+                .SingleAsync();
+        }
+
+        public async Task<int> GetPictureIndexById(int id)
+        {
+            return _ctx.Pictures.IndexOf(await GetPictureById(id));
         }
 
         public async Task UpdatePicture(Picture p)
@@ -52,14 +71,14 @@ namespace backend_data_access
                 .Skip(query.Start)
                 .Take(query.End - query.Start);
 
-            switch (query.type)
+            switch (query.Type)
             {
                 case FetchType.Full:
                     return await dbQuery.Include(p => p.MetaData.Data).ToListAsync();
                 case FetchType.PathsOnly:
                     return await dbQuery.ToListAsync();
                 default:
-                    throw new ArgumentException($"Unhandled fetch type {query.type}");
+                    throw new ArgumentException($"Unhandled fetch type {query.Type}");
             }
         }
 
@@ -72,6 +91,26 @@ namespace backend_data_access
             await _ctx.SaveChangesAsync();
         }
 
+        public async Task RemoveOldFromDb(IEnumerable<string> paths)
+        {
+            var range = _ctx.Pictures.Where(w => !paths.Contains(w.FilePath));
+            _ctx.Pictures.RemoveRange(range);
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
+        {
+            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
+            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
+        }
+
+        public async Task InsertAll(IEnumerable<Picture> pictures)
+        {
+            _ctx.Pictures.AddRange(pictures);
+            await _ctx.SaveChangesAsync();
+        }
+
+
         public async Task<Photographer> GetPhotographerById(int id)
         {
             return await _ctx.Photographer.SingleAsync(p => p.Id == id);
@@ -79,16 +118,9 @@ namespace backend_data_access
 
         public async Task<Photographer> CreatePhotographer(Photographer p)
         {
-            var newPhotographer = new Photographer
-            {
-                FirstName = p.FirstName,
-                LastName = p.LastName
-            };
-
-            await _ctx.Photographer.AddAsync(newPhotographer);
+            _ctx.Photographer.Add(p);
             await _ctx.SaveChangesAsync();
-
-            return newPhotographer;
+            return p;
         }
 
         public async Task<IEnumerable<Photographer>> GetPhotographers()
@@ -105,30 +137,12 @@ namespace backend_data_access
         public async Task UpdatePhotographer(Photographer photographer)
         {
             var currentPhotographer = await GetPhotographerById(photographer.Id);
-            currentPhotographer.FirstName = photographer.FirstName ?? currentPhotographer.FirstName;
-            currentPhotographer.LastName = photographer.LastName ?? currentPhotographer.LastName;
+            currentPhotographer.FirstName = photographer.FirstName;
+            currentPhotographer.LastName = photographer.LastName;
+            currentPhotographer.Birthday = photographer.Birthday;
+            currentPhotographer.Notes = photographer.Notes;
             await _ctx.SaveChangesAsync();
         }
 
-        public async Task RemoveOldFromDb(IEnumerable<string> paths)
-        {
-            var query = paths
-                .Aggregate<string, IQueryable<Picture>>(_ctx.Pictures,
-                    (current, path) => current.Where(p => p.FilePath != path));
-            _ctx.RemoveRange(query);
-            await _ctx.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<string>> FilterNewPaths(IEnumerable<string> newPaths)
-        {
-            var oldPaths = await _ctx.Pictures.Select(p => p.FilePath).ToListAsync();
-            return newPaths.Where(newPath => oldPaths.All(old => old != newPath));
-        }
-
-        public async Task InsertAll(IEnumerable<Picture> pictures)
-        {
-            _ctx.Pictures.AddRange(pictures);
-            await _ctx.SaveChangesAsync();
-        }
     }
 }

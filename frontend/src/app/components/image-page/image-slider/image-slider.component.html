@@ -1,5 +1,6 @@
 <div class="container-fluid h-100 mh-100" id="slider-container">
     <ngx-slick-carousel class="carousel h-100 mh-100"
+                        #slickCarouselComponent
                         [config]="slideConfig"
                         (afterChange)="afterChange($event)">
         <div ngxSlickItem *ngFor="let image of images; trackBy:identify"

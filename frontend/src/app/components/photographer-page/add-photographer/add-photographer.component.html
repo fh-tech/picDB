@@ -1,28 +1,29 @@
 <div class="container-fluid h-100 mt-3">
     <h4 class="text-center">Add a new Photographer</h4>
     <form class="h-100" (ngSubmit)="submit()" [formGroup]="photographerForm">
+        
         <mat-form-field class="w-100">
             <mat-label>First Name</mat-label>
             <input formControlName="firstName"
-                   required
                    matInput
                    type="text"
                    id="firstName"
                    name="firstName"
                    aria-describedby="First Name of photographer">
-            <mat-hint>2-20 characters</mat-hint>
+            <mat-hint>max. 100 characters</mat-hint>
             <mat-error *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
-                <mat-error *ngIf="firstName?.errors['required']">
-                    First Name is required
-                </mat-error>
-                <mat-error *ngIf="firstName?.errors['minlength']">
-                    First Name must be at least 2 characters long.
-                </mat-error>
+<!--                <mat-error *ngIf="firstName?.errors['required']">-->
+<!--                    First Name is required-->
+<!--                </mat-error>-->
+<!--                <mat-error *ngIf="firstName?.errors['minlength']">-->
+<!--                    First Name must be at least 2 characters long.-->
+<!--                </mat-error>-->
                 <mat-error *ngIf="firstName?.errors['maxlength']">
-                    First Name is too long (50 characters maximum).
+                    First Name is too long (100 characters maximum).
                 </mat-error>
             </mat-error>
         </mat-form-field>
+        
         <mat-form-field class="w-100">
             <mat-label>Last Name</mat-label>
             <input formControlName="lastName"
@@ -32,21 +33,51 @@
                    id="lastName"
                    name="lastName"
                    aria-describedby="Last Name of photographer">
-            <mat-hint>2-20 characters</mat-hint>
+            <mat-hint>max. 50 characters</mat-hint>
             <mat-error *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
                 <mat-error *ngIf="lastName?.errors['required']">
                     Last Name is required
                 </mat-error>
-                <mat-error *ngIf="lastName?.errors['minlength']">
-                    Last Name must be at least 2 characters long.
-                </mat-error>
+<!--                <mat-error *ngIf="lastName?.errors['minlength']">-->
+<!--                    Last Name must be at least 2 characters long.-->
+<!--                </mat-error>-->
                 <mat-error *ngIf="lastName?.errors['maxlength']">
-                    Last Name ist too long (50 characters maximum).
+                    Last Name is too long (50 characters maximum).
                 </mat-error>
             </mat-error>
         </mat-form-field>
+        
+        <mat-form-field class="w-100">  
+            <mat-label>Birthday</mat-label>
+            <input matInput
+                   formControlName="birthday"
+                   [matDatepicker]="picker"
+                   name="birthday"
+                   id="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-error
+                *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
+<!--            <mat-error *ngIf="birthday?.errors['required']">-->
+<!--                A birthday is required-->
+<!--            </mat-error>-->
+            <mat-error *ngIf="birthday?.errors['validBirthday']">
+                Birthday has to be in the past!
+            </mat-error>
+        </mat-error>
+        
+        <mat-form-field class="w-100">
+            <mat-label>Notes</mat-label>
+            <textarea formControlName="notes"
+                      matInput
+                      id="notes"
+                      name="notes"
+                      rows="2">
+            </textarea>
+        </mat-form-field>
+        
         <button type="submit"
-                (click)="submit()"
                 mat-button
                 [disabled]="!photographerForm.valid">
             Add photographer

@@ -4,29 +4,29 @@ namespace backend_server.Model
     {
         public ImageLoadTask(string directoryPath)
         {
-            DirectoryPath = directoryPath;
+            Path = directoryPath;
         }
 
-        public string DirectoryPath { get; }
+        public string Path { get; }
     }
 
     public class ImageSyncTask : IImageLoadTask
     {
         public ImageSyncTask(string directoryPath)
         {
-            DirectoryPath = directoryPath;
+            Path = directoryPath;
         }
 
-        public string DirectoryPath { get; }
+        public string Path { get; }
     }
 
     public class StopLoadTask : IImageLoadTask
     {
-        public string DirectoryPath => "";
+        public string Path => "";
     }
 
     public interface IImageLoadTask
     {
-        string DirectoryPath { get; }
+        string Path { get; }
     }
 }

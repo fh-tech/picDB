@@ -7,9 +7,11 @@
                formControlName="searchValue"
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-            </mat-option>
+            <div *ngIf="options">
+                <mat-option *ngFor="let option of options" [value]="option" (click)="optionChosen(option)">
+                    {{option}}
+                </mat-option>
+            </div>
         </mat-autocomplete>
     </mat-form-field>
 </form>

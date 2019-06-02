@@ -8,6 +8,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import {AppRoutingModule} from './modules/app-routing.module';
 
+
 // NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
