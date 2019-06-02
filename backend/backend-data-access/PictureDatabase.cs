@@ -11,7 +11,9 @@ namespace backend_data_access
 {
     public class PictureDatabase
     {
-        private readonly PicDbContext _ctx;
+        private PicDbContext _ctx;
+
+        public ILogger<PictureDatabase> Logger { private get; set; }
 
 
         public PictureDatabase(PicDbContext ctx)
@@ -19,8 +21,6 @@ namespace backend_data_access
             _ctx = ctx;
             Logger = new NullLogger<PictureDatabase>();
         }
-
-        public ILogger<PictureDatabase> Logger { private get; set; }
 
         public async Task<Picture> GetPictureById(int id)
         {
@@ -46,9 +46,9 @@ namespace backend_data_access
         {
             var dbQuery = _ctx.Pictures
                 .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
-                                                     || p.Photographer.LastName == query.QueryString
-                                                     || p.Photographer.FirstName == query.QueryString
-                                                     || p.FilePath.Contains(query.QueryString)))
+                         || p.Photographer.LastName == query.QueryString
+                         || p.Photographer.FirstName == query.QueryString
+                         || p.FilePath.Contains(query.QueryString)))
                 .Skip(query.Start)
                 .Take(query.End - query.Start);
 
@@ -112,7 +112,6 @@ namespace backend_data_access
 
         public async Task RemoveOldFromDb(IEnumerable<string> paths)
         {
-            var pics = _ctx.Pictures;
             var query = paths
                 .Aggregate<string, IQueryable<Picture>>(_ctx.Pictures,
                     (current, path) => current.Where(p => p.FilePath != path));

@@ -17,6 +17,7 @@ namespace backend_server.Services
         private static readonly string[] SupportedExtensions = {".jpeg", ".jpg", ".png"};
 
         private readonly PictureDatabase _picDb;
+        public ILogger<ImageService> Logger { private get; set; }
 
 
         public ImageService(PictureDatabase picDb)
@@ -24,8 +25,6 @@ namespace backend_server.Services
             _picDb = picDb;
             Logger = new NullLogger<ImageService>();
         }
-
-        public ILogger<ImageService> Logger { private get; set; }
 
         public async Task UpdatePictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
         {
@@ -50,22 +49,19 @@ namespace backend_server.Services
             await notifyProgress(0.8f);
         }
 
-
-        private static List<string> LoadPaths(string directory)
-        {
-            return Directory.GetFiles(directory)
+        private static List<string> LoadPaths(string directory) =>
+            Directory.GetFiles(directory)
                 .Where(f =>
                     SupportedExtensions
                         .Any(ext => Path.GetExtension(f).ToLower() == ext))
                 .ToList();
-        }
 
         private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
         {
             notifyProgress ??= f => Task.CompletedTask;
             var files = LoadPaths(folderPath);
 
-            await notifyProgress.Invoke(0.05f);
+            await notifyProgress(0.05f);
 
             var i = 0;
             var size = files.Count;
