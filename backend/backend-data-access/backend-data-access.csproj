@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <RootNamespace>backend_data_access</RootNamespace>
-        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

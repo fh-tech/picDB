@@ -59,7 +59,7 @@ namespace backend_server.Services
 
         private static async Task<IEnumerable<Picture>> LoadImages(string folderPath, Func<float, Task> notifyProgress)
         {
-            notifyProgress ??= f => Task.CompletedTask;
+            notifyProgress = notifyProgress ?? (f => Task.CompletedTask);
             var files = LoadPaths(folderPath);
 
             await notifyProgress(0.05f);
