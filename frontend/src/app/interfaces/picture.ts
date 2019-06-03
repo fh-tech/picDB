@@ -7,4 +7,5 @@ export interface Picture {
     filePath: string;
     photographer: Photographer;
     metaData: MetaData;
+    tags: string[];
 }

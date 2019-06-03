@@ -1,9 +1,9 @@
-﻿using backend_data_access;
+﻿using System.Runtime.InteropServices;
+using backend_data_access;
 using backend_server.Controllers;
 using backend_server.Services;
 using backend_server.Util;
 using jsreport.AspNetCore;
-using jsreport.Binary.Linux;
 using jsreport.Local;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,12 +15,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using WindowsBinary = jsreport.Binary.JsReportBinary;
+using LinuxBinary = jsreport.Binary.Linux.JsReportBinary;
+
 
 namespace backend_server
 {
     public class Startup
     {
-        private readonly string MyAllowSpecificOrigins = "electron-client";
+        private const string MyAllowSpecificOrigins = "electron-client";
 
         public Startup(IConfiguration configuration)
         {
@@ -49,7 +52,9 @@ namespace backend_server
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddJsReport(new LocalReporting()
-                .UseBinary(JsReportBinary.GetBinary())
+                .UseBinary(RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
+                    ? LinuxBinary.GetBinary()
+                    : WindowsBinary.GetBinary())
                 .AsUtility()
                 .Create()
             );
@@ -82,10 +87,7 @@ namespace backend_server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             //app.UseHttpsRedirection();
             app.UseCors(MyAllowSpecificOrigins);

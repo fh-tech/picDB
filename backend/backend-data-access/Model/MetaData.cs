@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend_data_access.Model
 {
     public class MetaData
     {
         public int Id { get; set; }
-        public List<MetaDataEntry> Data { get; set; } = new List<MetaDataEntry>();
+        [Required] public List<MetaDataEntry> Data { get; set; } = new List<MetaDataEntry>();
     }
 
     public class MetaDataEntry

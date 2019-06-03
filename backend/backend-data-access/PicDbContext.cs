@@ -10,6 +10,7 @@ namespace backend_data_access
         }
 
         internal DbSet<Picture> Pictures { get; set; }
+        internal DbSet<Tag> Tags { get; set; }
         internal DbSet<MetaData> Metadata { get; set; }
         internal DbSet<Photographer> Photographer { get; set; }
     }

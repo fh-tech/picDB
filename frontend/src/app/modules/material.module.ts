@@ -1,17 +1,19 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatDatepickerModule,
+    MatIconModule,
     MatInputModule,
     MatNativeDateModule,
     MatOptionModule,
-    MatAutocompleteModule,
-    MatTabsModule,
-    MatTableModule,
-    MatSelectModule,
     MatProgressBarModule,
+    MatSelectModule,
+    MatTableModule,
+    MatTabsModule,
 } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -30,6 +32,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
         MatTableModule,
         MatSelectModule,
         MatProgressBarModule,
+        MatChipsModule,
+        MatIconModule,
     ],
     exports: [
         MatButtonModule,
@@ -44,6 +48,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
         MatTableModule,
         MatSelectModule,
         MatProgressBarModule,
+        MatChipsModule,
+        MatIconModule,
     ]
 })
 export class MaterialModule {

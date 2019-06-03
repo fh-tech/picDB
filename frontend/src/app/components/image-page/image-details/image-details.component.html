@@ -3,7 +3,25 @@
         <div class="row h-100 mh-100">
             <div class="col-6 h-100 mh-100 d-flex align-items-center">
                 <img [src]="image.filePath | safeHtml" class="mx-auto my-auto img-fluid mh-100">
+                <div>
+                    <mat-form-field>
+                        <mat-chip-list #taglist aria-label="tag list">
+                            <mat-chip (removed)="removeTag($event)" *ngFor="let tag of image.tags" [removable]="removable"
+                                      [selectable]="selectable">
+                                {{tag}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <input (matChipInputTokenEnd)="addTag($event)" [matChipInputAddOnBlur]="addOnBlur"
+                                   [matChipInputFor]="taglist"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   aria-label="tags"
+                                   placeholder="add tags..."
+                            >
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
             </div>
+
             <div class="col-6 h-100 mh-100">
                 <mat-tab-group>
                     

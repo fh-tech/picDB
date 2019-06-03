@@ -19,7 +19,8 @@ export class ImagePageComponent {
         name: 'placeholder',
         filePath: 'assets/img/placeholder.png',
         photographer: null,
-        metaData: null
+        metaData: null,
+        tags: []
     };
 
     pictures: Picture[] = [];

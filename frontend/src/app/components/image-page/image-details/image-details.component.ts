@@ -5,6 +5,8 @@ import {Photographer} from '../../../interfaces/photographer';
 import {Picture} from '../../../interfaces/picture';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SignalRService} from '../../../providers/signal-r/signal-r.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material';
 
 @Component({
     selector: 'app-image-details',
@@ -20,6 +22,12 @@ export class ImageDetailsComponent {
     private photographers$: Observable<Photographer[]>;
     private activeImage: Picture;
 
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    private visible = true;
+    private selectable = true;
+    private removable = true;
+    private addOnBlur = true;
+    
     @Input('activeImage') set setActiveImage(image: Picture) {
         let creator = null;
         let country = null;
@@ -103,41 +111,62 @@ export class ImageDetailsComponent {
         });
         
     }
+
+    async addTag(event: MatChipInputEvent) {
+        const input = event.input;
+        const value = event.value;
+
+        if ((value || '').trim() && this.activeImage.tags.indexOf(value.trim()) < 0) {
+            this.activeImage.tags.push(value.trim());
+            await this.updateImage();
+        }
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    async removeTag(tag: string) {
+        const idx = this.activeImage.tags.indexOf(tag);
+        if (idx >= 0) {
+            this.activeImage.tags.splice(idx, 1);
+            await this.updateImage();
+        }
+    }
     
-
-
     updatePhotographer() {
         const value = this.photographerForm.value;
         this.photographerService.getPhotographer(value.photographerID).subscribe(
-            p => {
+            async p => {
                 this.activeImage.photographer = p;
-                this.signalR.update(this.activeImage);
+                await this.updateImage();
                 this.iptcForm.markAsPristine();
                 this.iptcForm.markAsUntouched();
             } 
         );
     }
-    
-    updateIPTC() {
+
+    async updateIPTC() {
         const value = this.iptcForm.value;
         this.activeImage.metaData.data.find(md => md.key === "Creator").value = value.creator;
         this.activeImage.metaData.data.find(md => md.key === "Country").value = value.country;
         this.activeImage.metaData.data.find(md => md.key === "Source").value = value.source;
-        this.signalR.update(this.activeImage);
+        await this.updateImage();
         this.iptcForm.markAsPristine();
         this.iptcForm.markAsUntouched();
     }
-    
-    updateEXIF() {
+
+    async updateEXIF() {
         const value = this.exifForm.value;
         this.activeImage.metaData.data.find(md => md.key === "Aperture").value = value.aperture;
         this.activeImage.metaData.data.find(md => md.key === "FocalLength").value = value.aperture;
         this.activeImage.metaData.data.find(md => md.key === "ExifVersion").value = value.aperture;
-        this.signalR.update(this.activeImage);
+        await this.updateImage();
         this.iptcForm.markAsPristine();
         this.iptcForm.markAsUntouched();
     }
-    
-    
+
+    updateImage() {
+        return this.signalR.update(this.activeImage);
+    }
     
 }
