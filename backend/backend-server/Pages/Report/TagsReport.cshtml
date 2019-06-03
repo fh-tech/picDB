@@ -1,0 +1,32 @@
+@model backend_server.Model.TagReportViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css">
+    <title>Image Report</title>
+    <style>
+        body{
+            margin: 2em;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>
+        Tag Report
+    </h1>
+</header>
+<main>
+    <h3>List of tags</h3>
+    <ul>
+        @foreach (var (tag, count) in Model.tagCount)
+        {
+            <li>
+                @tag => @count
+            </li>
+        }
+    </ul>
+</main>
+</body>
+</html>

@@ -156,5 +156,20 @@ namespace backend_data_access
             currentPhotographer.Notes = photographer.Notes;
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<(string, int)>> TagReport()
+        {
+            //sql lite is not able to execute this will fetch all data to memory and grp and count locally
+            var tags = _ctx.Tags
+                .Join(_ctx.Pictures,
+                    tag => tag.PictureId,
+                    picture => picture.PictureId,
+                    (tag, picture) => new {tag, picture})
+                .GroupBy(col => col.tag.Value)
+                .Select(col => new {tag = col.Key, count = col.Count()});
+
+            var tagCount = await tags.ToListAsync();
+            return tagCount.Select(tc => (tc.tag, tc.count));
+        }
     }
 }

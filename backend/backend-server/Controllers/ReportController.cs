@@ -33,5 +33,20 @@ namespace backend_server.Controllers
 
             return View(viewModel);
         }
+
+        [Route("tags")]
+        [HttpGet]
+        [MiddlewareFilter(typeof(JsReportPipeline))]
+        public async Task<IActionResult> TagsReport()
+        {
+            HttpContext
+                .JsReportFeature()
+                .Recipe(Recipe.ChromePdf)
+                .OnAfterRender(r =>
+                    HttpContext.Response.Headers["Content-Disposition"] = "attachment; filename=\"report.pdf\"");
+            var model = await _database.TagReport();
+            var viewModel = new TagReportViewModel {tagCount = model};
+            return View(viewModel);
+        }
     }
 }
