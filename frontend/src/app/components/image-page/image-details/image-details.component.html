@@ -2,41 +2,10 @@
     <div *ngIf="activeImage as image" class="h-100 mh-100">
         <div class="row h-100 mh-100">
             <div class="col-6 h-100 mh-100 d-flex align-items-center">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <img [src]="image.filePath | safeHtml" class="mx-auto my-auto img-fluid mh-100">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-chip-list #taglist aria-label="tag list">
-                                    <mat-chip (removed)="removeTag($event)" *ngFor="let tag of image.tags"
-                                              [removable]="removable"
-                                              [selectable]="selectable">
-                                        {{tag}}
-                                        <mat-icon matChipRemove>cancel</mat-icon>
-                                    </mat-chip>
-                                    <input (matChipInputTokenEnd)="addTag($event)" [matChipInputAddOnBlur]="addOnBlur"
-                                           [matChipInputFor]="taglist"
-                                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                           aria-label="tags"
-                                           placeholder="add tags..."
-                                    >
-                                </mat-chip-list>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                </div>
-
-
+                <img [src]="image.filePath | safeHtml" class="mx-auto my-auto img-fluid mh-90">
             </div>
-
             <div class="col-6 h-100 mh-100">
                 <mat-tab-group>
-
                     <mat-tab class="my-1" label="IPTC" *ngIf="image.metaData && image.metaData.data">
                         <form (ngSubmit)="updateIPTC()" [formGroup]="iptcForm">
                             <mat-form-field class="w-100">
@@ -127,6 +96,27 @@
                                 Update
                             </button>
                         </form>
+                    </mat-tab>
+
+                    <mat-tab class="my-1" label="Other">
+                        <mat-form-field>
+                            <mat-chip-list #taglist aria-label="tag list">
+                                <mat-chip (removed)="removeTag($event)" *ngFor="let tag of image.tags"
+                                          [removable]="removable"
+                                          [selectable]="selectable">
+                                    {{tag}}
+                                    <mat-icon matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+                                <input (matChipInputTokenEnd)="addTag($event)" [matChipInputAddOnBlur]="addOnBlur"
+                                       [matChipInputFor]="taglist"
+                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                       aria-label="tags"
+                                       placeholder="add tags..."
+                                >
+                            </mat-chip-list>
+                        </mat-form-field>
+                        <br/>
+                        <a mat-raised-button (click)="generateReport()">Download Report</a>
                     </mat-tab>
 
                 </mat-tab-group>

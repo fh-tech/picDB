@@ -76,6 +76,17 @@ function createMenu() {
                     }
                 }
             ]
+        },
+        {
+            label: 'Reports',
+            submenu: [
+                {
+                    label: 'Generate tag report',
+                    click: function (item, focusedWindow) {
+                        sendGenerateTagReport();
+                    }
+                }
+            ]
         }
     ];
     var menu = electron_1.Menu.buildFromTemplate(template);
@@ -123,6 +134,9 @@ function sendNavigatePhotographer() {
 }
 function sendNavigateImage() {
     win.webContents.send('images');
+}
+function sendGenerateTagReport() {
+    win.webContents.send('generateTagReport');
 }
 function selectDirectory() {
     return electron_1.dialog.showOpenDialog(win, {

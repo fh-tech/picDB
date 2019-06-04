@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {SignalRService} from '../../../providers/signal-r/signal-r.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipEvent, MatChipInputEvent} from '@angular/material';
+import {downloadFile, ReportService} from '../../../providers/report/report.service';
 
 @Component({
     selector: 'app-image-details',
@@ -89,7 +90,8 @@ export class ImageDetailsComponent {
     constructor(private photographers: PhotographersService,
                 private fb: FormBuilder,
                 private signalR: SignalRService,
-                private photographerService: PhotographersService) {
+                private photographerService: PhotographersService,
+                private reportService: ReportService) {
         this.photographers$ = photographers.photographers$;
 
         
@@ -170,5 +172,12 @@ export class ImageDetailsComponent {
     updateImage() {
         return this.signalR.update(this.activeImage);
     }
-    
+
+    generateReport() {
+        this.reportService.picReport(this.activeImage.pictureId).subscribe(
+            blob => {
+                downloadFile(blob, "report.pdf");
+            }
+        );
+    }
 }

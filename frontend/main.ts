@@ -74,7 +74,7 @@ function createMenu() {
             ]
         },
         {
-            label: 'Photographer',
+            label: 'Photographers',
             submenu: [
                 {
                     label: 'Manage',
@@ -82,6 +82,18 @@ function createMenu() {
                         sendNavigatePhotographer();
                     }
                 }
+            ]
+        },
+        {
+            label: 'Reports',
+            submenu: [
+                {
+                    label: 'Generate tag report',
+                    click(item, focusedWindow) {
+                        sendGenerateTagReport();
+                    }
+                }
+
             ]
         }
     ];
@@ -140,6 +152,10 @@ function sendNavigatePhotographer() {
 
 function sendNavigateImage() {
     win.webContents.send('images');
+}
+
+function sendGenerateTagReport() {
+    win.webContents.send('generateTagReport');
 }
 
 

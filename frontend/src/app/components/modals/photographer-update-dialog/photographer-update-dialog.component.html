@@ -80,7 +80,7 @@
         <button type="submit"
                 (click)="submit()"
                 mat-button
-                [disabled]="!photographerUpdateForm.valid">
+                [disabled]="!photographerUpdateForm.valid || !photographerUpdateForm.dirty">
             Update photographer
         </button>
     </form>

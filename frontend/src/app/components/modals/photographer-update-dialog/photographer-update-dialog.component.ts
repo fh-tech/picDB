@@ -33,7 +33,7 @@ export class PhotographerUpdateDialogComponent {
 
     submit() {
         const value = this.photographerUpdateForm.value;
-        let date = value.birthday;
+        let date = new Date(value.birthday);
         const photographer: Photographer = {
             id: this.data.id,
             firstName: value.firstName,

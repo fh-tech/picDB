@@ -44,6 +44,7 @@ import {PhotographerUpdateDialogComponent} from './components/modals/photographe
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {SafeHtmlPipe} from './pipes/safe-html.pipe';
+import {ReportService} from './providers/report/report.service';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         IpcListenerService,
         IpcSenderService,
         ImageService,
-        SignalRService
+        SignalRService,
+        ReportService
     ],
     bootstrap: [AppComponent],
     entryComponents: [PhotographerUpdateDialogComponent, ProgressBarModalComponent]
