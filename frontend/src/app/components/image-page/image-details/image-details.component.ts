@@ -6,7 +6,7 @@ import {Picture} from '../../../interfaces/picture';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SignalRService} from '../../../providers/signal-r/signal-r.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material';
+import {MatChipEvent, MatChipInputEvent} from '@angular/material';
 
 @Component({
     selector: 'app-image-details',
@@ -125,8 +125,10 @@ export class ImageDetailsComponent {
         }
     }
 
-    async removeTag(tag: string) {
-        const idx = this.activeImage.tags.indexOf(tag);
+    async removeTag(tag: MatChipEvent) {
+        let v : string = tag.chip.value;
+        v = v.replace("cancel", "").trim();
+        const idx = this.activeImage.tags.indexOf(v);
         if (idx >= 0) {
             this.activeImage.tags.splice(idx, 1);
             await this.updateImage();

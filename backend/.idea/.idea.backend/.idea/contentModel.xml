@@ -14,6 +14,7 @@
           <e p="MetaData.cs" t="Include" />
           <e p="Photographer.cs" t="Include" />
           <e p="Picture.cs" t="Include" />
+          <e p="Tag.cs" t="Include" />
         </e>
         <e p="PicDbContext.cs" t="Include" />
         <e p="PictureDatabase.cs" t="Include" />
@@ -40,10 +41,8 @@
           </e>
         </e>
         <e p="Migrations" t="Include">
-          <e p="20190430092321_initial.Designer.cs" t="Include" />
-          <e p="20190430092321_initial.cs" t="Include" />
-          <e p="20190530113906_photographerChanges.Designer.cs" t="Include" />
-          <e p="20190530113906_photographerChanges.cs" t="Include" />
+          <e p="20190604084938_InitialCreate.Designer.cs" t="Include" />
+          <e p="20190604084938_InitialCreate.cs" t="Include" />
           <e p="PicDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Model" t="Include">
@@ -51,11 +50,13 @@
           <e p="FolderPath.cs" t="Include" />
           <e p="ImageLoadTask.cs" t="Include" />
           <e p="ImageReportViewModel.cs" t="Include" />
+          <e p="TagReportViewModel.cs" t="Include" />
           <e p="UpdatePhotographer.cs" t="Include" />
         </e>
         <e p="Pages" t="Include">
           <e p="Report" t="Include">
             <e p="ImageReport.cshtml" t="Include" />
+            <e p="TagsReport.cshtml" t="Include" />
           </e>
         </e>
         <e p="Program.cs" t="Include" />

@@ -74,12 +74,11 @@ export class SignalRService {
         this.connected = this.hubConnection.start();
         return this.connected;
     }
-
-    // the promise returned by send resolves as soon as the client has sent the request to the server
-    // does not wait for response of the server!
-    // if the hub is not connected we try to connect first
+    
     private send(methodName: string, args: any): Promise<void> {
-        return this.connected.then(_ => this.hubConnection.send(methodName, args));
+        if(this.connected) {
+            return this.connected.then(_ => this.hubConnection.send(methodName, args));
+        }
     }
 
     update(updateImage): Promise<void> {

@@ -1,6 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {LoadState, SignalRService} from '../../../providers/signal-r/signal-r.service';
+import {Component, OnDestroy} from '@angular/core';
+import {SignalRService} from '../../../providers/signal-r/signal-r.service';
 
 @Component({
   selector: 'app-progress-bar-modal',

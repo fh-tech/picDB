@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SignalRService} from '../signal-r/signal-r.service';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Picture} from '../../interfaces/picture';
-import {Photographer} from '../../interfaces/photographer';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
