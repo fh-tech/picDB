@@ -20,12 +20,23 @@ namespace backend_server.Controllers
             _picDb = picDb;
         }
 
-
+        /// <summary>
+        /// Callable by the Client.
+        /// Updates an existing Image with the supplied data
+        /// </summary>
+        /// <param name="p">Picture to update</param>
+        /// <returns></returns>
         public async Task Update(Picture p)
         {
             await _picDb.UpdatePicture(p);
         }
 
+        /// <summary>
+        /// Callable by the Client.
+        /// Returns all images which match the supplied picture Query
+        /// </summary>
+        /// <param name="query">query object</param>
+        /// <returns>list of all pictures matching the query</returns>
         public async Task GetQuery(PictureQuery query)
         {
             var result = await _picDb.Query(query);

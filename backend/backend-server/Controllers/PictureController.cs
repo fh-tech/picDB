@@ -27,7 +27,11 @@ namespace backend_server.Controllers
             _workQueue = workQueue;
             Logger = new NullLogger<ImageLoadBackgroundService>();
         }
-
+        /// <summary>
+        /// Commands the server to load a new folder. This API call returns immediately and actual loading is done as background task.
+        /// </summary>
+        /// <param name="folderPath">new folder to load</param>
+        /// <returns>200 on success or 400 if the given directory does not exist</returns>
         [HttpPost]
         public IActionResult LoadPictureFolder(FolderPath folderPath)
         {
@@ -45,6 +49,11 @@ namespace backend_server.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Commands the server to sync an existing folder. This API call returns immediately and actual loading is done as background task.
+        /// </summary>
+        /// <param name="folderPath">folder to sync</param>
+        /// <returns>200 on success or 400 if the given directory does not exist</returns>
         [HttpPut]
         public IActionResult SyncPictureFolder(FolderPath folderPath)
         {
@@ -60,6 +69,11 @@ namespace backend_server.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns a Picture given a filename
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetPicture(string fileName)
         {
@@ -67,6 +81,11 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPictureByName(fileName));
         }
 
+        /// <summary>
+        /// Returns a Picture given an Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPictureIndex(int id)
         {

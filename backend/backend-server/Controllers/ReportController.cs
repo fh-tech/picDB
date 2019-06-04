@@ -18,6 +18,11 @@ namespace backend_server.Controllers
             _database = database;
         }
 
+        /// <summary>
+        /// Generates a pdf report for a single image
+        /// </summary>
+        /// <param name="id">image to report</param>
+        /// <returns>pdf report file</returns>
         [Route("image/{id}")]
         [HttpGet]
         [MiddlewareFilter(typeof(JsReportPipeline))]
@@ -34,6 +39,10 @@ namespace backend_server.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Generates a pdf report for all image tags
+        /// </summary>
+        /// <returns>pdf report file</returns>
         [Route("tags")]
         [HttpGet]
         [MiddlewareFilter(typeof(JsReportPipeline))]
