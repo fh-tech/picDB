@@ -13,6 +13,9 @@ using Directory = System.IO.Directory;
 
 namespace backend_server.Services
 {
+    /// <summary>
+    /// Service class handling all syncing and loading capabilities
+    /// </summary>
     public class ImageService
     {
         private static readonly string[] SupportedExtensions = {".jpeg", ".jpg", ".png"};
@@ -27,6 +30,13 @@ namespace backend_server.Services
             Logger = new NullLogger<ImageService>();
         }
 
+        /// <summary>
+        /// Completely rebuilds the database with new image data loaded from the given directory
+        /// A progress notifier can be supplied as this function my take a long time to execute
+        /// </summary>
+        /// <param name="dir">Directory to load images from</param>
+        /// <param name="notifyProgress">Function that is periodically called to signify progress don by this method</param>
+        /// <returns></returns>
         public async Task UpdatePictureDataFromDirectory(string dir, Func<float, Task> notifyProgress = null)
         {
             Logger.Log(LogLevel.Information, "Requested rebuilding of Image Database with directory [%s]", new {dir});
@@ -35,6 +45,14 @@ namespace backend_server.Services
             await _picDb.RebuildPictureTable(images);
         }
 
+        /// <summary>
+        /// Syncs the existing database data with new data loaded from the given directory
+        /// if an image exists in the directory but not in the database a new entry is created and if an image only exits in the database it will be deleted.
+        /// A progress notifier can be supplied as this function my take a long time to execute
+        /// </summary>
+        /// <param name="dir">directory to sync</param>
+        /// <param name="notifyProgress">Function that is periodically called to signify progress don by this method</param>
+        /// <returns></returns>
         public async Task SyncPictureDataFromDirectory(string dir, Func<float, Task> notifyProgress)
         {
             Logger.Log(LogLevel.Information, "Requested file sync with files from directory [%s]", new {dir});

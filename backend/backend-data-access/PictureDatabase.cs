@@ -23,6 +23,11 @@ namespace backend_data_access
 
         public ILogger<PictureDatabase> Logger { private get; set; }
 
+        /// <summary>
+        /// Loads an Image from the database includes all associated data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Picture> GetPictureById(int id)
         {
             return await _ctx.Pictures
@@ -34,7 +39,11 @@ namespace backend_data_access
                 .Take(1)
                 .SingleAsync();
         }
-
+        /// <summary>
+        /// Loads an image from database with supplied name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public async Task<Picture> GetPictureByName(string name)
         {
             return await _ctx.Pictures
@@ -51,7 +60,11 @@ namespace backend_data_access
         {
             return _ctx.Pictures.IndexOf(await GetPictureById(id));
         }
-
+        /// <summary>
+        /// Updates a picture and all associated data
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public async Task UpdatePicture(Picture p)
         {
             var tags = await _ctx.Pictures
@@ -68,7 +81,12 @@ namespace backend_data_access
             });
             await _ctx.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Queries the database for specific images
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
             var pics = _ctx.Pictures;
@@ -78,6 +96,7 @@ namespace backend_data_access
                                                      || p.Photographer.LastName == query.QueryString
                                                      || p.Photographer.FirstName == query.QueryString
                                                      || p.FilePath.Contains(query.QueryString)))
+                .OrderBy(picture => picture.PictureId)
                 .Skip(query.Start)
                 .Take(query.End - query.Start);
 

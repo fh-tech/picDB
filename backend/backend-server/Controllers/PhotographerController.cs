@@ -22,7 +22,11 @@ namespace backend_server.Controllers
             _picDb = db;
             Logger = new NullLogger<PhotographerController>();
         }
-
+        /// <summary>
+        /// Creates a new Photographer and saves them to the database
+        /// </summary>
+        /// <param name="photographer">new Photographer</param>
+        /// <returns>Http 200 and the new photographer on success and 400 if the sent photographer is not valid</returns>
         [HttpPost]
         public async Task<IActionResult> CreatePhotographer(CreatePhotographer photographer)
         {
@@ -44,7 +48,10 @@ namespace backend_server.Controllers
             });
             return Ok(inserted);
         }
-
+        /// <summary>
+        /// Returns all Photographers currently in the database
+        /// </summary>
+        /// <returns>List of Photographers</returns>
         [HttpGet]
         public async Task<IActionResult> GetPhotographers()
         {
@@ -52,6 +59,11 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPhotographers());
         }
 
+        /// <summary>
+        /// Returns a Photographer by id
+        /// </summary>
+        /// <param name="id">Id of the photographer</param>
+        /// <returns>Photographer with the given id</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPhotographer(int id)
         {
@@ -59,6 +71,12 @@ namespace backend_server.Controllers
             return Ok(await _picDb.GetPhotographerById(id));
         }
 
+        /// <summary>
+        /// Deletes the specified Photographer
+        /// if the photographer is referenced by pictures the relation is set to null
+        /// </summary>
+        /// <param name="id">Id of the photographer to delete</param>
+        /// <returns>Http 200</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePhotographer(int id)
         {
@@ -67,7 +85,12 @@ namespace backend_server.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Updates a existing photographer with the given id using data supplied by UpdatePhotographer
+        /// </summary>
+        /// <param name="id">Id of the photographer to update</param>
+        /// <param name="photographer">new data</param>
+        /// <returns>Http 200</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePhotographer(int id, UpdatePhotographer photographer)
         {
