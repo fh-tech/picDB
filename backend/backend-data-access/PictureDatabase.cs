@@ -71,6 +71,7 @@ namespace backend_data_access
 
         public async Task<IEnumerable<Picture>> Query(PictureQuery query)
         {
+            var pics = _ctx.Pictures;
             var dbQuery = _ctx.Pictures
                 .Where(p => p.MetaData.Data.Any(m => m.Value == query.QueryString
                                                      || p.TagList.Any(t => t.Value == query.QueryString)

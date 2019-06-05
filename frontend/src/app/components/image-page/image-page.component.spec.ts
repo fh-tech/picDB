@@ -13,6 +13,7 @@ import {SearchbarComponent} from './searchbar/searchbar.component';
 import {ImageSliderComponent} from './image-slider/image-slider.component';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {ImageService} from '../../providers/image/image.service';
+import {ReportService} from '../../providers/report/report.service';
 
 describe('ImagePageComponent', () => {
     let component: ImagePageComponent;
@@ -21,7 +22,7 @@ describe('ImagePageComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ImagePageComponent, SearchbarComponent, ImageSliderComponent, ImageDetailsComponent, SafeHtmlPipe, NameDisplayPipe],
-            providers: [SignalRService, PhotographersService, ImageService],
+            providers: [SignalRService, PhotographersService, ImageService, ReportService],
             imports: [MaterialModule, SlickCarouselModule, FormsModule, ReactiveFormsModule, HttpClientModule]
         })
             .compileComponents();

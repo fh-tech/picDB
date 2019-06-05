@@ -67,7 +67,7 @@ function createMenu() {
             ]
         },
         {
-            label: 'Photographer',
+            label: 'Photographers',
             submenu: [
                 {
                     label: 'Manage',

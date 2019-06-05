@@ -40,9 +40,10 @@ export class AppComponent {
                     this.nav.navigate(['images']);
                 }
             });
-
-            //TODO: uncomment again for syncing
-            this.folderService.syncFolder().subscribe();
+            
+            if (this.folderService.photofolder) {
+                this.folderService.syncFolder().subscribe();
+            }
         });
     }
 

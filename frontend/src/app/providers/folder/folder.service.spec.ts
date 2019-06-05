@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ConfigService} from '../config/config.service';
 import {StorageService} from '../storage/storage.service';
 import {ElectronService} from '../electron.service';
+import {NavigatorService} from '../navigator/navigator.service';
 
 describe('FolderService', () => {
     beforeEach(() => TestBed.configureTestingModule({
@@ -12,7 +13,8 @@ describe('FolderService', () => {
             ConfigService,
             StorageService,
             ElectronService,
-            FolderService
+            FolderService,
+            NavigatorService
         ],
         imports: [
             HttpClientModule

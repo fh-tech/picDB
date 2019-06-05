@@ -11,18 +11,16 @@ export class FolderService {
                 private http: HttpClient) {
         this.photoFolder = config.readConfig().folderPath;
     }
-    
+
     get photofolder() {
         return this.photoFolder;
     }
 
     // can only syncFolder if it has already been set sometime in the past
     syncFolder() {
-        if (this.photoFolder) {
-            return this.http.put('http://127.0.0.1:5000/api/pictures', {
-                path: this.photoFolder
-            });
-        }
+        return this.http.put('http://127.0.0.1:5000/api/pictures', {
+            path: this.photoFolder
+        });
     }
 
     loadFolder(folder: string) {

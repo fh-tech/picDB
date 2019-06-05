@@ -38,6 +38,7 @@ export class ImagePageComponent {
     options: string[] = [];
 
     scrollToImageID: number = -1;
+    scrollToImageName: string = '';
 
     constructor(private imageService: ImageService) {
         // initial load of images
@@ -54,17 +55,26 @@ export class ImagePageComponent {
                 // console.log("id of pic " + this.scrollToImageID);
                 // console.log("index where we found that id: " + index);
                 // console.log(this.pictures);
-                // this.slider.slideToSlide(index);
-                // TODO: seems to not be done building slider when we get here and does not scroll all the way
-                setTimeout(_ => this.slider.slideToSlide(index), 300);
+                if(index <= 0) {
+                    this.imageService.getPictureByName(this.scrollToImageName).subscribe(p => {
+                        this.pictures.push(p);
+                        let index = this.pictures.findIndex(pic => pic.pictureId === p.pictureId);
+                        this.slider.slideToSlide(index);
+                        this.endIndex += 1;
+                    });
+                } else {
+                    // TODO: seems to not be done building slider when we get here and does not scroll all the way
+                    setTimeout(_ => this.slider.slideToSlide(index), 600);
+                }
                 this.scrollToImageID = -1;
+                this.scrollToImageName = '';
             }
         });
         this.imageService.imageShort$.subscribe(options => this.options = options);
     }
 
     handleSlideEvent(slideEvent: SlideEvent) {
-        if ((slideEvent.currentSlide + this.slidesToScroll * 2) == this.endIndex) {
+        if ((slideEvent.currentSlide + this.slidesToScroll * 2) >= this.endIndex) {
             this.reloadToIndex();
         }
     }
@@ -88,6 +98,8 @@ export class ImagePageComponent {
                     this.activePicture = p;
                     // TODO: think about that ( setting scrollToImageID and (line 51 when the observable emits the new images and scrollTo was set it will scroll to the index... 
                     this.scrollToImageID = p.pictureId;
+                    this.scrollToImageName = p.name;
+                    // console.log("index: " + index);
                     this.reloadToIndex(index);
                 });
             });
