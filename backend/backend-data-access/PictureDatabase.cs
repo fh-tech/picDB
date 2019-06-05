@@ -95,6 +95,7 @@ namespace backend_data_access
                                                      || p.Photographer.LastName == query.QueryString
                                                      || p.Photographer.FirstName == query.QueryString
                                                      || p.FilePath.Contains(query.QueryString)))
+                .OrderBy(picture => picture.PictureId)
                 .Skip(query.Start)
                 .Take(query.End - query.Start);
 
