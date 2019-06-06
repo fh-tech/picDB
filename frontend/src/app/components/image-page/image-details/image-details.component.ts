@@ -24,7 +24,6 @@ export class ImageDetailsComponent {
     private activeImage: Picture;
 
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-    private visible = true;
     private selectable = true;
     private removable = true;
     private addOnBlur = true;

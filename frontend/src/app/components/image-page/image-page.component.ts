@@ -15,14 +15,7 @@ export class ImagePageComponent {
 
     @ViewChild('sliderComponent') slider;
 
-    activePicture: Picture = {
-        pictureId: -1,
-        name: 'placeholder',
-        filePath: 'assets/img/placeholder.png',
-        photographer: null,
-        metaData: null,
-        tags: []
-    };
+    activePicture: Picture;
 
     pictures: Picture[] = [];
 
@@ -40,29 +33,21 @@ export class ImagePageComponent {
 
     scrollToImageID: number = -1;
     scrollToImageName: string = '';
-    
+
 
     constructor(private imageService: ImageService) {
+        this.reset();
+        
         this.imageService.refreshFolder$.subscribe(b => {
-            if(b) {
-                this.pictures = [];
-                this.imageService.loadRange(0,20);
-                this.startIndex = 0;
-                this.endIndex = 20;
-
-                this.activePicture = {
-                    pictureId: -1,
-                    name: 'placeholder',
-                    filePath: 'assets/img/placeholder.png',
-                    photographer: null,
-                    metaData: null,
-                    tags: []
-                };
+            if (b) {
+                this.reset();
             }
         });
-        
+
+        this.imageService.imageShort$.subscribe(options => this.options = options);
+
         // initial load of images
-        this.imageService.loadRange(this.startIndex, this.endIndex);
+        // this.imageService.loadRange(this.startIndex, this.endIndex);
         this.imageService.pictures$.subscribe(pics => {
             this.pictures.push(...pics);
             if (this.activePicture.pictureId == -1) {
@@ -70,27 +55,43 @@ export class ImagePageComponent {
                     this.activePicture = pics[0];
                 }
             }
-            if(this.scrollToImageID > -1) {
+            
+            if (this.scrollToImageID > -1) {
                 let index = this.pictures.findIndex(p => p.pictureId === this.scrollToImageID);
-                // console.log("id of pic " + this.scrollToImageID);
-                // console.log("index where we found that id: " + index);
-                // console.log(this.pictures);
-                if(index <= 0) {
+                // sanity check
+                if (index <= 0) {
                     this.imageService.getPictureByName(this.scrollToImageName).subscribe(p => {
                         this.pictures.push(p);
                         let index = this.pictures.findIndex(pic => pic.pictureId === p.pictureId);
                         this.slider.slideToSlide(index);
-                        this.endIndex += 1;
                     });
                 } else {
-                    // TODO: seems to not be done building slider when we get here and does not scroll all the way
                     setTimeout(_ => this.slider.slideToSlide(index), 600);
+                    // this.slider.slideToSlide(index);
                 }
                 this.scrollToImageID = -1;
                 this.scrollToImageName = '';
             }
         });
-        this.imageService.imageShort$.subscribe(options => this.options = options);
+    }
+
+
+    reset() {
+        this.pictures = [];
+
+        this.activePicture = {
+            pictureId: -1,
+            name: 'placeholder',
+            filePath: 'assets/img/placeholder.png',
+            photographer: null,
+            metaData: null,
+            tags: []
+        };
+
+        this.startIndex = 0;
+        this.endIndex = 20;
+
+        this.imageService.loadRange(0, 20);
     }
 
     handleSlideEvent(slideEvent: SlideEvent) {
@@ -106,7 +107,6 @@ export class ImagePageComponent {
     // from the search bar when a searched for option is chosen
     onChooseOption(name: string) {
         this.options = [];
-        console.log('chosen option:' + name);
 
         let index = this.pictures.findIndex(p => p.name === name);
         if (index > -1) {
@@ -116,10 +116,8 @@ export class ImagePageComponent {
             this.imageService.getPictureByName(name).subscribe(p => {
                 this.imageService.getPictureIndex(p.pictureId).subscribe(index => {
                     this.activePicture = p;
-                    // TODO: think about that ( setting scrollToImageID and (line 51 when the observable emits the new images and scrollTo was set it will scroll to the index... 
                     this.scrollToImageID = p.pictureId;
                     this.scrollToImageName = p.name;
-                    // console.log("index: " + index);
                     this.reloadToIndex(index);
                 });
             });
