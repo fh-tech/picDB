@@ -5,6 +5,7 @@ import {BehaviorSubject, merge, Observable, Subject} from 'rxjs';
 import {Picture} from '../../interfaces/picture';
 import {takeWhile} from 'rxjs/operators';
 import {isString} from 'util';
+import {ImageService} from '../image/image.service';
 
 export type LoadState = 'loading' | 'waiting';
 
@@ -13,6 +14,9 @@ export class SignalRService {
 
     private hubConnection: HubConnection;
     private connected: Promise<void> = null;
+
+    private refreshFolderSubject = new BehaviorSubject(false);
+    public refreshFolder$ = this.refreshFolderSubject.asObservable();
 
     //raw notify messages
     private notifyLoadObservable: Subject<number> = new Subject<number>();
@@ -66,6 +70,7 @@ export class SignalRService {
                 this.loadStateSub$.next('waiting');
                 this.loads.next(this.notifyObservable());
                 this.subscribeNotifications();
+                this.refreshFolderSubject.next(true);
             }
         }));
     }

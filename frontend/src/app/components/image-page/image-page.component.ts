@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Picture} from '../../interfaces/picture';
 import {ImageService} from '../../providers/image/image.service';
 import {SlideEvent} from '../../interfaces/slideEvent';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -39,8 +40,27 @@ export class ImagePageComponent {
 
     scrollToImageID: number = -1;
     scrollToImageName: string = '';
+    
 
     constructor(private imageService: ImageService) {
+        this.imageService.refreshFolder$.subscribe(b => {
+            if(b) {
+                this.pictures = [];
+                this.imageService.loadRange(0,20);
+                this.startIndex = 0;
+                this.endIndex = 20;
+
+                this.activePicture = {
+                    pictureId: -1,
+                    name: 'placeholder',
+                    filePath: 'assets/img/placeholder.png',
+                    photographer: null,
+                    metaData: null,
+                    tags: []
+                };
+            }
+        });
+        
         // initial load of images
         this.imageService.loadRange(this.startIndex, this.endIndex);
         this.imageService.pictures$.subscribe(pics => {
